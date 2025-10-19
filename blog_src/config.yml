@@ -51,12 +51,15 @@ params:
   title: "Nailak Blog"
   description: "Expert tips on nail and cuticle care, product insights, and self-care routines from Nailak — vegan, cruelty-free nail oil made in the USA."
   keywords: ["nail care", "cuticle oil", "nail oil", "vegan nail oil", "nail health", "Nailak", "hand care", "natural oils", "vitamin E", "squalane"]
-  author: "Nailak Editorial"
   customFooterText: "© 2025 Nailak Blog. All rights reserved."
   defaultTheme: auto
   ShowReadingTime: true
   ShowWordCount: true
   centerTheme: true
+  
+  author:
+    name: "Nailak Editorial"
+    
   label:
     text: "Nailak"
     icon: "favicon.svg"
