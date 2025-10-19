@@ -1,0 +1,56 @@
+/* === Nailak Header & Layout Correction === */
+
+/* 1. Хедер — фон, навигация, лого */
+.header, .navbar, header.site-header, .menu {
+  background-color: #2F5E3F !important; /* основной зеленый */
+  color: #FFFFFF !important;
+  border-bottom: 1px solid #4D703B !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.header a, .navbar a, header a, .menu a {
+  color: #FFFFFF !important;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.header a:hover,
+.navbar a:hover,
+header a:hover,
+.menu a:hover {
+  color: #F8C84A !important; /* золотистый акцент при наведении */
+}
+
+.header a.active,
+.navbar a.active,
+header a.active,
+.menu a.active {
+  color: #7BB661 !important; /* светлый зеленый актив */
+}
+
+/* 2. Кнопки и аккордеоны — временно делаем нейтральными */
+button,
+a.button,
+[class*="accordion"],
+[class*="card"],
+[class*="next"] {
+  background: #F9FAF9 !important;
+  border: 1px solid #E6E6E6 !important;
+  color: #2F5E3F !important;
+  box-shadow: none !important;
+}
+
+/* Hover — легкое подсвечивание золотистым */
+button:hover,
+a.button:hover,
+[class*="accordion"]:hover,
+[class*="card"]:hover {
+  background: #FFF8E5 !important;
+  border-color: #F8C84A !important;
+}
+
+/* 3. Исправляем контраст текста внутри */
+body, .post-content, .post-entry, .card-content {
+  color: #1B1B1B !important;
+  background-color: #FFFFFF !important;
+}

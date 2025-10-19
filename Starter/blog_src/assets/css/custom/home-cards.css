@@ -1,0 +1,170 @@
+/* ===== Стили карточек списка в духе дизайна поста ===== */
+
+  /* базовая карточка списка */
+  .post-list .post-entry,
+  .home .post-entry,
+  .terms .post-entry,
+  .list .post-entry,
+  .home .first-entry,
+  .list .first-entry {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .post-entry:hover,
+  .first-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px var(--col-19828488);
+  }
+
+  /* градиентная шапка карточки — как шапка секции в посте */
+  .post-entry .entry-header,
+  .first-entry .entry-header {
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+    color: var(--col-hex-fff);
+    padding: .9rem 1.05rem;
+    border-bottom: 1px solid var(--col-09648597);
+  }
+  .post-entry .entry-header a,
+  .first-entry .entry-header a {
+    color: var(--col-hex-fff) !important;
+    text-decoration: none;
+  }
+  .post-entry .entry-header h2,
+  .first-entry .entry-header h2 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  /* компактный бейдж статуса чтения слева от заголовка */
+  .read-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    padding: 0 .6rem;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    color: var(--col-hex-fff);
+    background: var(--col-53726406);
+    border: 1px solid var(--col-13548539);
+    box-shadow: 0 3px 10px var(--col-24547377);
+    flex-shrink: 0;
+  }
+  .read-pill.active {
+    background: var(--col-30026693);
+    border-color: var(--col-26208930);
+  }
+
+  /* контент и мета в карточке */
+  .post-entry .entry-content,
+  .first-entry .entry-content {
+    padding: 1rem 1.05rem;
+  }
+  .post-entry .entry-footer,
+  .first-entry .entry-footer {
+    padding: .7rem 1.05rem;
+    border-top: 1px solid var(--border);
+    color: var(--secondary);
+  }
+
+  /* адаптивные отступы */
+  @media (max-width: 480px) {
+    .post-entry .entry-header,
+    .first-entry .entry-header { padding: .8rem .85rem; }
+    .post-entry .entry-content,
+    .first-entry .entry-content { padding: .85rem .85rem; }
+    .post-entry .entry-footer,
+    .first-entry .entry-footer { padding: .6rem .85rem; }
+  }
+
+  /* плавное появление карточек (добавляется классом .fade-in) */
+  .post-entry, .first-entry {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .post-entry.fade-in, .first-entry.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity .45s ease, transform .45s ease;
+  }
+
+/* ===========================
+   ДОБАВЛЕНИЯ (минимальные)
+   =========================== */
+
+/* A) Лёгкая подсветка при hover на плашках-аккордеонах
+      (без изменения размеров/верстки) */
+.accordion-section > .accordion-header {
+  transition: background .2s ease, box-shadow .2s ease, filter .2s ease;
+  background: linear-gradient(180deg, var(--brand-blue), var(--brand-cyan));
+}
+.accordion-section > .accordion-header:hover {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--brand-blue) 88%, transparent),
+    color-mix(in srgb, var(--brand-cyan) 92%, transparent)
+  );
+  box-shadow: 0 8px 20px rgba(47,94,63,.22);
+  filter: brightness(1.01);
+}
+
+/* B) “NEXT” бейдж слева у заголовков секций (синий акцент) */
+:root{
+  --next-blue: #0B2A4A; /* можно поменять на #1E3A5F или #255CA7 */
+  --next-blue-strong: color-mix(in srgb, var(--next-blue) 92%, #000 8%);
+  --next-text: #FFFFFF;
+  --next-outline: color-mix(in srgb, var(--next-blue) 28%, #fff 72%);
+}
+
+/* в h3 и в заголовках аккордеона */
+.post-content h3 .next,
+.page-content  h3 .next,
+.post-content .accordion-header .next,
+.page-content  .accordion-header .next {
+  background: var(--next-blue);
+  color: var(--next-text);
+  border: 1px solid var(--next-outline);
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+.post-content h3 .next:hover,
+.page-content  h3 .next:hover,
+.post-content .accordion-header .next:hover,
+.page-content  .accordion-header .next:hover {
+  background: var(--next-blue-strong);
+  filter: brightness(1.05);
+}
+
+/* C) Related Posts — карточки в фирменном градиенте Nailak */
+.related-posts .post-item,
+.related .post-item {
+  background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+  color: #fff;
+  border: 0;
+  transition: filter .2s ease, box-shadow .2s ease;
+}
+.related-posts .post-item:hover,
+.related .post-item:hover {
+  filter: brightness(1.06);
+  box-shadow: 0 8px 18px rgba(47,94,63,.25);
+}
+
+/* читаемость бейджей и иконок внутри Related */
+.related-posts .post-item [class*="badge"],
+.related .post-item [class*="badge"],
+.related-posts .post-item .next,
+.related .post-item .next,
+.related-posts .post-item svg,
+.related .post-item svg {
+  color: #fff;
+}

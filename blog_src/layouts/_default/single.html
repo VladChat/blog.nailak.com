@@ -1,0 +1,127 @@
+{{- define "main" -}}
+
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+<!-- {{ partial "custom/mascot.html" . }} -->
+
+    <h1 class="post-title entry-hint-parent">
+      {{ .Title }}
+      {{- if .Draft }}
+      <span class="entry-hint" title="Draft">
+        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
+          <path d="M160-410v-60h300v60H160Zm0-165v-60h470в60H160Zm0-165в-60h470в60H160ZM647-80 460-268l43-43 144 144 311-311 43 43L647-80ZM160-225в-60h300в60H160Zm0-165в-60h470в60H160Z" />
+        </svg>
+      </span>
+      {{- end }}
+    </h1>
+
+    {{- if .Description }}
+    <div class="post-description">{{ .Description }}</div>
+    {{- end }}
+
+    {{- if not (.Param "hideMeta") }}
+    <div class="post-meta-with-icon">
+      <div class="post-meta">
+        {{- partial "post_meta.html" . -}}
+        {{- partial "translation_list.html" . -}}
+        {{- partial "edit_post.html" . -}}
+        {{- partial "post_canonical.html" . -}}
+      </div>
+      <div class="hero-icon-corner">
+        {{ readFile "static/blog/icons/doctor-rehab.svg" | safeHTML }}
+      </div>
+    </div>
+    {{- end }}
+
+
+
+  </header>
+  {{ partial "custom/aff-rotator.html" . }}
+  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false -}}
+  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) -}}
+
+  {{- if (.Param "ShowToc") -}}
+    {{- partial "toc.html" . -}}
+  {{- end -}}
+
+  {{- if .Content }}
+  <div class="post-content">
+    {{- if not (.Param "disableAnchoredHeadings") -}}
+      {{- partial "anchored_headings.html" .Content -}}
+    {{- else -}}
+      {{ .Content }}
+    {{- end -}}
+  </div>
+  {{ partial "custom/accordion-faq.html" . }}
+
+  {{- end }}
+
+  <footer class="post-footer">
+
+    <!-- 🔸 Рекламный блок (Affiliate) — вместо тегов и категорий -->
+    {{ partial "custom/aff-rotator.html" . }}
+
+    {{/* ──────────────────────────────────────────────────────────────
+       БЛОК ТЕГОВ И КАТЕГОРИЙ ОТКЛЮЧЁН (оставлен для истории)
+
+    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
+    {{- $categories := .Language.Params.Taxonomies.category | default "categories" -}}
+
+    {{- $termsTags := $.GetTerms $tags -}}
+    {{- if $termsTags -}}
+      <ul class="post-tags">
+        {{- range $termsTags -}}
+          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+        {{- end -}}
+      </ul>
+    {{- end -}}
+
+    {{- $termsCats := $.GetTerms $categories -}}
+    {{- if $termsCats -}}
+      <div class="post-categories">
+        {{- range $termsCats -}}
+          <a class="category-pill" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{- end -}}
+      </div>
+    {{- end -}}
+
+    ─────────────────────────────────────────────────────────────── */}}
+
+    {{- if (.Param "ShowPostNavLinks") -}}
+      {{- partial "post_nav_links.html" . -}}
+    {{- end -}}
+    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) -}}
+      {{- partial "share_icons.html" . -}}
+    {{- end -}}
+  </footer>
+
+  {{- if site.Params.ShowRelatedPosts -}}
+  <section class="related-posts">
+    <h2>Related Posts</h2>
+    {{- $related := site.RegularPages.Related . | first 4 -}}
+    {{- if $related -}}
+      <div class="related-grid">
+        {{- range $related -}}
+        <a class="related-card" href="{{ .RelPermalink }}">
+          <div class="card-badge">
+            <span class="check"></span>
+            NEXT
+          </div>
+          <div class="card-title">{{ .Title }}</div>
+          <div class="card-plus">+</div>
+        </a>
+        {{- end -}}
+      </div>
+    {{- else -}}
+      <p>No related posts found.</p>
+    {{- end -}}
+  </section>
+  {{- end -}}
+
+  {{- if (.Param "comments") -}}
+    {{- partial "comments.html" . -}}
+  {{- end -}}
+</article>
+
+{{- end -}}

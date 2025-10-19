@@ -1,0 +1,9 @@
+{{ with .Params.categories }}
+<div class="nailak-category">
+  {{ range . }}
+    <a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="nailak-category-link">
+      {{ . }}
+    </a>
+  {{ end }}
+</div>
+{{ end }}
