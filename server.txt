@@ -1,8 +1,0 @@
-cd "C:\Users\vladi\Documents\blog.nailak.com"
-hugo server --source blog_src --disableFastRender --buildDrafts
-
-
-
-cd "C:\Users\vladi\Documents\blog.nailak.com\blog_src"
-python -m scripts.writer.main
-

@@ -1,9 +1,0 @@
-/* Минимальный оверрайд для контраста кнопки Next */
-.pagination .next {
-  color: #0B2A4A;
-}
-.pagination .next:hover,
-.pagination .next:focus {
-  color: #0B2A4A;
-  text-decoration: underline;
-}

@@ -1,1 +1,0 @@
-{{ $mascotJS | safeJS }}
