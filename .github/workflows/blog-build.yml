@@ -29,7 +29,7 @@ jobs:
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.150.2'
+          hugo-version: '0.150.1'
           extended: true
 
       # КЛЮЧ: дать Hugo доступ к истории коммитов репозитория из blog_src/
