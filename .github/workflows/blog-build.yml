@@ -37,6 +37,13 @@ jobs:
           hugo-version: '0.150.1'
           extended: true
 
+      # 🔹 Создаём CNAME заранее, чтобы Hugo его не удалил при очистке
+      - name: Ensure CNAME before build
+        run: |
+          mkdir -p blog_src/static
+          echo "blog.nailak.com" > blog_src/static/CNAME
+          echo "CNAME prepared inside static/"
+
       # Сборка ИМЕННО из blog_src, как у тебя локально
       - name: Build Hugo → /blog
         working-directory: blog_src
