@@ -1,74 +1,34 @@
-<!-- layouts/partials/custom/accordion-faq.html -->
-{{/* 
-  layouts/partials/custom/accordion-faq.html
-  ----------------------------------------------------------
-  • Извлекает раздел FAQ из .Content
-  • Создаёт <details> аккордеон и JSON-LD FAQPage
-  • Поддерживает h2–h4, английские и сокращённые заголовки
-  • Не дублирует данные, безопасен для SEO-валидации
-*/}}
-
+{{/* layouts/partials/custom/accordion-faq.html — JSON-LD ONLY */}}
 {{- if $.Scratch.Get "faq_rendered" -}}
-  {{/* уже отрисовано — пропускаем */}}
+  {{- /* уже отрисовано — пропускаем */ -}}
 {{- else -}}
-
   {{- $html := .Content | safeHTML -}}
-  {{- $faqBlock := "" -}}
+  {{- $faq := slice -}}
 
-  {{/* 1. Ищем начало блока FAQ */}}
-  {{- $match := findRE "(?is)<h[2-4][^>]*>\\s*(FAQ|Frequently\\s+Asked\\s+Questions)\\s*</h[2-4]>([\\s\\S]*)" $html -}}
-  {{- if gt (len $match) 0 -}}
-    {{- $faqBlock = index $match 0 -}}
-  {{- end -}}
+  {{- $m := findRE "(?is)<h2[^>]*>\\s*Frequently\\s+Asked\\s+Questions.*?</h2>([\\s\\S]*)" $html -}}
+  {{- if gt (len $m) 0 -}}
+    {{- $block := index $m 0 | htmlUnescape -}}
 
-  {{- if ne $faqBlock "" -}}
-    {{- $questions := findRE "(?is)<h[3-5][^>]*>(.+?)</h[3-5]>\\s*<p>(.+?)</p>" $faqBlock -}}
-    {{- if gt (len $questions) 0 -}}
-
-      <section class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-
-        {{/* Визуальный аккордеон */}}
-        <div class="faq-accordion">
-          {{- range $questions -}}
-            {{- $q := index (findRE "(?is)<h[3-5][^>]*>(.+?)</h[3-5]>" .) 0 | replaceRE "(?is)<[^>]+>" "" | plainify -}}
-            {{- $a := index (findRE "(?is)<p>(.+?)</p>" .) 0 | replaceRE "(?is)<[^>]+>" "" | plainify -}}
-            <details class="faq-item">
-              <summary>{{ $q }}</summary>
-              <div class="faq-answer"><p>{{ $a }}</p></div>
-            </details>
-          {{- end -}}
-        </div>
-
-        {{/* JSON-LD для Google */}}
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            {{- $len := sub (len $questions) 1 -}}
-            {{- range $i, $q := $questions -}}
-              {{- $qq := index (findRE "(?is)<h[3-5][^>]*>(.+?)</h[3-5]>" $q) 0 | replaceRE "(?is)<[^>]+>" "" | plainify -}}
-              {{- $aa := index (findRE "(?is)<p>(.+?)</p>" $q) 0 | replaceRE "(?is)<[^>]+>" "" | plainify -}}
-              {
-                "@type": "Question",
-                "name": {{ $qq | jsonify }},
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": {{ $aa | jsonify }}
-                }
-              }{{ if lt $i $len }},{{ end }}
-            {{- end -}}
-          ]
-        }
-        </script>
-      </section>
-
-      {{- $.Scratch.Set "faq_rendered" true -}}
+    {{- $re := `(?is)^\\s*Q:\\s*(.+?)\\s*\\n\\s*A:\\s*([\\s\\S]+?)(?:\\n{2,}|$)` -}}
+    {{- range findRE $re $block -}}
+      {{- $q := (index . 1 | plainify | htmlUnescape | trim | replaceRE `\\s+` " ") -}}
+      {{- $a := (index . 2 | plainify | htmlUnescape | trim | replaceRE `\\s+` " ") -}}
+      {{- if and $q $a -}}
+        {{- $faq = $faq | append (dict
+          "@type" "Question"
+          "name" $q
+          "acceptedAnswer" (dict "@type" "Answer" "text" $a)
+        ) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
+
+  {{- if gt (len $faq) 0 -}}
+    <script type="application/ld+json">{{ dict
+      "@context" "https://schema.org"
+      "@type" "FAQPage"
+      "mainEntity" $faq
+    | jsonify }}</script>
+    {{- $.Scratch.Set "faq_rendered" true -}}
+  {{- end -}}
 {{- end -}}
-
-
-
-

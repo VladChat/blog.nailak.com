@@ -1,0 +1,54 @@
+{{/* layouts/partials/templates/schema_json.html — SAFE JSON-LD override */}}
+
+{{ if .IsHome }}
+  {{- $publisherType := ( .Site.Params.schema.publisherType | default "Organization") | title -}}
+  {{- $data := dict
+        "@context" "https://schema.org"
+        "@type"    $publisherType
+        "name"     .Site.Title
+        "url"      .Site.Home.Permalink
+        "description" ( .Site.Params.description | plainify | truncate 180 )
+    -}}
+  {{- $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL -}}
+  {{- if eq $publisherType "Person" -}}
+    {{- $data = merge $data (dict "image" $logo) -}}
+  {{- else -}}
+    {{- $data = merge $data (dict "logo"  $logo) -}}
+  {{- end -}}
+  {{- with .Site.Params.schema.sameAs -}}
+    {{- $data = merge $data (dict "sameAs" .) -}}
+  {{- end -}}
+  <script type="application/ld+json">{{ $data | jsonify }}</script>
+{{ end }}
+
+{{ if .IsPage }}
+  {{- $authorName := .Params.author | default ( .Site.Params.author.name | default "Nailak Editorial" ) -}}
+  {{- $img := "" -}}
+  {{- with .Params.featuredImage }}{{ $img = . }}{{ end -}}
+  {{- $images := cond (ne $img "") (slice $img) (slice) -}}
+  {{- $published := ( .PublishDate | default .Date ) -}}
+  {{- $modified  := ( .Lastmod     | default .Date ) -}}
+
+  {{- $data := dict
+        "@context" "https://schema.org"
+        "@type" "BlogPosting"
+        "headline" .Title
+        "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+        "datePublished" ( $published | time.Format "2006-01-02T15:04:05Z07:00" )
+        "dateModified"  ( $modified  | time.Format "2006-01-02T15:04:05Z07:00" )
+        "author" (dict "@type" "Person" "name" $authorName)
+        "image"  $images
+        "description" ( .Params.description | default .Summary | plainify )
+    -}}
+
+  {{- $publisherType := ( .Site.Params.schema.publisherType | default "Organization") | title -}}
+  {{- $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL -}}
+  {{- $publisher := dict
+        "@type" $publisherType
+        "name"  .Site.Title
+        "logo"  (dict "@type" "ImageObject" "url" $logo)
+    -}}
+  {{- $data = merge $data (dict "publisher" $publisher) -}}
+
+  <script type="application/ld+json">{{ $data | jsonify }}</script>
+{{ end }}
