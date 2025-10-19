@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const postContent = document.querySelector(".post-content");
   if (!postContent) return;
 
@@ -18,13 +18,14 @@
   postContent.innerHTML = "";
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const SCROLL_OFFSET = parseInt(getComputedStyle(document.documentElement)
-    .getPropertyValue("--accordion-offset")) || 96;
+  const SCROLL_OFFSET = parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--accordion-offset")
+  ) || 96;
 
   sections.forEach((sec, idx) => {
     const wrapper = document.createElement("section");
     wrapper.className = "accordion-section" + (idx === 0 ? " open" : "");
-    wrapper.dataset.status = (idx === 0) ? "reading" : "toread";
+    wrapper.dataset.status = idx === 0 ? "reading" : "toread";
     wrapper.style.scrollMarginTop = SCROLL_OFFSET + "px";
 
     const header = document.createElement("button");
@@ -44,51 +45,48 @@
     content.style.transition = "max-height 320ms cubic-bezier(.2,.7,.3,1)";
     content.style.maxHeight = "0px";
     sec.body.forEach(el => content.appendChild(el));
-	
-// ðŸ”¸ Ð’ÑÑ‚Ð°Ð²Ð»ÑÐµÐ¼ Ñ€ÐµÐºÐ»Ð°Ð¼Ð½Ñ‹Ð¹ Ð±Ð»Ð¾Ðº Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑ€Ð²Ð¾Ð¹ ÑÐµÐºÑ†Ð¸Ð¸ (idx === 0)
-if (idx === 0) {
-  const aff = document.createElement("div");
-  aff.innerHTML = `
-    <div data-aff-rotator
-         data-json="/aff/aff-cards.json"
-         data-img-base="/aff/img/88"
-         data-img-base2x="/aff/img/176"
-         data-mode="random"
-         data-count="1"></div>
-  `;
-  content.appendChild(aff);
 
-  // ðŸ”¹ ÐŸÑ€Ð¸Ð½ÑƒÐ´Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð·Ð°Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ñ€Ð¾Ñ‚Ð°Ñ‚Ð¾Ñ€ Ð¿Ð¾ÑÐ»Ðµ Ð²ÑÑ‚Ð°Ð²ÐºÐ¸
-  if (window.affRotatorRun) {
-    window.affRotatorRun();
-  } else if (window.runAffRotator) {
-    window.runAffRotator();
-  } else {
-    try {
-      const script = document.createElement("script");
-      script.src = "/blog/aff/aff-rotator.js";
-      document.body.appendChild(script);
-    } catch (e) {
-      console.warn("Aff rotator re-init failed:", e);
-    }
-  }
+    // 🔧 Вставляем рекламный блок после первой секции (idx === 0)
+    if (idx === 0) {
+      const aff = document.createElement("div");
+      aff.innerHTML = `
+        <div data-aff-rotator
+             data-json="/aff/aff-cards.json"
+             data-img-base="/aff/img/88"
+             data-img-base2x="/aff/img/176"
+             data-mode="random"
+             data-count="1"></div>
+      `;
+      content.appendChild(aff);
 
-  // ðŸ”¹ ÐŸÐµÑ€ÐµÑÑ‡Ñ‘Ñ‚ max-height, ÐºÐ¾Ð³Ð´Ð° Ñ€Ð¾Ñ‚Ð°Ñ‚Ð¾Ñ€ Ð¿Ð¾Ð´Ð³Ñ€ÑƒÐ·Ð¸Ð» ÐºÐ¾Ð½Ñ‚ÐµÐ½Ñ‚
-  // ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ ÐºÐ°Ð¶Ð´Ñ‹Ðµ 300 Ð¼Ñ, Ð¿Ð¾ÐºÐ° Ð±Ð°Ð½Ð½ÐµÑ€ Ð½Ðµ Ð·Ð°Ð¹Ð¼Ñ‘Ñ‚ Ñ€ÐµÐ°Ð»ÑŒÐ½ÑƒÑŽ Ð²Ñ‹ÑÐ¾Ñ‚Ñƒ
-  const fixHeight = setInterval(() => {
-    if (wrapper.classList.contains("open")) {
-      const visibleHeight = content.scrollHeight;
-      if (visibleHeight > parseInt(content.style.maxHeight || 0)) {
-        content.style.maxHeight = visibleHeight + "px";
+      // 🔧 Принудительно запустить ротатор после вставки
+      if (window.affRotatorRun) {
+        window.affRotatorRun();
+      } else if (window.runAffRotator) {
+        window.runAffRotator();
+      } else {
+        try {
+          const script = document.createElement("script");
+          script.src = new URL("/aff/aff-rotator.js", window.location.origin).href;
+          document.body.appendChild(script);
+        } catch (e) {
+          console.warn("Aff rotator re-init failed:", e);
+        }
       }
+
+      // 🔧 Пересчёт max-height, пока баннер не займёт реальную высоту
+      const fixHeight = setInterval(() => {
+        if (wrapper.classList.contains("open")) {
+          const visibleHeight = content.scrollHeight;
+          if (visibleHeight > parseInt(content.style.maxHeight || 0)) {
+            content.style.maxHeight = visibleHeight + "px";
+          }
+        }
+      }, 300);
+
+      // Останавливаем проверку через 3 секунды
+      setTimeout(() => clearInterval(fixHeight), 3000);
     }
-  }, 300);
-
-  // ÐžÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ Ñ‡ÐµÑ€ÐµÐ· 3 ÑÐµÐºÑƒÐ½Ð´Ñ‹
-  setTimeout(() => clearInterval(fixHeight), 3000);
-}
-
-	
 
     requestAnimationFrame(() => {
       if (idx === 0) {
@@ -113,7 +111,7 @@ if (idx === 0) {
       if (willOpen) {
         wrapper.classList.add("open");
         content.style.maxHeight = "0px";
-        content.offsetHeight;
+        content.offsetHeight; // force reflow
         content.style.maxHeight = content.scrollHeight + "px";
 
         const scrollAfter = () =>
