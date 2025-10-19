@@ -14,7 +14,6 @@ on:
 permissions:
   contents: write
 
-# Не даём нескольким билдам одной ветки работать параллельно
 concurrency:
   group: blog-build-${{ github.ref }}
   cancel-in-progress: true
@@ -37,38 +36,38 @@ jobs:
           hugo-version: '0.150.1'
           extended: true
 
-      # 🔹 Создаём CNAME заранее, чтобы Hugo его не удалил при очистке
+      # CNAME готовим ДО сборки (попадёт в /docs автоматически)
       - name: Ensure CNAME before build
         run: |
           mkdir -p blog_src/static
           echo "blog.nailak.com" > blog_src/static/CNAME
           echo "CNAME prepared inside static/"
 
-      # Сборка ИМЕННО из blog_src, как у тебя локально
-      - name: Build Hugo → /blog
+      # Сборка из blog_src в /docs
+      - name: Build Hugo → /docs
         working-directory: blog_src
         run: |
-          mkdir -p ../blog
-          hugo --destination ../blog \
+          mkdir -p ../docs
+          hugo --destination ../docs \
                --minify --cleanDestinationDir --enableGitInfo \
                --noBuildLock
-          # Проверка sitemap по publishDir ("../blog")
-          test -f ../blog/sitemap.xml && echo "sitemap OK" || (echo "sitemap MISSING" && exit 1)
+          # Проверка sitemap по publishDir ("../docs")
+          test -f ../docs/sitemap.xml && echo "sitemap OK" || (echo "sitemap MISSING" && exit 1)
 
       - name: Debug sitemap files
         run: |
           echo "Sitemap files in build:"
-          find blog -type f -name "sitemap*.xml" -printf "%p (%TY-%Tm-%Td %TH:%TM)\n"
+          find docs -type f -name "sitemap*.xml" -printf "%p (%TY-%Tm-%Td %TH:%TM)\n"
 
       - name: Show newest <lastmod> in sitemap
         run: |
           echo "==== newest <lastmod> in sitemap ===="
-          grep -oP "(?<=<lastmod>).*?(?=</lastmod>)" blog/sitemap.xml | sort | tail -n 1 || echo "no lastmod found"
+          grep -oP "(?<=<lastmod>).*?(?=</lastmod>)" docs/sitemap.xml | sort | tail -n 1 || echo "no lastmod found"
 
       - name: Show sitemap first lines
         run: |
           echo "==== sitemap preview (first 10 lines) ===="
-          head -n 10 blog/sitemap.xml || echo "sitemap not found"
+          head -n 10 docs/sitemap.xml || echo "sitemap not found"
 
       - name: Sanity check (sitemap exclude + recent content presence)
         run: |
@@ -76,12 +75,12 @@ jobs:
           (grep -RIn "sitemap:" blog_src/content || true) | sed -n '1,200p'
           (grep -RIn "exclude:" blog_src/content | grep -i sitemap || true) | sed -n '1,200p'
           echo "==== recent posts in output (last 3 by mtime) ===="
-          find blog/posts -type d -printf "%T@ %p\n" | sort -n | tail -n 3 | awk '{print $2}'
+          find docs/posts -type d -printf "%T@ %p\n" | sort -n | tail -n 3 | awk '{print $2}'
 
-      - name: Commit & Push built blog
+      - name: Commit & Push built docs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -Af blog/
-          git commit -m "Update blog build [skip ci]" || echo "No changes"
+          git add -Af docs/
+          git commit -m "Update docs build [skip ci]" || echo "No changes"
           git push
