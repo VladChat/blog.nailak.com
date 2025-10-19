@@ -35,6 +35,7 @@ jobs:
       # КЛЮЧ: дать Hugo доступ к истории коммитов репозитория из blog_src/
       - name: Link .git into blog_src for GitInfo
         run: |
+          mkdir -p blog_src
           if [ ! -e "blog_src/.git" ]; then
             ln -s "$(pwd)/.git" "blog_src/.git"
           fi
