@@ -35,12 +35,16 @@ jobs:
       # КЛЮЧ: дать Hugo доступ к истории коммитов репозитория из blog_src/
       - name: Link .git into blog_src for GitInfo
         run: |
-          mkdir -p blog_src
           if [ ! -e "blog_src/.git" ]; then
             ln -s "$(pwd)/.git" "blog_src/.git"
           fi
           git -C blog_src rev-parse --is-inside-work-tree
           git -C blog_src log -1 --format="Git last commit in blog_src: %h %cI"
+
+      # Удаляем старый lock-файл Hugo (если остался после неудачной сборки)
+      - name: Remove stale Hugo build lock
+        run: |
+          rm -f blog_src/.hugo_build.lock
 
       # Собираем из blog_src; publishDir берём из config.yml (../blog)
       - name: Build Hugo → /blog
