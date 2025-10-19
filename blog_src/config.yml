@@ -1,10 +1,11 @@
-baseURL: "/"
+baseURL: "https://blog.nailak.com/"
 title: "Nailak Blog"
 theme: "PaperMod"
-publishDir: "../"
+publishDir: "../docs"
 
-canonifyURLs: false
-relativeURLs: false
+# URL настройки
+canonifyURLs: true
+relativeURLs: true
 uglyURLs: false
 layoutDir: "layouts"
 
@@ -18,8 +19,7 @@ enableRobotsTXT: true
 buildDrafts: false
 buildFuture: true
 buildExpired: false
-
-enableGitInfo: false
+enableGitInfo: true
 
 frontmatter:
   date:
@@ -56,16 +56,18 @@ params:
   ShowReadingTime: true
   ShowWordCount: true
   centerTheme: true
-  
+
   author:
     name: "Nailak Editorial"
-    
+
   label:
     text: "Nailak"
     icon: "favicon.svg"
     iconHeight: 32
+
   assets:
     favicon: "favicon.svg"
+
   disableGA: true
   ShowRelatedPosts: true
   relatedPosts:
@@ -112,7 +114,6 @@ menu:
       name: Categories
       url: "/categories/"
       weight: 3
-
 
   footer:
     - identifier: privacy
