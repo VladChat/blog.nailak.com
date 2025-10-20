@@ -117,14 +117,14 @@ body.dark .post-single .post-header {
       "@context" "https://schema.org"
       "@type" "BlogPosting"
       "headline" .Title
-      "description" (.Params.description | default .Summary)
+      "description" ((.Params.description | default .Summary) | plainify)
       "author" (dict "@type" "Person" "name" $author)
       "datePublished" (.Date | time.Format "2006-01-02T15:04:05Z07:00")
       "dateModified" (.Lastmod | time.Format "2006-01-02T15:04:05Z07:00")
       "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
   }}
-  <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+  <script type="application/ld+json">{{ $article | jsonify | safeHTML }}</script>
 
   {{- $items := slice -}}
   {{- $ancestors := .Ancestors.Reverse -}}
@@ -149,5 +149,5 @@ body.dark .post-single .post-header {
       "@type" "BreadcrumbList"
       "itemListElement" $items
   -}}
-  <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
+  <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeHTML }}</script>
 {{ end }}
