@@ -29,7 +29,7 @@
     {{- $data = merge $data (dict "sameAs" .) -}}
   {{- end -}}
 
-  <script type="application/ld+json">{{ $data | jsonify | safeHTML }}</script>
+  <script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}
 
 {{/* =========================
@@ -69,6 +69,6 @@
     -}}
   {{- $data = merge $data (dict "publisher" $publisher) -}}
 
-  <script type="application/ld+json">{{ $data | jsonify | safeHTML }}</script>
+  <script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}
 */}}
