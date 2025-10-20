@@ -7,18 +7,23 @@ from slugify import slugify
 from .qa import qa_check
 from .config_loader import load_writer_config
 
+
 def gather_posts(content_dir: pathlib.Path):
     """
     Собирает метаданные постов для пула внутренних ссылок.
     Ожидается структура: content/posts/YYYY/MM/slug.md
     """
+    cfg = load_writer_config()
+    path_prefix = cfg.get("path_prefix", "")  # "" для Nailak, "/blog" для luggage-scale
+
     posts = []
     for md in content_dir.rglob("*.md"):
         rel = md.relative_to(content_dir)
         if len(rel.parts) >= 3:
             y, m = rel.parts[0], rel.parts[1]
             slug = md.stem
-            url = f"/blog/posts/{y}/{m}/{slug}/"
+            # Универсальный путь: корректно работает и на /blog/, и на корне
+            url = f"{path_prefix}/posts/{y}/{m}/{slug}/"
             try:
                 text = md.read_text(encoding="utf-8", errors="ignore")
             except Exception:
@@ -26,6 +31,7 @@ def gather_posts(content_dir: pathlib.Path):
             t = re.search(r'^title:\s*"(.*)"\s*$', text, flags=re.M)
             posts.append({"title": t.group(1) if t else slug, "url": url})
     return posts
+
 
 def inject_links(md: str, pool: list, n_min: int, n_max: int) -> str:
     """
@@ -46,6 +52,7 @@ def inject_links(md: str, pool: list, n_min: int, n_max: int) -> str:
         paras.insert(i * step, f"See also: [{p['title']}]({p['url']})")
     return "\n\n".join(paras)
 
+
 def make_slug(s: str) -> str:
     """
     Безопасный slug без слэшей — предотвращает создание вложенных директорий (Hugo).
@@ -57,9 +64,11 @@ def make_slug(s: str) -> str:
     s = re.sub(r"-{2,}", "-", s).strip("-")
     return s or "post"
 
+
 # Проксируем QA наружу (для совместимости с main.py, который зовёт posts.qa_check)
 def qa_check_proxy(md_text: str) -> dict:
     return qa_check(md_text)
+
 
 # Хелпер для конфигурации — всё через единый loader
 def get_config() -> dict:
