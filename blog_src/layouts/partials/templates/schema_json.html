@@ -1,6 +1,6 @@
 {{/* layouts/partials/templates/schema_json.html
-     — Безопасный вывод JSON-LD (BlogPosting / Organization)
-     — ВАЖНО: без внешних кавычек, только чистый JSON-объект.
+     — Безопасный вывод JSON-LD (Organization only)
+     — BlogPosting отключён, чтобы не дублировать JSON.
      — Кодировка: UTF-8 (без BOM).
 */}}
 
@@ -29,13 +29,16 @@
     {{- $data = merge $data (dict "sameAs" .) -}}
   {{- end -}}
 
-  {{/* ВЫВОД: только JSON, без кавычек; safeHTML, чтобы Hugo не экранировал. */}}
   <script type="application/ld+json">{{ $data | jsonify | safeHTML }}</script>
 {{ end }}
 
 {{/* =========================
      2) Страница поста (BlogPosting)
-     ========================= */}}
+     =========================
+     🔒 Отключено, чтобы не дублировать JSON-LD.
+     Accordion-FAQ уже вставляет корректный BlogPosting.
+*/}}
+{{/*
 {{ if .IsPage }}
   {{- $authorName := .Params.author | default ( .Site.Params.author.name | default "Nailak Editorial" ) -}}
   {{- $img := "" -}}
@@ -66,6 +69,6 @@
     -}}
   {{- $data = merge $data (dict "publisher" $publisher) -}}
 
-  {{/* ВЫВОД: чистый JSON-объект (без строковых кавычек). */}}
   <script type="application/ld+json">{{ $data | jsonify | safeHTML }}</script>
 {{ end }}
+*/}}
