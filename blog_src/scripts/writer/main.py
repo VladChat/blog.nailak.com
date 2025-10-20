@@ -242,7 +242,11 @@ def main():
                 meta_keywords_parts.append(secondary_phrase)
 
             # ✅ НОВОЕ: keywords пишем YAML-массивом (по строкам)
-            keywords_yaml = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
+            if meta_keywords_parts:
+                keywords_yaml_items = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
+                keywords_block = f"keywords:\n{keywords_yaml_items}"
+            else:
+                keywords_block = "keywords: []\n"
 
             fm = (
                 f"---\n"
@@ -251,7 +255,7 @@ def main():
                 f"draft: false\n"
                 f"categories: {categories_json}\n"
                 f"tags: [{tags_yaml}]\n"
-                f"keywords:\n{keywords_yaml}"
+                f"{keywords_block}"
                 f'author: "Nailak Editorial"\n'
                 f"---\n\n"
             )
@@ -288,12 +292,12 @@ def main():
 
         fm = (
             f"---\n"
-            f'title: "{title_escaped}"\n"
+            f'title: "{title_escaped}"\n'
             f"date: {now.isoformat()}\n"
             f"draft: true\n"
             f"categories: {categories_json}\n"
             f"tags: ['draft']\n"
-            f'author: "Nailak Editorial"\n"
+            f'author: "Nailak Editorial"\n'
             f"---\n\n"
             f"(Auto-saved draft after QA failures)\n\n"
         )
