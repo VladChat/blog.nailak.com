@@ -57,13 +57,13 @@ params:
   ShowWordCount: true
   centerTheme: true
 
-  author:
-    name: "Nailak Editorial"
+  params:
+  author: "Nailak Editorial"
 
   label:
     text: "Nailak"
     icon: "favicon.svg"
-    iconHeight: 32
+    iconHeight: 64
 
   assets:
     favicon: "favicon.svg"
