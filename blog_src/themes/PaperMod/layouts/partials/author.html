@@ -1,9 +1,25 @@
-{{- if or .Params.author site.Params.author }}
-{{- $author := (.Params.author | default site.Params.author) }}
-{{- $author_type := (printf "%T" $author) }}
-{{- if (or (eq $author_type "[]string") (eq $author_type "[]interface {}")) }}
-{{- (delimit $author ", " ) }}
-{{- else }}
-{{- $author }}
-{{- end }}
+{{- /* Robust author renderer: handles string, list, map, list of maps */ -}}
+{{- $author := .Params.author | default site.Params.author -}}
+{{- with $author -}}
+  {{- $t := printf "%T" . -}}
+  {{- if or (eq $t "[]string") (eq $t "[]interface {}") -}}
+    {{- delimit . ", " -}}
+  {{- else if or (eq $t "map[string]interface {}") (eq $t "map[string]string") -}}
+    {{- with (index . "name") -}}
+      {{- . -}}
+    {{- else -}}
+      {{- /* Fallbacks for other key names; last resort: stringify */ -}}
+      {{- with (index . "title") -}}{{ . }}{{- else -}}{{ with (index . "display_name") -}}{{ . }}{{- else -}}{{ printf "%v" . }}{{- end -}}{{- end -}}
+    {{- end -}}
+  {{- else if (eq $t "[]map[string]interface {}") -}}
+    {{- $names := slice -}}
+    {{- range . -}}
+      {{- $nm := (index . "name") | default (index . "title") | default (index . "display_name") | default (printf "%v" .) -}}
+      {{- $names = $names | append $nm -}}
+    {{- end -}}
+    {{- delimit $names ", " -}}
+  {{- else -}}
+    {{- /* Plain string or other type */ -}}
+    {{- . -}}
+  {{- end -}}
 {{- end -}}
