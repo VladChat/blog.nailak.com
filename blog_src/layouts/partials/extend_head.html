@@ -124,7 +124,7 @@ body.dark .post-single .post-header {
       "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
   }}
-  <script type="application/ld+json">{{ $article | jsonify | safeHTML }}</script>
+  <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
 
   {{- $items := slice -}}
   {{- $ancestors := .Ancestors.Reverse -}}
@@ -149,5 +149,5 @@ body.dark .post-single .post-header {
       "@type" "BreadcrumbList"
       "itemListElement" $items
   -}}
-  <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeHTML }}</script>
+  <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeJS }}</script>
 {{ end }}
