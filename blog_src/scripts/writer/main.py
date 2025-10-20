@@ -241,7 +241,8 @@ def main():
             if secondary_phrase and secondary_phrase.lower() not in {p.lower() for p in meta_keywords_parts}:
                 meta_keywords_parts.append(secondary_phrase)
 
-            meta_keywords = ", ".join(meta_keywords_parts)
+            # ✅ НОВОЕ: keywords пишем YAML-массивом (по строкам)
+            keywords_yaml = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
 
             fm = (
                 f"---\n"
@@ -250,7 +251,7 @@ def main():
                 f"draft: false\n"
                 f"categories: {categories_json}\n"
                 f"tags: [{tags_yaml}]\n"
-                f'keywords: "{meta_keywords}"\n'
+                f"keywords:\n{keywords_yaml}"
                 f'author: "Nailak Editorial"\n'
                 f"---\n\n"
             )
@@ -287,12 +288,12 @@ def main():
 
         fm = (
             f"---\n"
-            f'title: "{title_escaped}"\n'
+            f'title: "{title_escaped}"\n"
             f"date: {now.isoformat()}\n"
             f"draft: true\n"
             f"categories: {categories_json}\n"
             f"tags: ['draft']\n"
-            f'author: "Nailak Editorial"\n'
+            f'author: "Nailak Editorial"\n"
             f"---\n\n"
             f"(Auto-saved draft after QA failures)\n\n"
         )
