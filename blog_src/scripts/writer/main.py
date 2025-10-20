@@ -1,4 +1,3 @@
-# blog_src/scripts/writer/main.py
 import json
 import re
 from datetime import datetime, timezone
@@ -6,26 +5,33 @@ from pathlib import Path
 
 from . import llm
 from . import posts
-from .rss_fetch import get_latest_topic
+from .rss_fetch import get_latest_topic  # ✅ теперь возвращает уже свежую, неиспользованную статью
 from .config_loader import load_writer_config
 
+# === 📂 Пути и файлы данных ===
 DATA_DIR = Path("blog_src/data")
 KEYWORDS_FILE = DATA_DIR / "keywords.json"
 STATE_FILE = DATA_DIR / "state.json"
 CONTENT_DIR = Path("blog_src/content/posts")
 
 
+# === 📄 Загрузка шаблона промпта ===
 def load_prompt_template() -> str:
+    """Читает текстовый шаблон для генерации промпта."""
     with open("blog_src/config/prompt_template.txt", "r", encoding="utf-8") as f:
         return f.read()
 
 
+# === 🔑 Загрузка ключевых слов ===
 def load_keywords() -> list:
+    """Загружает keywords.json — основную базу тем и SEO ключей."""
     with open(KEYWORDS_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
+# === 💾 Работа с состоянием ===
 def load_state() -> dict:
+    """Загружает state.json, если нет — создаёт дефолтную структуру."""
     try:
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
@@ -34,32 +40,32 @@ def load_state() -> dict:
 
 
 def save_state(state: dict) -> None:
+    """Сохраняет state.json с безопасным созданием каталога."""
     STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2)
 
 
+# === 🧩 Формирование промпта ===
 def build_prompt(topic: str, summary: str, original_url: str | None = None) -> str:
     """
-    Собирает текст промпта.
-    Если обнаружен URL оригинального источника — вставляем 'Original source: <url>' в блок topic.
+    Собирает текст промпта для модели.
+    Добавляет контекст и ссылку на оригинальный источник, если есть.
     """
     template = load_prompt_template()
     topic_block = topic
     if original_url:
-        topic_block = f"{topic_block}\n\nOriginal source: {original_url}"
+        topic_block += f"\n\nOriginal source: {original_url}"
     if summary:
-        topic_block = f"{topic_block}\n\nContext: {summary}"
+        topic_block += f"\n\nContext: {summary}"
     else:
-        topic_block = f"{topic_block}\n\nContext: "
+        topic_block += "\n\nContext: "
     return template.format(topic=topic_block)
 
 
+# === 🏷 Нормализация тега ===
 def _norm_tag(s: str) -> str:
-    """
-    Нормализация строки под тег: латиница/цифры, дефисы вместо прочих символов,
-    урезание подряд идущих дефисов, обрезка до разумной длины.
-    """
+    """Преобразует строку в безопасный тег (латиница, дефисы, без мусора)."""
     s = (s or "").strip().lower()
     if not s:
         return ""
@@ -74,240 +80,193 @@ def _norm_tag(s: str) -> str:
                 out.append("-")
                 prev_dash = True
     t = "".join(out).strip("-")
-    if not t:
-        return ""
     while "--" in t:
         t = t.replace("--", "-")
     return t[:40]
 
 
-def _extract_secondary_from_article(md_text: str) -> str:
-    """
-    Пытается вытащить 1 осмысленный тематический тег из сгенерированного текста статьи.
-    Ищем по белому списку доменных ключей, чтобы не цеплять случайные слова.
-    Возвращаем НОРМАЛИЗОВАННЫЙ тег (для front-matter).
-    """
-    if not md_text:
+# === 🧠 Извлечение вторичного ключа из статьи ===
+def _extract_secondary_from_article(md_text: str, all_keywords: list) -> str:
+    """Пытается найти вторичный ключ в тексте статьи (по keywords.json)."""
+    if not md_text or not all_keywords:
         return ""
-    candidates = [
-        "glp-1", "ozempic", "semaglutide",
-        "manicure", "nail polish", "cuticle oil",
-        "strength training", "workout", "fitness", "wellness",
-    ]
     text_low = md_text.lower()
-    for c in candidates:
-        if c in text_low:
-            return _norm_tag(c)
+    for kw in all_keywords:
+        if kw.lower() in text_low:
+            return _norm_tag(kw)
     return ""
 
 
-def _extract_secondary_from_topic(topic: str) -> str:
-    """
-    Фоллбэк: пытается вытащить 1 тематический тег из заголовка RSS/топика,
-    если в тексте статьи ничего не нашли.
-    """
-    if not topic:
+# === 🧠 Альтернатива: вторичный ключ из заголовка ===
+def _extract_secondary_from_topic(topic: str, all_keywords: list) -> str:
+    """Если в тексте ничего не нашли — ищем совпадение в заголовке."""
+    if not topic or not all_keywords:
         return ""
-    # Простая эвристика + небольшой whitelisting
-    tokens = [t for t in topic.lower().replace("—", " ").replace("-", " ").split() if len(t) > 2]
-    white = {
-        "glp", "glp1", "glp-1", "ozempic", "semaglutide",
-        "manicure", "nail", "polish", "cuticle", "oil",
-        "workout", "fitness", "wellness", "training", "strength",
-    }
-    for t in tokens:
-        if t in white:
-            return _norm_tag(t)
-    # Если вообще ничего — попробуем первый “содержательный” токен
-    for t in tokens:
-        if t.isalpha():
-            return _norm_tag(t)
+    topic_low = topic.lower()
+    for kw in all_keywords:
+        if kw.lower() in topic_low:
+            return _norm_tag(kw)
     return ""
 
 
+# === 🧹 Очистка фраз для meta keywords ===
 def _clean_phrase_for_meta(s: str) -> str:
-    """
-    Делает фразу безопасной для meta keywords ( без двойных запятых и хвостов ).
-    - режет лидирующие/хвостовые разделители , ; | /
-    - схлопывает повторные пробелы
-    - обрезает пробелы по краям
-    """
+    """Делает фразу безопасной для meta keywords."""
     if not s:
         return ""
-    # Схлопываем пробелы
     s = re.sub(r"\s+", " ", str(s).strip())
-    # Убираем ведущие/хвостовые разделители
     s = re.sub(r"^[,;|/]+", "", s)
     s = re.sub(r"[,;|/]+$", "", s)
     return s
 
 
+# === 🚀 Главная функция ===
 def main():
     cfg = load_writer_config()
+    state = load_state()
 
-    # 1️⃣ Получаем данные из RSS (теперь три значения)
-    topic, summary, original_url = get_latest_topic()
-    topic = topic or "Travel update"
-    summary = summary or ""
-    original_url = original_url or None
-
-    # 🧾 Логирование RSS и финального topic-context
     print("───────────────────────────────")
-    print("📰 Extracted from RSS:")
-    print(f"Title: {topic}")
-    if summary:
-        print(f"Summary: {summary[:400]}{'...' if len(summary) > 400 else ''}")
-    else:
-        print("Summary: (no summary provided)")
-    print(f"Original source: {original_url if original_url else '(not detected)'}")
-    print()
+    print("🚀 Starting Nailak writer")
 
-    topic_context_str = topic
-    if original_url:
-        topic_context_str += f"\n\nOriginal source: {original_url}"
-    topic_context_str += f"\n\nContext: {summary}"
-
-    print("🧩 Final topic-context sent to GPT:")
-    print(topic_context_str[:600] + ("..." if len(topic_context_str) > 600 else ""))
-    print("───────────────────────────────")
-
-    # 2️⃣ Ключевые слова и состояние
+    # === 1️⃣ Загрузка ключевых слов ===
     try:
         keywords = load_keywords()
+        print(f"✅ Loaded {len(keywords)} keywords")
     except Exception as e:
         print(f"⚠️ Could not load keywords.json: {e}")
         keywords = []
 
-    state = load_state()
     idx = max(0, int(state.get("keyword_index", 0)))
-    if keywords:
-        if idx >= len(keywords):
-            idx = 0
-        keyword = (keywords[idx] or "").strip()
-    else:
-        keyword = ""
+    primary_keyword = keywords[idx] if keywords and idx < len(keywords) else ""
+    print(f"🎯 Current primary keyword: {primary_keyword}")
+    print("───────────────────────────────")
 
-    # 3️⃣ Формируем промпт
+    # === 2️⃣ Получение новой статьи через улучшенный rss_fetch ===
+    print("🧭 Fetching RSS feed...")
+    topic, summary, original_url = get_latest_topic()
+    topic = topic or "Daily Nailak Update"
+    summary = summary or ""
+    original_url = original_url or None
+
+    # 🔹 Проверку дубликатов теперь делает rss_fetch.py — здесь не нужно
+
+    # === 3️⃣ Логирование данных ===
+    print("📰 Topic received:")
+    print(f"Title: {topic}")
+    print(f"Summary: {summary[:400]}{'...' if len(summary) > 400 else ''}")
+    print(f"Original URL: {original_url if original_url else '(none)'}")
+    print("───────────────────────────────")
+
+    # === 4️⃣ Формируем промпт ===
     prompt = build_prompt(topic, summary, original_url)
+    print("🧩 Final topic-context sent to GPT:")
+    print(prompt[:600] + ("..." if len(prompt) > 600 else ""))
+    print("───────────────────────────────")
 
-    # 4️⃣ Генерация с QA-повтором
+    # === 5️⃣ Генерация статьи ===
     max_attempts = 3
     for attempt in range(max_attempts):
+        print(f"🤖 Generating article (attempt {attempt + 1}/{max_attempts})...")
         md_raw = llm.call_llm(prompt)
-
         qa_result = posts.qa_check_proxy(md_raw)
         if qa_result["ok"]:
-            slug_source = f"{topic} {keyword}".strip() if keyword else topic
-            slug = posts.make_slug(slug_source)
-
-            now = datetime.now(timezone.utc)
-            out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
-            out_path.parent.mkdir(parents=True, exist_ok=True)
-
-            title = (topic or "Travel article").strip()
-            title_escaped = title.replace('"', '\\"')
-
-            default_category = cfg.get("default_category", "news")
-            categories_json = f"['{default_category}']"
-
-            # 🔧 НОВАЯ ЛОГИКА ТЕГОВ + SEO KEYWORDS (РАЗДЕЛЕНИЕ РОЛЕЙ)
-            # 1) якорный SEO-ключ (из keywords.json)
-            keyword_tag = _norm_tag(keyword)
-
-            # 2) один ключ из СТАТЬИ (приоритетно) или из TOPIC (фоллбэк)
-            secondary_tag = _extract_secondary_from_article(md_raw) or _extract_secondary_from_topic(topic)
-
-            # 3) стабильные “клеящие” теги для Related Posts
-            base_tags = ["nail-care", "beauty-wellness"]
-
-            # Финальный список тегов (без дублей), порядок: якорь → вторичный → базовые
-            tags_list = []
-            for t in [keyword_tag, secondary_tag, *base_tags]:
-                if t and (t not in tags_list):
-                    tags_list.append(t)
-            if not tags_list:
-                tags_list = ["nail-care"]
-
-            tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
-
-            # ✅ SEO: meta keywords — только 1–2 значения (чистый фокус),
-            # и ОБЯЗАТЕЛЬНА очистка фраз от хвостовых запятых/мусора
-            secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " ").strip())
-            primary_phrase = _clean_phrase_for_meta(keyword.strip())
-
-            meta_keywords_parts = []
-            if primary_phrase:
-                meta_keywords_parts.append(primary_phrase)
-            if secondary_phrase and secondary_phrase.lower() not in {p.lower() for p in meta_keywords_parts}:
-                meta_keywords_parts.append(secondary_phrase)
-
-            # ✅ НОВОЕ: keywords пишем YAML-массивом (по строкам)
-            if meta_keywords_parts:
-                keywords_yaml_items = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
-                keywords_block = f"keywords:\n{keywords_yaml_items}"
-            else:
-                keywords_block = "keywords: []\n"
-
-            fm = (
-                f"---\n"
-                f'title: "{title_escaped}"\n'
-                f"date: {now.isoformat()}\n"  # ✅ ISO 8601 с таймзоной
-                f"draft: false\n"
-                f"categories: {categories_json}\n"
-                f"tags: [{tags_yaml}]\n"
-                f"{keywords_block}"
-                f'author: "Nailak Editorial"\n'
-                f"---\n\n"
-            )
-
-            print("🧾 Front-matter preview:")
-            print(fm)
-            print("───────────────────────────────")
-
-            with open(out_path, "w", encoding="utf-8") as f:
-                f.write(fm + md_raw)
-
-            print(f"✓ New post: {out_path}")
-
-            if keywords:
-                next_idx = (idx + 1) % len(keywords)
-                state["keyword_index"] = next_idx
-                save_state(state)
-
-            return
-        else:
-            print(f"⚠️ Attempt {attempt + 1} failed QA: {qa_result['errors']}")
-
-    # 5️⃣ Если не удалось — черновик
-    if cfg.get("draft_if_fail", True):
-        now = datetime.now(timezone.utc)
-        fallback_slug = posts.make_slug(f"{topic}-draft")
-        out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{fallback_slug}.md"
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-
-        title = (topic or "Travel article").strip()
-        title_escaped = title.replace('"', '\\"')
-        default_category = cfg.get("default_category", "news")
-        categories_json = f"['{default_category}']"
-
-        fm = (
-            f"---\n"
-            f'title: "{title_escaped}"\n'
-            f"date: {now.isoformat()}\n"
-            f"draft: true\n"
-            f"categories: {categories_json}\n"
-            f"tags: ['draft']\n"
-            f'author: "Nailak Editorial"\n'
-            f"---\n\n"
-            f"(Auto-saved draft after QA failures)\n\n"
-        )
-
-        with open(out_path, "w", encoding="utf-8") as f:
-            f.write(fm)
-
-        print(f"📝 Saved draft: {out_path}")
+            print("✅ QA passed.")
+            break
+        print(f"⚠️ QA failed: {qa_result['errors']}")
     else:
-        print("❌ Failed to generate a valid post after retries.")
+        print("❌ All attempts failed — saving draft.")
+        _save_draft(topic, cfg)
+        return
+
+    # === 6️⃣ Формирование тегов ===
+    secondary_tag = _extract_secondary_from_article(md_raw, keywords) or _extract_secondary_from_topic(topic, keywords)
+    if not secondary_tag and keywords:
+        secondary_tag = _norm_tag(keywords[(idx + 1) % len(keywords)])
+
+    base_tags = []
+    # Добавляем ещё 2–3 слова из keywords для связности
+    for i in range(2, 5):
+        if len(keywords) > i:
+            base_tags.append(_norm_tag(keywords[(idx + i) % len(keywords)]))
+
+    keyword_tag = _norm_tag(primary_keyword)
+    tags_list = []
+    for t in [keyword_tag, secondary_tag, *base_tags]:
+        if t and t not in tags_list:
+            tags_list.append(t)
+    if not tags_list:
+        tags_list = ["nail-care"]
+
+    tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
+
+    # === 7️⃣ Формирование meta keywords ===
+    primary_phrase = _clean_phrase_for_meta(primary_keyword)
+    secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " "))
+    meta_keywords_parts = []
+    if primary_phrase:
+        meta_keywords_parts.append(primary_phrase)
+    if secondary_phrase and secondary_phrase.lower() not in {p.lower() for p in meta_keywords_parts}:
+        meta_keywords_parts.append(secondary_phrase)
+    keywords_yaml_items = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
+    keywords_block = f"keywords:\n{keywords_yaml_items}" if meta_keywords_parts else "keywords: []\n"
+
+    # === 8️⃣ Сохраняем пост ===
+    now = datetime.now(timezone.utc)
+    slug_source = f"{topic} {primary_keyword}".strip()
+    slug = posts.make_slug(slug_source)
+    out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    fm = (
+        f"---\n"
+        f'title: "{topic.replace(\'"\', \'\\\"\')}"\n'
+        f"date: {now.isoformat()}\n"
+        f"draft: false\n"
+        f"categories: ['news']\n"
+        f"tags: [{tags_yaml}]\n"
+        f"{keywords_block}"
+        f'author: "Nailak Editorial"\n'
+        f"---\n\n"
+    )
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(fm + md_raw)
+
+    print("🧾 Front-matter preview:")
+    print(fm)
+    print(f"✓ New post saved: {out_path}")
+    print("───────────────────────────────")
+
+    # === 9️⃣ Обновляем state.json ===
+    if keywords:
+        state["keyword_index"] = (idx + 1) % len(keywords)
+    save_state(state)
+    print(f"🗂 Updated state.json — next keyword index: {state['keyword_index']}")
+
+
+# === 📝 Сохранение черновика при сбое ===
+def _save_draft(topic: str, cfg: dict):
+    """Сохраняет черновик, если QA не прошёл или GPT не дал результата."""
+    now = datetime.now(timezone.utc)
+    fallback_slug = re.sub(r"[^a-zA-Z0-9-]+", "-", topic.lower()) + "-draft"
+    out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{fallback_slug}.md"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    fm = (
+        f"---\n"
+        f'title: "{topic.replace(\'"\', \'\\\"\')}"\n'
+        f"date: {now.isoformat()}\n"
+        f"draft: true\n"
+        f"categories: ['news']\n"
+        f"tags: ['draft']\n"
+        f'author: "Nailak Editorial"\n'
+        f"---\n\n"
+        f"(Auto-saved draft after QA failures)\n\n"
+    )
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(fm)
+    print(f"📝 Draft saved: {out_path}")
 
 
 if __name__ == "__main__":
