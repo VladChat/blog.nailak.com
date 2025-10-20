@@ -27,7 +27,7 @@
 
 {{- /* ===== Meta ===== */ -}}
 
-<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK (robust version) -->
+<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK (robust version, safe + guaranteed space) -->
 {{- $kws := slice -}}
 {{- if .IsHome -}}
   {{- if site.Params.keywords -}}
@@ -60,9 +60,11 @@
 {{- $clean = uniq $clean -}}
 
 {{- if gt (len $clean) 0 -}}
+  {{- $clean = apply $clean "trim" "." -}}
   <meta name="keywords" content="{{ delimit $clean ", " | safeHTML }}">
 {{- end -}}
 <!-- 🔼 END FIXED KEYWORDS BLOCK -->
+
 
 {{- /* ===== Description (safe word-trim, ≤ ~149, no ellipsis) ===== */ -}}
 {{- $ds := newScratch -}}
