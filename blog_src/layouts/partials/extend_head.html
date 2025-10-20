@@ -109,6 +109,45 @@ body.dark .post-single .post-header {
 {{- end -}}
 {{/* === END: auto-bundle === */}}
 
-<!-- === JSON-LD disabled here; handled by accordion-faq.html === -->
-{{/* The following block previously duplicated BlogPosting & FAQ JSON-LD.
-     It has been safely removed to prevent double-serialization errors. */}}
+<!-- === Minimal BlogPosting JSON-LD + BreadcrumbList === -->
+{{ if .IsPage }}
+  {{ $author := .Params.author | default "Nailak Editorial" }}
+  {{ $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL }}
+  {{ $article := dict
+      "@context" "https://schema.org"
+      "@type" "BlogPosting"
+      "headline" .Title
+      "description" (.Params.description | default .Summary)
+      "author" (dict "@type" "Person" "name" $author)
+      "datePublished" (.Date | time.Format "2006-01-02T15:04:05Z07:00")
+      "dateModified" (.Lastmod | time.Format "2006-01-02T15:04:05Z07:00")
+      "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
+      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  }}
+  <script type="application/ld+json">{{ $article | jsonify }}</script>
+
+  {{- $items := slice -}}
+  {{- $ancestors := .Ancestors.Reverse -}}
+  {{- $position := 1 -}}
+  {{- range $ancestors }}
+    {{- $items = $items | append (dict
+        "@type" "ListItem"
+        "position" $position
+        "name" .Title
+        "item" .Permalink
+      ) -}}
+    {{- $position = add $position 1 -}}
+  {{- end -}}
+  {{- $items = $items | append (dict
+      "@type" "ListItem"
+      "position" $position
+      "name" .Title
+      "item" .Permalink
+    ) -}}
+  {{- $breadcrumbs := dict
+      "@context" "https://schema.org"
+      "@type" "BreadcrumbList"
+      "itemListElement" $items
+  -}}
+  <script type="application/ld+json">{{ $breadcrumbs | jsonify }}</script>
+{{ end }}
