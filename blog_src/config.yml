@@ -63,7 +63,7 @@ params:
   label:
     text: "Nailak"
     icon: "favicon.svg"
-    iconHeight: 64
+    iconHeight: 38
 
   assets:
     favicon: "favicon.svg"
