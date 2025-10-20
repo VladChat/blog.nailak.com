@@ -54,6 +54,76 @@ def build_prompt(topic: str, summary: str, original_url: str | None = None) -> s
     return template.format(topic=topic_block)
 
 
+def _norm_tag(s: str) -> str:
+    """
+    Нормализация строки под тег: латиница/цифры, дефисы вместо прочих символов,
+    урезание подряд идущих дефисов, обрезка до разумной длины.
+    """
+    s = (s or "").strip().lower()
+    if not s:
+        return ""
+    out = []
+    prev_dash = False
+    for ch in s:
+        if ch.isalnum():
+            out.append(ch)
+            prev_dash = False
+        else:
+            if not prev_dash:
+                out.append("-")
+                prev_dash = True
+    t = "".join(out).strip("-")
+    if not t:
+        return ""
+    while "--" in t:
+        t = t.replace("--", "-")
+    return t[:40]
+
+
+def _extract_secondary_from_article(md_text: str) -> str:
+    """
+    Пытается вытащить 1 осмысленный тематический тег из сгенерированного текста статьи.
+    Ищем по белому списку доменных ключей, чтобы не цеплять случайные слова.
+    Возвращаем НОРМАЛИЗОВАННЫЙ тег (для front-matter).
+    """
+    if not md_text:
+        return ""
+    candidates = [
+        "glp-1", "ozempic", "semaglutide",
+        "manicure", "nail polish", "cuticle oil",
+        "strength training", "workout", "fitness", "wellness",
+    ]
+    text_low = md_text.lower()
+    for c in candidates:
+        if c in text_low:
+            return _norm_tag(c)
+    return ""
+
+
+def _extract_secondary_from_topic(topic: str) -> str:
+    """
+    Фоллбэк: пытается вытащить 1 тематический тег из заголовка RSS/топика,
+    если в тексте статьи ничего не нашли.
+    """
+    if not topic:
+        return ""
+    # Простая эвристика + небольшой whitelisting
+    tokens = [t for t in topic.lower().replace("—", " ").replace("-", " ").split() if len(t) > 2]
+    white = {
+        "glp", "glp1", "glp-1", "ozempic", "semaglutide",
+        "manicure", "nail", "polish", "cuticle", "oil",
+        "workout", "fitness", "wellness", "training", "strength",
+    }
+    for t in tokens:
+        if t in white:
+            return _norm_tag(t)
+    # Если вообще ничего — попробуем первый “содержательный” токен
+    for t in tokens:
+        if t.isalpha():
+            return _norm_tag(t)
+    return ""
+
+
 def main():
     cfg = load_writer_config()
 
@@ -122,23 +192,35 @@ def main():
             default_category = cfg.get("default_category", "news")
             categories_json = f"['{default_category}']"
 
-            common_tags = []
-            try:
-                common_tags = [
-                    (kw or "").strip().lower()
-                    for kw in (keywords or [])[:4]
-                    if (kw or "").strip()
-                ]
-            except Exception as e:
-                print(f"⚠️ Could not prepare common tags: {e}")
-                common_tags = []
-            keyword_tag = (keyword or "travel").strip().lower()
-            tags_list = list(common_tags)
-            if keyword_tag and (keyword_tag not in tags_list):
-                tags_list.append(keyword_tag)
+            # 🔧 НОВАЯ ЛОГИКА ТЕГОВ + SEO KEYWORDS (РАЗДЕЛЕНИЕ РОЛЕЙ)
+            # 1) якорный SEO-ключ (из keywords.json)
+            keyword_tag = _norm_tag(keyword)
+
+            # 2) один ключ из СТАТЬИ (приоритетно) или из TOPIC (фоллбэк)
+            secondary_tag = _extract_secondary_from_article(md_raw) or _extract_secondary_from_topic(topic)
+
+            # 3) стабильные “клеящие” теги для Related Posts
+            base_tags = ["nail-care", "beauty-wellness"]
+
+            # Финальный список тегов (без дублей), порядок: якорь → вторичный → базовые
+            tags_list = []
+            for t in [keyword_tag, secondary_tag, *base_tags]:
+                if t and (t not in tags_list):
+                    tags_list.append(t)
             if not tags_list:
-                tags_list = ["travel"]
+                tags_list = ["nail-care"]
+
             tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
+
+            # SEO: meta keywords — только 1–2 значения (чистый фокус)
+            # Используем исходный человеко-читаемый keyword + вторичный (в формате фразы)
+            secondary_phrase = secondary_tag.replace("-", " ").strip()
+            meta_keywords_parts = []
+            if keyword.strip():
+                meta_keywords_parts.append(keyword.strip())
+            if secondary_phrase and secondary_phrase not in meta_keywords_parts:
+                meta_keywords_parts.append(secondary_phrase)
+            meta_keywords = ", ".join(meta_keywords_parts)
 
             fm = (
                 f"---\n"
@@ -147,6 +229,7 @@ def main():
                 f"draft: false\n"
                 f"categories: {categories_json}\n"
                 f"tags: [{tags_yaml}]\n"
+                f'keywords: "{meta_keywords}"\n'
                 f'author: "Nailak Editorial"\n'
                 f"---\n\n"
             )
