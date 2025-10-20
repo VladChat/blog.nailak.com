@@ -1,4 +1,4 @@
-{{/* === Custom Head Extensions — final safe version (clean + robust JSON-LD) === */}}
+{{/* === Custom Head Extensions — final safe version (no duplicate JSON-LD) === */}}
 
 {{ partial "gtm-head.html" . }}
 
@@ -109,35 +109,6 @@ body.dark .post-single .post-header {
 {{- end -}}
 {{/* === END: auto-bundle === */}}
 
-<!-- === JSON-LD (robust) === -->
-{{- if .IsPage }}
-  {{- $bp := .Params.blogPosting -}}
-  {{- with $bp }}
-    {{- $t := printf "%T" . -}}
-    {{- if eq $t "string" -}}
-      {{- $obj := . | transform.Unmarshal -}}
-      {{- if $obj -}}
-        <script type="application/ld+json">{{ $obj | jsonify }}</script>
-      {{- else -}}
-        <script type="application/ld+json">{{ . | safeHTML }}</script>
-      {{- end -}}
-    {{- else -}}
-      <script type="application/ld+json">{{ . | jsonify }}</script>
-    {{- end -}}
-  {{- end -}}
-
-  {{- $faq := .Params.faq -}}
-  {{- with $faq }}
-    {{- $t := printf "%T" . -}}
-    {{- if eq $t "string" -}}
-      {{- $obj := . | transform.Unmarshal -}}
-      {{- if $obj -}}
-        <script type="application/ld+json">{{ $obj | jsonify }}</script>
-      {{- else -}}
-        <script type="application/ld+json">{{ . | safeHTML }}</script>
-      {{- end -}}
-    {{- else -}}
-      <script type="application/ld+json">{{ . | jsonify }}</script>
-    {{- end -}}
-  {{- end -}}
-{{- end }}
+<!-- === JSON-LD disabled here; handled by accordion-faq.html === -->
+{{/* The following block previously duplicated BlogPosting & FAQ JSON-LD.
+     It has been safely removed to prevent double-serialization errors. */}}
