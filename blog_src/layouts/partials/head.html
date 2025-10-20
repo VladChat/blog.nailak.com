@@ -26,8 +26,12 @@
 <title>{{- if .IsHome -}}{{- $brand -}}{{- else -}}{{- if .Title -}}{{- $titleCore -}}{{- $sep -}}{{- end -}}{{- $brand -}}{{- end -}}</title>
 
 {{- /* ===== Meta ===== */ -}}
+
+<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK -->
 {{- if .IsHome }}
-  {{ with site.Params.keywords -}}<meta name="keywords" content="{{- if (reflect.IsSlice .) -}}{{- delimit . ", " | safeHTML -}}{{- else -}}{{- . | safeHTML -}}{{- end -}}">{{- end }}
+  {{ with site.Params.keywords -}}
+    <meta name="keywords" content="{{- if (reflect.IsSlice .) -}}{{- delimit . ", " | safeHTML -}}{{- else -}}{{- . | safeHTML -}}{{- end -}}">
+  {{- end }}
 {{- else }}
   {{- if .Params.keywords }}
     {{- if (reflect.IsSlice .Params.keywords) }}
@@ -39,6 +43,7 @@
     <meta name="keywords" content="{{ delimit .Params.tags ", " | safeHTML }}">
   {{- end }}
 {{- end }}
+<!-- 🔼 END FIXED KEYWORDS BLOCK -->
 
 {{- /* ===== Description (safe word-trim, ≤ ~149, no ellipsis) ===== */ -}}
 {{- $ds := newScratch -}}
