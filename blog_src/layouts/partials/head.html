@@ -1,4 +1,4 @@
-﻿<!-- layouts/partials/head.html -->
+<!-- layouts/partials/head.html -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,11 +27,17 @@
 
 {{- /* ===== Meta ===== */ -}}
 {{- if .IsHome }}
-  {{ with site.Params.keywords -}}<meta name="keywords" content="{{- range $i, $e := . }}{{ if $i }}, {{ end }}{{ $e }}{{ end }}">{{- end }}
+  {{ with site.Params.keywords -}}<meta name="keywords" content="{{- if (reflect.IsSlice .) -}}{{- delimit . ", " | safeHTML -}}{{- else -}}{{- . | safeHTML -}}{{- end -}}">{{- end }}
 {{- else }}
-  <meta name="keywords" content="{{ if .Params.keywords -}}
-      {{- range $i, $e := .Params.keywords }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- else }}
-      {{- range $i, $e := .Params.tags }}{{ if $i }}, {{ end }}{{ $e }}{{ end }} {{- end -}}">
+  {{- if .Params.keywords }}
+    {{- if (reflect.IsSlice .Params.keywords) }}
+      <meta name="keywords" content="{{ delimit .Params.keywords ", " | safeHTML }}">
+    {{- else }}
+      <meta name="keywords" content="{{ .Params.keywords | safeHTML }}">
+    {{- end }}
+  {{- else if .Params.tags }}
+    <meta name="keywords" content="{{ delimit .Params.tags ", " | safeHTML }}">
+  {{- end }}
 {{- end }}
 
 {{- /* ===== Description (safe word-trim, ≤ ~149, no ellipsis) ===== */ -}}
