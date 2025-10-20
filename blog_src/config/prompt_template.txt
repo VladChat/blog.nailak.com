@@ -20,7 +20,7 @@ Your task:
 
 - **Structure:**
   - Begin with a **relatable lifestyle scene or emotional moment** (max 500–650 words) that captures attention without overloading the reader.
-  - Follow with a **bolded Quick Summary** one sentence inside blockquotes.
+  - Follow with a **Quick Summary** one sentence inside blockquotes.
   - Use **5–7 H2 sections** (under 60 characters each); add **H3** where it improves flow.
   - End with a reflective section that ties back to **confidence, self-care, or balance**, not a formal “Conclusion.”
   - Finish with a `## Frequently Asked Questions (FAQ)` block containing **3–5 Q/A pairs** about beauty routines, ingredients, or daily habits.
