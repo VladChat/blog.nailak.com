@@ -184,7 +184,6 @@ def main():
         secondary_tag = _norm_tag(keywords[(idx + 1) % len(keywords)])
 
     base_tags = []
-    # Добавляем ещё 2–3 слова из keywords для связности
     for i in range(2, 5):
         if len(keywords) > i:
             base_tags.append(_norm_tag(keywords[(idx + i) % len(keywords)]))
@@ -217,7 +216,6 @@ def main():
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # 🔧 Экранируем кавычки в заголовке ОДИН РАЗ — и используем переменную в f-строке
     title_escaped = topic.replace('"', '\\"')
 
     fm = (
@@ -240,7 +238,6 @@ def main():
     print(f"✓ New post saved: {out_path}")
     print("───────────────────────────────")
 
-    # === 9️⃣ Обновляем state.json ===
     if keywords:
         state["keyword_index"] = (idx + 1) % len(keywords)
     save_state(state)
@@ -255,7 +252,6 @@ def _save_draft(topic: str, cfg: dict):
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{fallback_slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    # 🔧 Экранируем кавычки для заголовка черновика
     title_escaped = topic.replace('"', '\\"')
 
     fm = (
@@ -265,7 +261,7 @@ def _save_draft(topic: str, cfg: dict):
         f"draft: true\n"
         f"categories: ['news']\n"
         f"tags: ['draft']\n"
-        f'author: "Nailak Editorial"\n"
+        f'author: "Nailak Editorial"\n'
         f"---\n\n"
         f"(Auto-saved draft after QA failures)\n\n"
     )
