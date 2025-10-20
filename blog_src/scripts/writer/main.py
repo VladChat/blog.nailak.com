@@ -217,9 +217,12 @@ def main():
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # 🔧 Экранируем кавычки в заголовке ОДИН РАЗ — и используем переменную в f-строке
+    title_escaped = topic.replace('"', '\\"')
+
     fm = (
         f"---\n"
-        f'title: "{topic.replace(\'"\', \'\\\"\')}"\n'
+        f'title: "{title_escaped}"\n'
         f"date: {now.isoformat()}\n"
         f"draft: false\n"
         f"categories: ['news']\n"
@@ -252,14 +255,17 @@ def _save_draft(topic: str, cfg: dict):
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{fallback_slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
+    # 🔧 Экранируем кавычки для заголовка черновика
+    title_escaped = topic.replace('"', '\\"')
+
     fm = (
         f"---\n"
-        f'title: "{topic.replace(\'"\', \'\\\"\')}"\n'
+        f'title: "{title_escaped}"\n'
         f"date: {now.isoformat()}\n"
         f"draft: true\n"
         f"categories: ['news']\n"
         f"tags: ['draft']\n"
-        f'author: "Nailak Editorial"\n'
+        f'author: "Nailak Editorial"\n"
         f"---\n\n"
         f"(Auto-saved draft after QA failures)\n\n"
     )
