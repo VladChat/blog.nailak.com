@@ -1,118 +1,95 @@
-{{/* === Custom Head Extensions — final safe version (no duplicate JSON-LD) === */}}
+{{/* === Custom Head Extensions — fixed JSON-LD escaping (safeHTML) === */}}
 
 {{ partial "gtm-head.html" . }}
 
-{{/* Подключаем всё по частям */}}
 {{ partial "custom/header-fix.html" . }}
 {{ partial "custom/colors.html" . }}
 {{ partial "custom/accordion.html" . }}
 {{ partial "custom/accordion-faq.html" . }}
 {{ partial "custom/icons-progress.html" . }}
 
-<!-- section-design inject -->
 <link rel="stylesheet" href="{{ "css/section-design.css" | absURL }}">
 <script src="{{ "js/section-fadein.js" | absURL }}" defer></script>
 
-<!-- Global width override for PaperMod -->
 <style>
   :root {
     --main-width: 1152px;
     --nav-width: var(--main-width);
   }
+  .post-single > header,
+  .post-single .post-header {
+    background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
+    border-radius: calc(var(--radius, 12px) + 2px);
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    margin: 1rem 0 1.75rem 0;
+    color: #fff;
+  }
+  .post-single > header .post-title,
+  .post-single .post-header .post-title {
+    color: #fff;
+    margin: 0 0 .4rem 0;
+    line-height: 1.25;
+    font-weight: 800;
+  }
+  .post-single > header .post-meta,
+  .post-single .post-header .post-meta {
+    color: #dbeafe;
+    opacity: .95;
+    font-size: .95rem;
+  }
+  .post-single > header a,
+  .post-single .post-header a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255,255,255,.35);
+  }
+  .post-single > header a:hover,
+  .post-single .post-header a:hover {
+    border-bottom-color: rgba(255,255,255,.9);
+  }
+  body.dark .post-single > header,
+  body.dark .post-single .post-header {
+    box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  }
 </style>
 
-<!-- Single Post Hero Styling (compact, full content width) -->
-<style>
-/* ===== Single Post — Compact Gradient Header ===== */
-.post-single > header,
-.post-single .post-header {
-  background: linear-gradient(135deg, var(--brand-blue), var(--brand-cyan));
-  border-radius: calc(var(--radius, 12px) + 2px);
-  padding: 1.25rem 1.5rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  margin: 1rem 0 1.75rem 0;
-  color: #fff;
-}
-
-.post-single > header .post-title,
-.post-single .post-header .post-title {
-  color: #fff;
-  margin: 0 0 .4rem 0;
-  line-height: 1.25;
-  font-weight: 800;
-}
-
-.post-single > header .post-meta,
-.post-single .post-header .post-meta {
-  color: #dbeafe;
-  opacity: .95;
-  font-size: .95rem;
-}
-
-.post-single > header a,
-.post-single .post-header a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(255,255,255,.35);
-}
-.post-single > header a:hover,
-.post-single .post-header a:hover {
-  border-bottom-color: rgba(255,255,255,.9);
-}
-
-body.dark .post-single > header,
-body.dark .post-single .post-header {
-  box-shadow: 0 6px 22px rgba(0,0,0,.35);
-}
-</style>
-
-<!-- Universal OG image for social and SEO -->
 <meta property="og:image" content="{{ .Site.BaseURL }}images/og/default.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:image" content="{{ .Site.BaseURL }}images/og/default.webp">
 
-{{/* === BEGIN: auto-bundle (deterministic order for FAQ+badges) === */}}
+{{/* === BEGIN: bundle === */}}
 {{- $cssParts := slice -}}
-{{- with (resources.Get "css/custom/colors.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-{{- with (resources.Get "css/custom/icons-progress.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-{{- with (resources.Get "css/custom/progress.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-{{- with (resources.Get "css/custom/accordion.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-{{- with (resources.Get "css/custom/accordion-faq.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-{{- range (resources.Match "css/custom/*.css") -}}
-  {{- if and (ne .Name "colors.css") (ne .Name "icons-progress.css") (ne .Name "progress.css") (ne .Name "accordion.css") (ne .Name "accordion-faq.css") (ne .Name "badges-responsive-fix.css") -}}
-    {{- $cssParts = $cssParts | append . -}}
-  {{- end -}}
-{{- end -}}
-{{- with (resources.Get "css/custom/badges-responsive-fix.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
+{{- with (resources.Get "css/custom/colors.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
+{{- with (resources.Get "css/custom/icons-progress.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
+{{- with (resources.Get "css/custom/progress.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
+{{- with (resources.Get "css/custom/accordion.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
+{{- with (resources.Get "css/custom/accordion-faq.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
+{{- with (resources.Get "css/custom/badges-responsive-fix.css") }}{{ $cssParts = $cssParts | append . }}{{ end }}
 {{- if gt (len $cssParts) 0 -}}
-  {{- with (resources.Get "css/custom/typography-merged.css") -}}  {{- $cssParts = $cssParts | append . -}}  {{- end -}}
-  {{- with ($cssParts | resources.Concat "css/custom-bundle.css" | resources.Minify | resources.Fingerprint) -}}
+  {{- with ($cssParts | resources.Concat "css/custom-bundle.css" | resources.Minify | resources.Fingerprint) }}
 <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-  {{- end -}}
-{{- end -}}
+  {{ end }}
+{{ end }}
 
 {{- $jsParts := slice -}}
-{{- with (resources.Get "js/custom/accordion.js") -}}  {{- $jsParts = $jsParts | append . -}}  {{- end -}}
-{{- with (resources.Get "js/custom/accordion-faq.js") -}}  {{- $jsParts = $jsParts | append . -}}  {{- end -}}
-{{- with (resources.Get "js/custom/icons-progress.js") -}}  {{- $jsParts = $jsParts | append . -}}  {{- end -}}
-{{- with (resources.Get "js/custom/progress.js") -}}  {{- $jsParts = $jsParts | append . -}}  {{- end -}}
-{{- range (resources.Match "js/custom/*.js") -}}
-  {{- if and (ne .Name "accordion.js") (ne .Name "accordion-faq.js") (ne .Name "icons-progress.js") (ne .Name "progress.js") -}}
-    {{- $jsParts = $jsParts | append . -}}
-  {{- end -}}
-{{- end -}}
+{{- with (resources.Get "js/custom/accordion.js") }}{{ $jsParts = $jsParts | append . }}{{ end }}
+{{- with (resources.Get "js/custom/accordion-faq.js") }}{{ $jsParts = $jsParts | append . }}{{ end }}
+{{- with (resources.Get "js/custom/icons-progress.js") }}{{ $jsParts = $jsParts | append . }}{{ end }}
+{{- with (resources.Get "js/custom/progress.js") }}{{ $jsParts = $jsParts | append . }}{{ end }}
 {{- if gt (len $jsParts) 0 -}}
-  {{- with ($jsParts | resources.Concat "js/custom-bundle.js" | resources.Minify | resources.Fingerprint) -}}
+  {{- with ($jsParts | resources.Concat "js/custom-bundle.js" | resources.Minify | resources.Fingerprint) }}
 <script src="{{ .RelPermalink }}" defer integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
-  {{- end -}}
-{{- end -}}
-{{/* === END: auto-bundle === */}}
+  {{ end }}
+{{ end }}
+{{/* === END: bundle === */}}
 
-<!-- === Minimal BlogPosting JSON-LD + BreadcrumbList === -->
+<!-- === BlogPosting + BreadcrumbList (safe JSON) === -->
 {{ if .IsPage }}
   {{ $author := .Params.author | default "Nailak Editorial" }}
   {{ $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL }}
+
   {{ $article := dict
       "@context" "https://schema.org"
       "@type" "BlogPosting"
@@ -124,7 +101,7 @@ body.dark .post-single .post-header {
       "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
       "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
   }}
-  <script type="application/ld+json">{{ $article | jsonify }}</script>
+  <script type="application/ld+json">{{ $article | jsonify | safeHTML }}</script>
 
   {{- $items := slice -}}
   {{- $ancestors := .Ancestors.Reverse -}}
@@ -149,5 +126,5 @@ body.dark .post-single .post-header {
       "@type" "BreadcrumbList"
       "itemListElement" $items
   -}}
-  <script type="application/ld+json">{{ $breadcrumbs | jsonify }}</script>
+  <script type="application/ld+json">{{ $breadcrumbs | jsonify | safeHTML }}</script>
 {{ end }}
