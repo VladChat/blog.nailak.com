@@ -147,7 +147,7 @@ def main():
                 f"draft: false\n"
                 f"categories: {categories_json}\n"
                 f"tags: [{tags_yaml}]\n"
-                f'author: "uPatch Editorial"\n'
+                f'author: "Nailak Editorial"\n'
                 f"---\n\n"
             )
 
@@ -188,7 +188,7 @@ def main():
             f"draft: true\n"
             f"categories: {categories_json}\n"
             f"tags: ['draft']\n"
-            f'author: "uPatch Editorial"\n'
+            f'author: "Nailak Editorial"\n'
             f"---\n\n"
             f"(Auto-saved draft after QA failures)\n\n"
         )
