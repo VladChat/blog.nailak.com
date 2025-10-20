@@ -27,7 +27,7 @@
 
 {{- /* ===== Meta ===== */ -}}
 
-<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK (robust version, safe + stable) -->
+<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK (stable, no apply) -->
 {{- $kws := slice -}}
 {{- if .IsHome -}}
   {{- if site.Params.keywords -}}
@@ -59,11 +59,17 @@
 {{- end -}}
 {{- $clean = uniq $clean -}}
 
-{{- if gt (len $clean) 0 -}}
-  {{- $clean = apply $clean "trim" " \t\r\n" -}}
-  <meta name="keywords" content="{{ delimit $clean ", " | safeHTML }}">
+{{- /* ручная нормализация без apply */ -}}
+{{- $normalized := slice -}}
+{{- range $clean -}}
+  {{- $normalized = $normalized | append (trim . " \t\r\n") -}}
+{{- end -}}
+
+{{- if gt (len $normalized) 0 -}}
+  <meta name="keywords" content="{{ delimit $normalized ", " | safeHTML }}">
 {{- end -}}
 <!-- 🔼 END FIXED KEYWORDS BLOCK -->
+
 
 
 
