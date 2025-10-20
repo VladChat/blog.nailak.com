@@ -175,5 +175,8 @@
   {{- partial "google_analytics.html" . }}
   {{- partial "templates/opengraph.html" . }}
   {{- partial "templates/twitter_cards.html" . }}
-  {{- partial "templates/schema_json.html" . }}
+  {{- /* Подключаем дефолтную schema_json.html ТОЛЬКО если нет своих .Params.blogPosting/.Params.faq */ -}}
+  {{- if (and (not .Params.blogPosting) (not .Params.faq)) -}}
+    {{- partial "templates/schema_json.html" . }}
+  {{- end -}}
 {{- end -}}

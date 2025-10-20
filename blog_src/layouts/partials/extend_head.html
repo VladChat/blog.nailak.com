@@ -1,5 +1,5 @@
-﻿{{/* === Custom Head Extensions — final safe version (clean + valid JSON-LD) === */}}
-<meta charset="UTF-8">
+{{/* === Custom Head Extensions — final safe version (clean + robust JSON-LD) === */}}
+
 {{ partial "gtm-head.html" . }}
 
 {{/* Подключаем всё по частям */}}
@@ -16,7 +16,6 @@
 <!-- Global width override for PaperMod -->
 <style>
   :root {
-    /* Итоговая ширина контента (1152px ≈ 1200 с полями по 24px) */
     --main-width: 1152px;
     --nav-width: var(--main-width);
   }
@@ -110,12 +109,35 @@ body.dark .post-single .post-header {
 {{- end -}}
 {{/* === END: auto-bundle === */}}
 
-<!-- === VALID JSON-LD STRUCTURED DATA === -->
+<!-- === JSON-LD (robust) === -->
 {{- if .IsPage }}
-  {{- with .Params.blogPosting }}
-    <script type="application/ld+json">{{ . | jsonify }}</script>
-  {{- end }}
-  {{- with .Params.faq }}
-    <script type="application/ld+json">{{ . | jsonify }}</script>
-  {{- end }}
+  {{- $bp := .Params.blogPosting -}}
+  {{- with $bp }}
+    {{- $t := printf "%T" . -}}
+    {{- if eq $t "string" -}}
+      {{- $obj := . | transform.Unmarshal -}}
+      {{- if $obj -}}
+        <script type="application/ld+json">{{ $obj | jsonify }}</script>
+      {{- else -}}
+        <script type="application/ld+json">{{ . | safeHTML }}</script>
+      {{- end -}}
+    {{- else -}}
+      <script type="application/ld+json">{{ . | jsonify }}</script>
+    {{- end -}}
+  {{- end -}}
+
+  {{- $faq := .Params.faq -}}
+  {{- with $faq }}
+    {{- $t := printf "%T" . -}}
+    {{- if eq $t "string" -}}
+      {{- $obj := . | transform.Unmarshal -}}
+      {{- if $obj -}}
+        <script type="application/ld+json">{{ $obj | jsonify }}</script>
+      {{- else -}}
+        <script type="application/ld+json">{{ . | safeHTML }}</script>
+      {{- end -}}
+    {{- else -}}
+      <script type="application/ld+json">{{ . | jsonify }}</script>
+    {{- end -}}
+  {{- end -}}
 {{- end }}
