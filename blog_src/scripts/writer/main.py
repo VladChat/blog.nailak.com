@@ -1,5 +1,6 @@
 # blog_src/scripts/writer/main.py
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -124,6 +125,23 @@ def _extract_secondary_from_topic(topic: str) -> str:
     return ""
 
 
+def _clean_phrase_for_meta(s: str) -> str:
+    """
+    Делает фразу безопасной для meta keywords ( без двойных запятых и хвостов ).
+    - режет лидирующие/хвостовые разделители , ; | /
+    - схлопывает повторные пробелы
+    - обрезает пробелы по краям
+    """
+    if not s:
+        return ""
+    # Схлопываем пробелы
+    s = re.sub(r"\s+", " ", str(s).strip())
+    # Убираем ведущие/хвостовые разделители
+    s = re.sub(r"^[,;|/]+", "", s)
+    s = re.sub(r"[,;|/]+$", "", s)
+    return s
+
+
 def main():
     cfg = load_writer_config()
 
@@ -212,20 +230,23 @@ def main():
 
             tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
 
-            # SEO: meta keywords — только 1–2 значения (чистый фокус)
-            # Используем исходный человеко-читаемый keyword + вторичный (в формате фразы)
-            secondary_phrase = secondary_tag.replace("-", " ").strip()
+            # ✅ SEO: meta keywords — только 1–2 значения (чистый фокус),
+            # и ОБЯЗАТЕЛЬНА очистка фраз от хвостовых запятых/мусора
+            secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " ").strip())
+            primary_phrase = _clean_phrase_for_meta(keyword.strip())
+
             meta_keywords_parts = []
-            if keyword.strip():
-                meta_keywords_parts.append(keyword.strip())
-            if secondary_phrase and secondary_phrase not in meta_keywords_parts:
+            if primary_phrase:
+                meta_keywords_parts.append(primary_phrase)
+            if secondary_phrase and secondary_phrase.lower() not in {p.lower() for p in meta_keywords_parts}:
                 meta_keywords_parts.append(secondary_phrase)
+
             meta_keywords = ", ".join(meta_keywords_parts)
 
             fm = (
                 f"---\n"
                 f'title: "{title_escaped}"\n'
-                f"date: {now.isoformat()}\n"  # ✅ убран лишний 'Z'
+                f"date: {now.isoformat()}\n"  # ✅ ISO 8601 с таймзоной
                 f"draft: false\n"
                 f"categories: {categories_json}\n"
                 f"tags: [{tags_yaml}]\n"
@@ -267,7 +288,7 @@ def main():
         fm = (
             f"---\n"
             f'title: "{title_escaped}"\n'
-            f"date: {now.isoformat()}\n"  # ✅ убран лишний 'Z'
+            f"date: {now.isoformat()}\n"
             f"draft: true\n"
             f"categories: {categories_json}\n"
             f"tags: ['draft']\n"
