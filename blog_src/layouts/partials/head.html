@@ -27,22 +27,41 @@
 
 {{- /* ===== Meta ===== */ -}}
 
-<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK -->
-{{- if .IsHome }}
-  {{ with site.Params.keywords -}}
-    <meta name="keywords" content="{{- if (reflect.IsSlice .) -}}{{- delimit . ", " | safeHTML -}}{{- else -}}{{- . | safeHTML -}}{{- end -}}">
-  {{- end }}
-{{- else }}
-  {{- if .Params.keywords }}
-    {{- if (reflect.IsSlice .Params.keywords) }}
-      <meta name="keywords" content="{{ delimit .Params.keywords ", " | safeHTML }}">
-    {{- else }}
-      <meta name="keywords" content="{{ .Params.keywords | safeHTML }}">
-    {{- end }}
-  {{- else if .Params.tags }}
-    <meta name="keywords" content="{{ delimit .Params.tags ", " | safeHTML }}">
-  {{- end }}
-{{- end }}
+<!-- 🔽 BEGIN FIXED KEYWORDS BLOCK (robust version) -->
+{{- $kws := slice -}}
+{{- if .IsHome -}}
+  {{- if site.Params.keywords -}}
+    {{- if (reflect.IsSlice site.Params.keywords) -}}
+      {{- $kws = site.Params.keywords -}}
+    {{- else -}}
+      {{- $kws = (split site.Params.keywords ",") -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- if .Params.keywords -}}
+    {{- if (reflect.IsSlice .Params.keywords) -}}
+      {{- $kws = .Params.keywords -}}
+    {{- else -}}
+      {{- $kws = (split .Params.keywords ",") -}}
+    {{- end -}}
+  {{- else if .Params.tags -}}
+    {{- $kws = .Params.tags -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* trim + фильтрация пустых + уникализация */ -}}
+{{- $clean := slice -}}
+{{- range $kws -}}
+  {{- $v := trim . " \t\r\n" -}}
+  {{- if $v -}}
+    {{- $clean = $clean | append $v -}}
+  {{- end -}}
+{{- end -}}
+{{- $clean = uniq $clean -}}
+
+{{- if gt (len $clean) 0 -}}
+  <meta name="keywords" content="{{ delimit $clean ", " | safeHTML }}">
+{{- end -}}
 <!-- 🔼 END FIXED KEYWORDS BLOCK -->
 
 {{- /* ===== Description (safe word-trim, ≤ ~149, no ellipsis) ===== */ -}}
@@ -186,7 +205,6 @@
   {{- partial "google_analytics.html" . }}
   {{- partial "templates/opengraph.html" . }}
   {{- partial "templates/twitter_cards.html" . }}
-  {{- /* Подключаем дефолтную schema_json.html ТОЛЬКО если нет своих .Params.blogPosting/.Params.faq */ -}}
   {{- if (and (not .Params.blogPosting) (not .Params.faq)) -}}
     {{- partial "templates/schema_json.html" . }}
   {{- end -}}
