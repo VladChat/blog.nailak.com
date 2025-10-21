@@ -45,7 +45,12 @@
 
 
   </header>
-  {{ partial "custom/aff-rotator.html" . }}
+
+  {{/* 🔸 Реклама только для постов */}}
+  {{ if or (eq .Section "posts") (eq .Type "posts") }}
+    {{ partial "custom/aff-rotator.html" . }}
+  {{ end }}
+
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false -}}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) -}}
 
@@ -67,8 +72,10 @@
 
   <footer class="post-footer">
 
-    <!-- 🔸 Рекламный блок (Affiliate) — вместо тегов и категорий -->
-    {{ partial "custom/aff-rotator.html" . }}
+    <!-- 🔸 Рекламный блок (Affiliate) — только для постов -->
+    {{ if or (eq .Section "posts") (eq .Type "posts") }}
+      {{ partial "custom/aff-rotator.html" . }}
+    {{ end }}
 
     {{/* ──────────────────────────────────────────────────────────────
        БЛОК ТЕГОВ И КАТЕГОРИЙ ОТКЛЮЧЁН (оставлен для истории)
@@ -104,28 +111,31 @@
     {{- end -}}
   </footer>
 
-  {{- if site.Params.ShowRelatedPosts -}}
-  <section class="related-posts">
-    <h2>Related Posts</h2>
-    {{- $related := site.RegularPages.Related . | first 4 -}}
-    {{- if $related -}}
-      <div class="related-grid">
+  {{/* 🔸 Related Posts — только для постов */}}
+  {{ if or (eq .Section "posts") (eq .Type "posts") }}
+    {{- if site.Params.ShowRelatedPosts -}}
+    <section class="related-posts">
+      <h2>Related Posts</h2>
+      {{- $related := site.RegularPages.Related . | first 4 -}}
+      {{- if $related -}}
+        <div class="related-grid">
         {{- range $related -}}
-        <a class="related-card" href="{{ .RelPermalink }}">
-          <div class="card-badge">
-            <span class="check"></span>
-            NEXT
-          </div>
-          <div class="card-title">{{ .Title }}</div>
-          <div class="card-plus">+</div>
-        </a>
+          <a class="related-card" href="{{ .RelPermalink }}">
+            <div class="card-badge">
+              <span class="check"></span>
+              NEXT
+            </div>
+            <div class="card-title">{{ .Title }}</div>
+            <div class="card-plus">+</div>
+          </a>
         {{- end -}}
-      </div>
-    {{- else -}}
-      <p>No related posts found.</p>
+        </div>
+      {{- else -}}
+        <p>No related posts found.</p>
+      {{- end -}}
+    </section>
     {{- end -}}
-  </section>
-  {{- end -}}
+  {{ end }}
 
   {{- if (.Param "comments") -}}
     {{- partial "comments.html" . -}}
