@@ -4,10 +4,10 @@
 
   {{- if (or (eq $author_type "[]string") (eq $author_type "[]interface {}")) }}
     {{- $names := (delimit $author ", " ) }}
-    <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">{{ $names }}</a>
+    by <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">{{ $names }}</a>
   {{- else }}
-    <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">{{ $author }}</a>
+    by <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">{{ $author }}</a>
   {{- end }}
 {{- else }}
-  <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">Nailak Editorial</a>
+  by <a href="{{ .Site.BaseURL }}editorial/" class="post-author-link">Nailak Editorial</a>
 {{- end }}
