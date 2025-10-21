@@ -149,16 +149,16 @@ body.dark .post-content blockquote {
 }
 
 
-/* === Hero icon placement (inside header plaque, balanced) === */
+/* === Hero icon placement (inside header plaque, visually balanced) === */
 .post-header {
   position: relative;
-  overflow: hidden; /* всё внутри, без вылезания за радиус */
+  overflow: visible; /* ✅ чтобы круг не обрезался */
 }
 
 .hero-icon-corner {
   position: absolute;
-  bottom: 1.2rem;  /* внутренний отступ снизу */
-  right: 1.8rem;   /* внутренний отступ справа */
+  bottom: 0.8rem;  /* чуть выше нижнего края, внутри плашки */
+  right: 1.2rem;   /* сбалансированный внутренний отступ справа */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,9 +166,9 @@ body.dark .post-content blockquote {
 }
 
 .hero-icon-corner img.hero-bottle {
-  width: 150px;          /* ✅ увеличенный диаметр круга */
+  width: 150px;          /* диаметр круга */
   height: 150px;
-  aspect-ratio: 1 / 1;   /* гарантирует идеальный круг */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 50%;
   background: transparent;
@@ -185,22 +185,22 @@ body.dark .post-content blockquote {
 /* === Адаптив для узких экранов === */
 @media (max-width: 960px) {
   .hero-icon-corner {
-    bottom: 0.8rem;
-    right: 1rem;
+    bottom: 0.6rem;
+    right: 0.9rem;
   }
   .hero-icon-corner img.hero-bottle {
-    width: 110px;
-    height: 110px;
+    width: 120px;
+    height: 120px;
   }
 }
 
 @media (max-width: 640px) {
   .hero-icon-corner {
-    bottom: 0.6rem;
+    bottom: 0.5rem;
     right: 0.8rem;
   }
   .hero-icon-corner img.hero-bottle {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
   }
 }
