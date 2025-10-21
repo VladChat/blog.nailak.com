@@ -9,18 +9,28 @@
   },
   "headline": {{ .Title | jsonify }},
   "description": {{ with .Description }}{{ . | jsonify }}{{ else }}{{ .Summary | plainify | truncate 160 | jsonify }}{{ end }},
-  "image": {{ with .Params.featuredImage }}{{ . | absURL | jsonify }}{{ else }}{{ printf "%simages/nailak-cover.jpg" .Site.BaseURL | jsonify }}{{ end }},
-  "author": {
-    "@type": "Person",
-    "name": "Nailak Editorial",
-    "url": "{{ .Site.BaseURL }}editorial/"
-  },
+  "image": [
+    {{ with .Params.featuredImage }}
+      {{ . | absURL | jsonify }}
+    {{ else }}
+      {{ printf "%simages/nailak-cover-1x1.webp" .Site.BaseURL | jsonify }},
+      {{ printf "%simages/nailak-cover-4x3.webp" .Site.BaseURL | jsonify }},
+      {{ printf "%simages/nailak-cover-16x9.webp" .Site.BaseURL | jsonify }}
+    {{ end }}
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Nailak Editorial",
+      "url": "{{ .Site.BaseURL }}editorial/"
+    }
+  ],
   "publisher": {
     "@type": "Organization",
     "name": "Nailak",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ .Site.BaseURL }}images/logo-sq.svg"
+      "url": "{{ .Site.BaseURL }}images/logo-nailak.png"
     }
   },
   "datePublished": "{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}",
