@@ -1,6 +1,5 @@
 {{/* layouts/partials/templates/schema_json.html
-     — Безопасный вывод JSON-LD (Organization only)
-     — BlogPosting отключён, чтобы не дублировать JSON.
+     — Безопасный вывод JSON-LD (Organization и BlogPosting)
      — Кодировка: UTF-8 (без BOM).
 */}}
 
@@ -34,16 +33,16 @@
 
 {{/* =========================
      2) Страница поста (BlogPosting)
-     =========================
-     🔒 Отключено, чтобы не дублировать JSON-LD.
-     Accordion-FAQ уже вставляет корректный BlogPosting.
-*/}}
-{{/*
+     ========================= */}}
 {{ if .IsPage }}
-  {{- $authorName := .Params.author | default ( .Site.Params.author.name | default "Nailak Editorial" ) -}}
+  {{- $authorName := .Params.author | default ( .Site.Params.author | default "Nailak Editorial" ) -}}
   {{- $img := "" -}}
   {{- with .Params.featuredImage }}{{ $img = . }}{{ end -}}
-  {{- $images := cond (ne $img "") (slice ($img | absURL)) (slice) -}}
+  {{- $images := cond (ne $img "") (slice ($img | absURL)) (slice
+        (printf "%simages/nailak-cover-1x1.webp" .Site.BaseURL)
+        (printf "%simages/nailak-cover-4x3.webp" .Site.BaseURL)
+        (printf "%simages/nailak-cover-16x9.webp" .Site.BaseURL)
+    ) -}}
 
   {{- $published := ( .PublishDate | default .Date ) -}}
   {{- $modified  := ( .Lastmod     | default .Date ) -}}
@@ -55,7 +54,7 @@
         "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
         "datePublished"    ( $published | time.Format "2006-01-02T15:04:05Z07:00" )
         "dateModified"     ( $modified  | time.Format "2006-01-02T15:04:05Z07:00" )
-        "author"           (dict "@type" "Person" "name" $authorName)
+        "author"           (dict "@type" "Person" "name" $authorName "url" (print .Site.BaseURL "editorial/"))
         "image"            $images
         "description"      ( ( .Params.description | default .Summary ) | plainify )
     -}}
@@ -71,4 +70,3 @@
 
   <script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}
-*/}}
