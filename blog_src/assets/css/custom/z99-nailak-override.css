@@ -148,59 +148,61 @@ body.dark .post-content blockquote {
   background: rgba(255,255,255,.16);
 }
 
-
-/* === Hero icon placement (inside header plaque, visually balanced) === */
+/* === Hero icon placement (perfect circular like Luggage Scale) === */
 .post-header {
   position: relative;
-  overflow: visible; /* ✅ чтобы круг не обрезался */
+  overflow: visible; /* чтобы не обрезалось за радиус блока */
 }
 
 .hero-icon-corner {
   position: absolute;
-  bottom: 0.8rem;  /* чуть выше нижнего края, внутри плашки */
-  right: 1.2rem;   /* сбалансированный внутренний отступ справа */
+  bottom: 1rem;   /* немного выше нижнего края внутри зелёной плашки */
+  right: 1.5rem;  /* сбалансированный отступ справа */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
+  width: auto;
+  height: auto;
 }
 
+/* ✅ фиксированный круг 64×64 — идентично старому SVG */
 .hero-icon-corner img.hero-bottle {
-  width: 150px;          /* диаметр круга */
-  height: 150px;
+  width: 64px;
+  height: 64px;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain; /* cover иногда растягивает */
   border-radius: 50%;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-icon-corner img.hero-bottle:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* === Адаптив для узких экранов === */
+/* === Адаптив === */
 @media (max-width: 960px) {
   .hero-icon-corner {
-    bottom: 0.6rem;
-    right: 0.9rem;
+    bottom: 0.8rem;
+    right: 1rem;
   }
   .hero-icon-corner img.hero-bottle {
-    width: 120px;
-    height: 120px;
+    width: 58px;
+    height: 58px;
   }
 }
 
 @media (max-width: 640px) {
   .hero-icon-corner {
-    bottom: 0.5rem;
+    bottom: 0.6rem;
     right: 0.8rem;
   }
   .hero-icon-corner img.hero-bottle {
-    width: 90px;
-    height: 90px;
+    width: 50px;
+    height: 50px;
   }
 }
