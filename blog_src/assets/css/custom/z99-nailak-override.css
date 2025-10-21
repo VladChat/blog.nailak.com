@@ -148,16 +148,16 @@ body.dark .post-content blockquote {
   background: rgba(255,255,255,.16);
 }
 
-/* === Hero icon placement (perfect circular like Luggage Scale) === */
+/* === Hero icon placement (Luggage Scale style — slightly overlapping plaque) === */
 .post-header {
   position: relative;
-  overflow: visible; /* чтобы не обрезалось за радиус блока */
+  overflow: visible; /* позволяет иконке немного выступать за радиус блока */
 }
 
 .hero-icon-corner {
   position: absolute;
-  bottom: 1rem;   /* немного выше нижнего края внутри зелёной плашки */
-  right: 1.5rem;  /* сбалансированный отступ справа */
+  bottom: -1.2rem;  /* ✅ смещаем вниз, чтобы слегка выходила за плашку */
+  right: 1.5rem;    /* тот же правый отступ */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,12 +166,12 @@ body.dark .post-content blockquote {
   height: auto;
 }
 
-/* ✅ фиксированный круг 64×64 — идентично старому SVG */
+/* Идеальный круг, совпадающий со старым синем SVG (64×64) */
 .hero-icon-corner img.hero-bottle {
   width: 64px;
   height: 64px;
   aspect-ratio: 1 / 1;
-  object-fit: contain; /* cover иногда растягивает */
+  object-fit: contain; /* не растягивает, сохраняет пропорции */
   border-radius: 50%;
   background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -184,10 +184,10 @@ body.dark .post-content blockquote {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* === Адаптив === */
+/* === Адаптив (точно повторяет uPatch поведение) === */
 @media (max-width: 960px) {
   .hero-icon-corner {
-    bottom: 0.8rem;
+    bottom: -1rem; /* чуть меньше выступает */
     right: 1rem;
   }
   .hero-icon-corner img.hero-bottle {
@@ -198,7 +198,7 @@ body.dark .post-content blockquote {
 
 @media (max-width: 640px) {
   .hero-icon-corner {
-    bottom: 0.6rem;
+    bottom: -0.8rem;
     right: 0.8rem;
   }
   .hero-icon-corner img.hero-bottle {
