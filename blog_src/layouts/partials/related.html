@@ -1,10 +1,16 @@
-{{ $related := .Site.RegularPages.Related . | first 4 }}
+{{/* layouts/partials/related.html — исправленный вариант */}}
+
+{{/* Получаем список связанных страниц, исключая текущую */}}
+{{ $related := where (.Site.RegularPages.Related .) "Permalink" "ne" .Permalink | first 4 }}
+
 {{ if gt (len $related) 0 }}
 <section class="related-section">
   <h2 class="related-title">Related Posts</h2>
   <ul class="related-list">
     {{ range $related }}
-      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      <li class="related-item">
+        <a class="related-link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
     {{ end }}
   </ul>
 </section>
