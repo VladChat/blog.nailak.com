@@ -168,14 +168,12 @@ def get_latest_topic():
 
         print(f"⏭️ No new articles in feed [{rss_index}] (checked {checked}, skipped {skipped}). Next feed...")
 
-    # 5) Если ничего не нашли во всех фидах — аккуратный fallback
+    # 5) Если ничего не нашли во всех фидах — fallback
     if not selected:
-        # Возьмём самую свежую запись из первого фида по ротации, но явно залогируем это.
         fallback_index = (last_rss + 1) % len(rss_list)
         fallback_url = rss_list[fallback_index]
         feed = feedparser.parse(fallback_url)
         entries = getattr(feed, "entries", []) or []
-
         print("───────────────────────────────")
         print("⚠️ No NEW articles across all feeds (all seen).")
         if not entries:
@@ -184,7 +182,6 @@ def get_latest_topic():
         selected_feed_index = fallback_index
         selected_feed_url = fallback_url
         print(f"♻️ Reusing MOST RECENT article from feed [{fallback_index}]: {selected.get('link','')}")
-        # Важно: в этом fallback не добавляем ссылку в seen, чтобы не «захламлять» историю при вынужденном повторе.
 
     # 6) Формируем результат
     topic = (selected.get("title") or "Untitled").strip()
@@ -197,19 +194,20 @@ def get_latest_topic():
 
     # 8) Обновляем состояние и сохраняем
     state["last_rss"] = selected_feed_index
-    \1
-    state["keyword_index"] = keyword_index  # keep fields in sync# Линку добавляем в seen только если это действительно новая (не fallback-повтор)
+    state["last_keyword"] = keyword_index
+    state["keyword_index"] = keyword_index  # keep fields in sync
+
+    # Линку добавляем в seen только если это действительно новая (не fallback-повтор)
     if orig_link and normalize_url(orig_link) not in seen:
         state_seen = state.get("seen", [])
         state_seen.append(orig_link)
-        # ограничиваем длину
         if len(state_seen) > SEEN_MAX:
             state_seen = state_seen[-SEEN_MAX:]
         state["seen"] = state_seen
 
     save_json(STATE_PATH, state)
 
-    # 9) Итоговый лог — красиво и подробно
+    # 9) Итоговый лог
     print("───────────────────────────────")
     print(f"📰 RSS Source: {selected_feed_url}")
     print(f"🧩 Topic: {topic}")
@@ -220,5 +218,4 @@ def get_latest_topic():
     print(f"🗂 seen size -> {len(state.get('seen', []))}")
     print("───────────────────────────────")
 
-    # 10) Возврат в main.py
     return f"{topic} — {keyword}", summary, orig_link
