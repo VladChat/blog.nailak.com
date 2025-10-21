@@ -147,33 +147,45 @@ body.dark .post-content blockquote {
   /* если есть собственный фон бейджа — делаем его полупрозрачным светлым */
   background: rgba(255,255,255,.16);
 }
-/* === Hero icon внутри зелёной плашки === */
+/* === Hero icon placement (matching Luggage Scale layout) === */
+.post-header {
+  position: relative;
+  overflow: visible; /* чтобы иконка могла выступать за границу блока */
+}
+
 .hero-icon-corner {
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  bottom: -2rem; /* иконка немного выступает вниз за плашку */
+  right: 2rem;   /* расстояние от правого края */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-icon-corner img.hero-bottle {
-  width: 84px;
-  height: 84px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   background: transparent;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-icon-corner img.hero-bottle:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+  transform: scale(1.05);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
 }
 
-/* Чтобы шапка могла содержать позиционированный элемент */
-.post-header {
-  position: relative;
-  overflow: hidden;
+/* Адаптив для узких экранов */
+@media (max-width: 720px) {
+  .hero-icon-corner {
+    bottom: -1.25rem;
+    right: 1rem;
+  }
+  .hero-icon-corner img.hero-bottle {
+    width: 150px;
+    height: 150px;
+  }
 }
