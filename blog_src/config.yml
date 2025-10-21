@@ -1,5 +1,6 @@
 baseURL: "https://blog.nailak.com/"
-title: "Nailak Blog"
+title: "Nailak Blog – Nail Care, Cuticle Oil & Beauty Tips"
+description: "Discover expert nail care and beauty advice from the Nailak team — learn how to use cuticle oil, strengthen nails, and create salon-quality results at home."
 theme: "PaperMod"
 publishDir: "../docs"
 
