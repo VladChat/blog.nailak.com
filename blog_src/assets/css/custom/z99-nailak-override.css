@@ -149,16 +149,16 @@ body.dark .post-content blockquote {
 }
 
 
-/* === Hero icon placement (matching Luggage Scale layout) === */
+/* === Hero icon placement (inside header plaque, balanced) === */
 .post-header {
   position: relative;
-  overflow: visible; /* чтобы иконка могла выступать за границу блока */
+  overflow: hidden; /* всё внутри, без вылезания за радиус */
 }
 
 .hero-icon-corner {
   position: absolute;
-  bottom: -2rem; /* иконка немного выступает вниз за плашку */
-  right: 2rem;   /* расстояние от правого края */
+  bottom: 1.2rem;  /* внутренний отступ снизу */
+  right: 1.8rem;   /* внутренний отступ справа */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,28 +166,41 @@ body.dark .post-content blockquote {
 }
 
 .hero-icon-corner img.hero-bottle {
-  width: 82px;
-  height: 82px;
+  width: 150px;          /* ✅ увеличенный диаметр круга */
+  height: 150px;
+  aspect-ratio: 1 / 1;   /* гарантирует идеальный круг */
+  object-fit: cover;
   border-radius: 50%;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .hero-icon-corner img.hero-bottle:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+  transform: scale(1.04);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-/* Адаптив для узких экранов */
-@media (max-width: 720px) {
+/* === Адаптив для узких экранов === */
+@media (max-width: 960px) {
   .hero-icon-corner {
-    bottom: -1.25rem;
+    bottom: 0.8rem;
     right: 1rem;
   }
   .hero-icon-corner img.hero-bottle {
-    width: 64px;
-    height: 64px;
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-icon-corner {
+    bottom: 0.6rem;
+    right: 0.8rem;
+  }
+  .hero-icon-corner img.hero-bottle {
+    width: 80px;
+    height: 80px;
   }
 }
