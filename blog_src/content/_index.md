@@ -1,5 +1,5 @@
 ﻿---
-title: "Nailak Care Blog"
+title: "🌿 Nailak Care Blog"
 ---
 
-Modern 💅 nail care and wellness — expert tips, 🌿 natural beauty routines, and insights from the Nailak team.
+Your daily source for modern beauty and wellness — expert advice, mindful rituals, and inspiration from Nailak
