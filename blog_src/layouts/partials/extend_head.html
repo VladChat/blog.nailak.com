@@ -62,7 +62,7 @@
 
 body.dark .post-single > header,
 body.dark .post-single .post-header {
-  box-shadow: 0 6px 22px rgba(0,0,0,.35);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .35);
 }
 </style>
 
@@ -109,22 +109,9 @@ body.dark .post-single .post-header {
 {{- end -}}
 {{/* === END: auto-bundle === */}}
 
-<!-- === Minimal BlogPosting JSON-LD + BreadcrumbList === -->
+<!-- === BreadcrumbList JSON-LD only (BlogPosting moved to templates/schema_json.html) === -->
 {{ if .IsPage }}
-  {{ $author := .Params.author | default "Nailak Editorial" }}
-  {{ $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL }}
-  {{ $article := dict
-      "@context" "https://schema.org"
-      "@type" "BlogPosting"
-      "headline" .Title
-      "description" ((.Params.description | default .Summary) | plainify)
-      "author" (dict "@type" "Person" "name" $author)
-      "datePublished" (.Date | time.Format "2006-01-02T15:04:05Z07:00")
-      "dateModified" (.Lastmod | time.Format "2006-01-02T15:04:05Z07:00")
-      "publisher" (dict "@type" "Organization" "name" .Site.Title "logo" (dict "@type" "ImageObject" "url" $logo))
-      "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
-  }}
-  <script type="application/ld+json">{{ $article | jsonify | safeJS }}</script>
+  {{/* BlogPosting JSON-LD intentionally not emitted here to avoid duplicates */}}
 
   {{- $items := slice -}}
   {{- $ancestors := .Ancestors.Reverse -}}
