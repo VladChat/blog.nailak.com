@@ -147,3 +147,33 @@ body.dark .post-content blockquote {
   /* если есть собственный фон бейджа — делаем его полупрозрачным светлым */
   background: rgba(255,255,255,.16);
 }
+/* === Hero icon внутри зелёной плашки === */
+.hero-icon-corner {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-icon-corner img.hero-bottle {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.hero-icon-corner img.hero-bottle:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Чтобы шапка могла содержать позиционированный элемент */
+.post-header {
+  position: relative;
+  overflow: hidden;
+}
