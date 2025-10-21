@@ -197,9 +197,8 @@ def get_latest_topic():
 
     # 8) Обновляем состояние и сохраняем
     state["last_rss"] = selected_feed_index
-    state["last_keyword"] = keyword_index
-
-    # Линку добавляем в seen только если это действительно новая (не fallback-повтор)
+    \1
+    state["keyword_index"] = keyword_index  # keep fields in sync# Линку добавляем в seen только если это действительно новая (не fallback-повтор)
     if orig_link and normalize_url(orig_link) not in seen:
         state_seen = state.get("seen", [])
         state_seen.append(orig_link)

@@ -237,13 +237,8 @@ def main():
     print(fm)
     print(f"✓ New post saved: {out_path}")
     print("───────────────────────────────")
-
-    if keywords:
-        state["keyword_index"] = (idx + 1) % len(keywords)
-    save_state(state)
-    print(f"🗂 Updated state.json — next keyword index: {state['keyword_index']}")
-
-
+    # NOTE: rss_fetch now advances and saves keyword index.
+    # (Manual bump removed to avoid double-advance and desync)
 # === 📝 Сохранение черновика при сбое ===
 def _save_draft(topic: str, cfg: dict):
     """Сохраняет черновик, если QA не прошёл или GPT не дал результата."""
