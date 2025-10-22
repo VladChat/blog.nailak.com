@@ -1,0 +1,29 @@
+figure.brand-image {
+  margin: 2rem auto;
+  max-width: 720px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  background: var(--surface, #fff);
+  transition: box-shadow 0.3s ease;
+}
+
+figure.brand-image:hover {
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+}
+
+figure.brand-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+  object-fit: cover;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.98;
+}
+
+figure.brand-image img:hover {
+  transform: scale(1.02);
+  opacity: 1;
+}
