@@ -81,6 +81,7 @@ def inject_brand_images(markdown_text: str) -> str:
     """
     Вставляет финальные <figure><img> блоки:
       • перед блоком > Quick Summary:
+      • в конец 1-й секции (если нет Summary);
       • в конец 3-й секции (перед 4-м ##).
     Каждая вставка получает следующий файл по очереди (циклично).
     """
@@ -95,11 +96,17 @@ def inject_brand_images(markdown_text: str) -> str:
     if summary_match:
         insert_positions.append(summary_match.start())
     else:
-        # fallback: перед вторым H2 (конец 1-й секции)
+        # fallback: конец первой секции (до второго H2)
         h2_iter = list(re.finditer(r"^##\s+.*$", markdown_text, re.MULTILINE))
-        if len(h2_iter) >= 2:
-            prev_nl = markdown_text.rfind("\n", 0, h2_iter[1].start())
-            pos = 0 if prev_nl == -1 else prev_nl + 1
+        if len(h2_iter) >= 1:
+            # определяем границу между первой и второй секцией
+            next_h2 = h2_iter[1].start() if len(h2_iter) > 1 else len(markdown_text)
+            # ищем двойной перенос строки перед следующим заголовком
+            prev_double_nl = markdown_text.rfind("\n\n", 0, next_h2)
+            if prev_double_nl != -1:
+                pos = prev_double_nl + 2
+            else:
+                pos = next_h2
             insert_positions.append(pos)
 
     # --- Вторая вставка: конец 3-й секции (перед 4-м H2) ---
