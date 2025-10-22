@@ -30,31 +30,62 @@ def _pick_random_file() -> str:
 
 def inject_brand_images(markdown_text: str) -> str:
     """
-    Ставит {{< brandimg file="..." >}} после 1-й и 3-й секции (заголовков "## ...").
-    Файл выбирается случайно один раз на момент генерации и фиксируется в тексте.
+    Вставляет {{< brandimg file="..." >}}:
+      • в КОНЕЦ 1-й секции (перед 2-м заголовком ##),
+      • в КОНЕЦ 3-й секции (перед 4-м заголовком ##).
+
+    Если следующего заголовка для упора нет — вставляет в конец текста.
+    Один и тот же выбранный файл используется для всех вставок в посте.
     """
     if not markdown_text:
         return markdown_text
 
+    # Находим все H2
     h2_iter = list(re.finditer(r'^##\s+.*$', markdown_text, re.MULTILINE))
     insert_positions = []
 
+    def before_line_start(idx: int) -> int:
+        """
+        Возвращает позицию начала строки, в которой находится символ с индексом idx.
+        Используем для вставки ПЕРЕД заголовком (то есть физически в конец предыдущей секции).
+        """
+        # Найти предыдущий перевод строки. Если не найден — это самое начало (позиция 0).
+        prev_nl = markdown_text.rfind('\n', 0, idx)
+        return 0 if prev_nl == -1 else prev_nl + 1
+
     def after_line_end(idx: int) -> int:
+        """
+        Позиция сразу после конца строки, в которой находится символ с индексом idx.
+        (Сохранено для совместимости и возможного будущего использования.)
+        """
         nl = markdown_text.find('\n', idx)
         return len(markdown_text) if nl == -1 else nl + 1
 
-    if len(h2_iter) >= 1:
-        insert_positions.append(after_line_end(h2_iter[0].end()))
-    if len(h2_iter) >= 3:
-        insert_positions.append(after_line_end(h2_iter[2].end()))
+    # --- Точка вставки №1: конец первой секции (перед вторым H2) ---
+    if len(h2_iter) >= 2:
+        # Перед началом второго заголовка
+        insert_positions.append(before_line_start(h2_iter[1].start()))
+    elif len(h2_iter) == 1:
+        # Только одна секция — вставляем в самый конец текста
+        insert_positions.append(len(markdown_text))
 
-    # Фиксируем конкретный файл для этого поста
+    # --- Точка вставки №2: конец третьей секции (перед четвёртым H2) ---
+    if len(h2_iter) >= 4:
+        # Перед началом четвёртого заголовка
+        insert_positions.append(before_line_start(h2_iter[3].start()))
+    elif len(h2_iter) >= 3:
+        # Есть только три секции — вставляем в конец текста
+        insert_positions.append(len(markdown_text))
+
+    # Фиксируем конкретный файл для этого поста (один для всех вставок)
     chosen_file = _pick_random_file()
     snippet = f'\n\n{{{{< brandimg file="{chosen_file}" >}}}}\n\n'
 
+    # Вставляем начиная с конца, чтобы индексы не смещались
     for pos in sorted(insert_positions, reverse=True):
         window = markdown_text[max(0, pos - 64): min(len(markdown_text), pos + 64)]
         if "{{< brandimg" in window:
+            # Уже есть рядом вставка — пропускаем, чтобы не дублировать
             continue
         markdown_text = markdown_text[:pos] + snippet + markdown_text[pos:]
 
