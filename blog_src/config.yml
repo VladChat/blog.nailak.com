@@ -85,3 +85,15 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 1
+
+    - identifier: shop
+      name: Shop
+      url: https://nailak.com/
+      weight: 2
