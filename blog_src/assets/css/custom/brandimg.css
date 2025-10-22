@@ -1,29 +1,27 @@
 figure.brand-image {
   margin: 2rem auto;
   max-width: 720px;
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   text-align: center;
-  background: var(--surface, #fff);
-  transition: box-shadow 0.3s ease;
-}
-
-figure.brand-image:hover {
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.12);
+  line-height: 0;
+  background: none;
+  padding: 6px; /* ✅ аккуратное "дыхание" вокруг картинки */
+  box-sizing: border-box;
+  transition: opacity 0.25s ease;
 }
 
 figure.brand-image img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: inherit;
+  border-radius: 10px; /* чуть меньше радиус — естественнее выглядит */
   object-fit: cover;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0.98;
+  vertical-align: middle;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
-figure.brand-image img:hover {
-  transform: scale(1.02);
-  opacity: 1;
+figure.brand-image:hover img {
+  opacity: 0.92; /* мягкий эффект при наведении, без движения */
 }
