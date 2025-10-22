@@ -1,5 +1,7 @@
 import json
 import re
+from .brandimg_injector import inject_brand_images  # NEW
+
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -171,6 +173,8 @@ def main():
         qa_result = posts.qa_check_proxy(md_raw)
         if qa_result["ok"]:
             print("✅ QA passed.")
+            # ✅ Автовставка брендовых картинок в середину текста (после 1-й и 3-й секции)
+            md_raw = inject_brand_images(md_raw)
             break
         print(f"⚠️ QA failed: {qa_result['errors']}")
     else:
@@ -239,6 +243,8 @@ def main():
     print("───────────────────────────────")
     # NOTE: rss_fetch now advances and saves keyword index.
     # (Manual bump removed to avoid double-advance and desync)
+
+
 # === 📝 Сохранение черновика при сбое ===
 def _save_draft(topic: str, cfg: dict):
     """Сохраняет черновик, если QA не прошёл или GPT не дал результата."""
