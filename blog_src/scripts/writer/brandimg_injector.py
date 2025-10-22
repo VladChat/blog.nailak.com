@@ -1,4 +1,13 @@
 # blog_src/scripts/writer/brandimg_injector.py
+# ==========================================================
+# 🖼  Brand Image Injector (Version 2 — guaranteed placement)
+# ----------------------------------------------------------
+# Всегда вставляет брендовые картинки в Markdown:
+#   • первую — после первого пустого ряда (после интро);
+#   • вторую — примерно в середину текста (если длинный).
+# ALT создаётся из заголовка (# ...) или дефолтного шаблона.
+# ==========================================================
+
 import re
 import json
 from pathlib import Path
@@ -64,7 +73,7 @@ def _get_next_image() -> str:
 
 
 def _derive_alt(markdown_text: str) -> str:
-    """Создаёт ALT из заголовка поста."""
+    """Создаёт ALT из заголовка поста или fallback."""
     m = re.search(r"^#\s+(.+)$", markdown_text, re.MULTILINE)
     if m:
         title = m.group(1).strip()
@@ -76,35 +85,32 @@ def _derive_alt(markdown_text: str) -> str:
 
 def inject_brand_images(markdown_text: str) -> str:
     """
-    Вставляет финальные <figure><img> блоки:
-      • в НАЧАЛО 1-й секции (сразу ПОСЛЕ первого H2),
-      • в НАЧАЛО 3-й секции (сразу ПОСЛЕ третьего H2).
-    Каждая вставка получает следующий файл из brand_images.json по циклу.
+    Вставляет <figure><img> блоки:
+      • первую — после первого пустого ряда (после интро);
+      • вторую — примерно в середину текста (если длинный).
     """
+
     if not markdown_text:
         return markdown_text
 
     alt_text = _derive_alt(markdown_text)
-    h2_iter = list(re.finditer(r"^##\s+.*$", markdown_text, re.MULTILINE))
-    insert_positions = []
+    text_len = len(markdown_text)
 
-    def after_line_end(idx: int) -> int:
-        """Возвращает позицию сразу после конца строки с индексом 'idx'."""
-        nl = markdown_text.find("\n", idx)
-        return len(markdown_text) if nl == -1 else nl + 1
+    # --- первая вставка: после первого пустого ряда ---
+    first_break = markdown_text.find("\n\n")
+    if first_break == -1:
+        first_break = 0
+    insert_positions = [first_break]
 
-    # --- Первая вставка: начало первой секции (после 1-го H2) ---
-    if len(h2_iter) >= 1:
-        insert_positions.append(after_line_end(h2_iter[0].end()))
-    else:
-        # Если H2 нет совсем — вставляем в начало документа
-        insert_positions.append(0)
+    # --- вторая вставка: если текст длинный ---
+    if text_len > 1500:
+        mid_pos = text_len // 2
+        # найти ближайший перевод строки к середине
+        newline_near_mid = markdown_text.find("\n", mid_pos)
+        if newline_near_mid != -1:
+            insert_positions.append(newline_near_mid)
 
-    # --- Вторая вставка: начало третьей секции (после 3-го H2) ---
-    if len(h2_iter) >= 3:
-        insert_positions.append(after_line_end(h2_iter[2].end()))
-
-    # --- Вставляем блоки (в обратном порядке, чтобы не сбить индексы) ---
+    # --- вставка блоков ---
     for pos in sorted(insert_positions, reverse=True):
         chosen_file = _get_next_image()
         snippet = (
@@ -114,7 +120,8 @@ def inject_brand_images(markdown_text: str) -> str:
             f'\n</figure>\n\n'
         )
 
-        window = markdown_text[max(0, pos - 64): min(len(markdown_text), pos + 64)]
+        # защита от дублирования (если рядом уже есть <figure>)
+        window = markdown_text[max(0, pos - 64): min(text_len, pos + 64)]
         if "<figure" in window:
             continue
 
