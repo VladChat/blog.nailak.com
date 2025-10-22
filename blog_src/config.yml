@@ -1,9 +1,7 @@
 baseURL: "https://blog.nailak.com/"
 title: "Nailak Blog"
-params:
-  tagline: "Beauty and Wellness Tips"
 
-description: "Beauty advice from the Nailak — learn how to create salon-quality results at home. Cuticle oil, strengthen nails, andcuticle oil"
+description: "Beauty advice from the Nailak — learn how to create salon-quality results at home. Cuticle oil, strengthen nails, and cuticle oil"
 theme: "PaperMod"
 publishDir: "../docs"
 
@@ -56,6 +54,7 @@ params:
   disableAnchoredHeadings: true
   env: production
   title: "Nailak Blog"
+  tagline: "Beauty and Wellness Tips"
   description: "Expert tips on nail and cuticle care, product insights, and self-care routines from Nailak — vegan, cruelty-free nail oil made in the USA."
   keywords: ["nail care", "cuticle oil", "nail oil", "vegan nail oil", "nail health", "Nailak", "hand care", "natural oils", "vitamin E", "squalane"]
   customFooterText: "© 2025 Nailak Blog. All rights reserved."
@@ -80,3 +79,9 @@ params:
     threshold: 0
     includeNewer: true
     sortByDate: false
+
+# Разрешаем вставку HTML в Markdown (нужно для <figure> и <img>)
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
