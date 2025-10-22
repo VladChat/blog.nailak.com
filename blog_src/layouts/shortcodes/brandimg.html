@@ -50,24 +50,26 @@
   {{ errorf "brandimg: no files matched filters. include=%q, match=%q" $inc $match }}
 {{ end }}
 
-{{/* Детерминированный выбор: для каждой страницы фиксируем индекс на основе длины заголовка и относительного URL */}}
+{{/* Детерминированный выбор (фиксированный для каждой страницы) */}}
 {{ $seed := add (len .Page.Title) (len .Page.RelPermalink) }}
 {{ $idx  := mod $seed (len $filtered) }}
 {{ $choice := index $filtered $idx }}
 
-{{/* ALT-приоритет: 
+{{/* === ALT-приоритет ===
    1) параметр alt из шорткода
-   2) keywords из front matter (строка или массив), затем добавка бренда
-   3) заголовок страницы + бренд
-   4) общий безопасный fallback
-   (имя файла НЕ используем) */}}
+   2) keywords из front matter
+   3) заголовок страницы
+   4) общий fallback
+   (без использования имени файла)
+*/}}
+
 {{ $alt := "" }}
 {{ $altParam := .Get "alt" }}
 {{ if $altParam }}
   {{ $alt = $altParam }}
 {{ else if .Page.Params.keywords }}
   {{ $kw := .Page.Params.keywords }}
-  {{ if (isArray $kw) }}
+  {{ if (reflect.IsSlice $kw) }}
     {{ $alt = printf "%s — Nailak Cuticle & Nail Oil" (delimit $kw ", ") }}
   {{ else }}
     {{ $alt = printf "%s — Nailak Cuticle & Nail Oil" $kw }}
