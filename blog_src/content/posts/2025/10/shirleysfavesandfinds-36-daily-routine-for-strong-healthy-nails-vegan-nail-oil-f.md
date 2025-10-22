@@ -1,5 +1,5 @@
 ---
-title: "#SHIRLEYSFAVESANDFINDS #36 — Daily routine for strong healthy nails"
+title: "SHIRLEYSFAVESANDFINDS #36 — Daily routine for strong healthy nails"
 date: 2025-10-22T04:06:27.756934+00:00
 draft: false
 categories: ['news']
