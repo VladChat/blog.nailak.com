@@ -1,6 +1,9 @@
 baseURL: "https://blog.nailak.com/"
-title: "Nailak Blog – Beauty and Wellness Tips"
-description: "Discover expert beauty advice from the Nailak team — learn how to use cuticle oil, strengthen nails, and create salon-quality results at home."
+title: "Nailak Blog"
+params:
+  tagline: "Beauty and Wellness Tips"
+
+description: "Beauty advice from the Nailak — learn how to create salon-quality results at home. Cuticle oil, strengthen nails, andcuticle oil"
 theme: "PaperMod"
 publishDir: "../docs"
 
@@ -34,6 +37,9 @@ frontmatter:
 
 permalinks:
   posts: "/posts/:year/:month/:day/:slug/"
+slugify:
+  mode: "ascii"
+  lowercase: true
 
 outputs:
   home:
@@ -57,8 +63,6 @@ params:
   ShowReadingTime: true
   ShowWordCount: true
   centerTheme: true
-
-  params:
   author: "Nailak Editorial"
 
   label:
@@ -76,52 +80,3 @@ params:
     threshold: 0
     includeNewer: true
     sortByDate: false
-
-privacy:
-  googleAnalytics:
-    anonymizeIP: true
-  youtube:
-    privacyEnhanced: true
-
-related:
-  threshold: 60
-  includeNewer: true
-  toLower: false
-  indices:
-    - name: tags
-      weight: 100
-    - name: categories
-      weight: 80
-
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
-  tableOfContents:
-    startLevel: 2
-    endLevel: 3
-
-menu:
-  main:
-    - identifier: home
-      name: Home
-      url: "/"
-      weight: 1
-    - identifier: shop
-      name: Shop
-      url: "https://nailak.com/"
-      weight: 2
-
-  footer:
-    - identifier: privacy
-      name: Privacy Policy
-      url: "/privacy-policy/"
-      weight: 1
-    - identifier: terms
-      name: Terms of Service
-      url: "/terms/"
-      weight: 2
-    - identifier: sitemap
-      name: Sitemap
-      url: "/sitemap.xml"
-      weight: 3
