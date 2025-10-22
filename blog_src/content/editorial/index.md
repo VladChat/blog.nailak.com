@@ -25,7 +25,7 @@ Our mission is simple: to make professional-level nail care easy, inspiring, and
 <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: flex-start; justify-content: center; margin-top: 1rem;">
 
   <div style="text-align: center; max-width: 260px;">
-    <img src="author1.jpg" alt="Nina Nailak — Nailak Editorial" style="width: 100%; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 0.8rem;">
+    <img src="author1.webp" alt="Nina Nailak — Nailak Editorial" style="width: 100%; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 0.8rem;">
     <h4 style="margin: 0.5rem 0; color: var(--primary);">Nina Nailak</h4>
     <p style="font-size: 0.95rem; color: var(--secondary-text); line-height: 1.5;">
       Founder & Chief Beauty Editor — passionate about natural nail care and self-care rituals. Nina brings a mindful approach to beauty, rooted in wellness and creativity.
