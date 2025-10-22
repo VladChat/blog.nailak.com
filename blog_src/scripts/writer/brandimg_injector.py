@@ -1,10 +1,10 @@
 # blog_src/scripts/writer/brandimg_injector.py
 # ==========================================================
-# 🖼  Brand Image Injector (Version 2 — guaranteed placement)
+# 🖼  Brand Image Injector (Version 3 — smart section placement)
 # ----------------------------------------------------------
 # Всегда вставляет брендовые картинки в Markdown:
-#   • первую — после первого пустого ряда (после интро);
-#   • вторую — примерно в середину текста (если длинный).
+#   • первую — в конце первой секции (перед Quick Summary / цитатой / первым H2);
+#   • вторую — в конце третьей секции (перед четвёртым H2 или концом файла);
 # ALT создаётся из заголовка (# ...) или дефолтного шаблона.
 # ==========================================================
 
@@ -86,8 +86,8 @@ def _derive_alt(markdown_text: str) -> str:
 def inject_brand_images(markdown_text: str) -> str:
     """
     Вставляет <figure><img> блоки:
-      • первую — после первого пустого ряда (после интро);
-      • вторую — примерно в середину текста (если длинный).
+      • первую — в конце первой секции (перед Quick Summary / blockquote / первым H2);
+      • вторую — в конце третьей секции (перед четвёртым H2 или концом текста).
     """
 
     if not markdown_text:
@@ -96,22 +96,54 @@ def inject_brand_images(markdown_text: str) -> str:
     alt_text = _derive_alt(markdown_text)
     text_len = len(markdown_text)
 
-    # --- первая вставка: после первого пустого ряда ---
-    first_break = markdown_text.find("\n\n")
-    if first_break == -1:
-        first_break = 0
-    insert_positions = [first_break]
+    # --- вычисляем позиции H2, чтобы понимать границы секций ---
+    h2_matches = list(re.finditer(r"(?m)^##\s", markdown_text))
+    insert_positions: list[int] = []
 
-    # --- вторая вставка: если текст длинный ---
-    if text_len > 1500:
+    # === 1️⃣ Первая вставка — конец первой секции ===
+    first_anchor = None
+
+    # ищем Quick Summary или blockquote (как основной ориентир)
+    qs_or_bq = re.search(
+        r"(?mi)"
+        r"^(?:>+\s*)?Quick\s+Summary\b.*$"
+        r"|<blockquote\b"
+        r"|^>\s",
+        markdown_text
+    )
+    if qs_or_bq:
+        first_anchor = qs_or_bq.start()
+    elif h2_matches:
+        # если нет цитат, но есть заголовки — ставим перед первым H2
+        first_anchor = h2_matches[0].start()
+    else:
+        # резерв — после первого пустого ряда
+        first_break = markdown_text.find("\n\n")
+        first_anchor = first_break if first_break != -1 else 0
+
+    insert_positions.append(first_anchor)
+
+    # === 2️⃣ Вторая вставка — конец третьей секции ===
+    second_anchor = None
+    if len(h2_matches) >= 3:
+        # если есть минимум три H2, вставляем перед четвёртым (началом 4-й секции)
+        next_index = 3 if len(h2_matches) > 3 else len(h2_matches) - 1
+        second_anchor = h2_matches[next_index].start()
+    elif len(h2_matches) > 0:
+        # fallback: если меньше трёх секций — ближе к концу
+        second_anchor = len(markdown_text)
+    elif text_len > 1500:
+        # совсем fallback: середина длинного текста
         mid_pos = text_len // 2
-        # найти ближайший перевод строки к середине
-        newline_near_mid = markdown_text.find("\n", mid_pos)
-        if newline_near_mid != -1:
-            insert_positions.append(newline_near_mid)
+        newline_mid = markdown_text.find("\n", mid_pos)
+        if newline_mid != -1:
+            second_anchor = newline_mid
 
-    # --- вставка блоков ---
-    for pos in sorted(insert_positions, reverse=True):
+    if second_anchor is not None:
+        insert_positions.append(second_anchor)
+
+    # --- вставка блоков (с защитой от дублей рядом) ---
+    for pos in sorted(set(insert_positions), reverse=True):
         chosen_file = _get_next_image()
         snippet = (
             f'\n\n<figure class="brand-image">'
@@ -120,8 +152,7 @@ def inject_brand_images(markdown_text: str) -> str:
             f'\n</figure>\n\n'
         )
 
-        # защита от дублирования (если рядом уже есть <figure>)
-        window = markdown_text[max(0, pos - 64): min(text_len, pos + 64)]
+        window = markdown_text[max(0, pos - 64): min(len(markdown_text), pos + 64)]
         if "<figure" in window:
             continue
 
