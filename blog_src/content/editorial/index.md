@@ -40,6 +40,22 @@ Our mission is simple: to make professional-level nail care easy, inspiring, and
     </p>
   </div>
 
+  <div style="text-align: center; max-width: 260px;">
+    <img src="author3.webp" alt="Jordan Reed — Nailak Editorial" style="width: 100%; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 0.8rem;">
+    <h4 style="margin: 0.5rem 0; color: var(--primary);">Jordan Reed</h4>
+    <p style="font-size: 0.95rem; color: var(--secondary-text); line-height: 1.5;">
+      Beauty & Culture Writer — explores how beauty connects to identity and self-expression. Jordan brings fresh perspective and authenticity to every story she tells.
+    </p>
+  </div>
+
+  <div style="text-align: center; max-width: 260px;">
+    <img src="author4.webp" alt="Elena Moretti — Nailak Editorial" style="width: 100%; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 0.8rem;">
+    <h4 style="margin: 0.5rem 0; color: var(--primary);">Elena Moretti</h4>
+    <p style="font-size: 0.95rem; color: var(--secondary-text); line-height: 1.5;">
+      Product Researcher & Nail Expert — passionate about ingredient safety and ethical beauty. Elena tests every formulation to ensure it meets Nailak’s high standards.
+    </p>
+  </div>
+
 </div>
 
 ---
