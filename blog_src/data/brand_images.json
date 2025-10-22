@@ -1,5 +1,5 @@
 {
-  "path": "static/images/brand/",
+  "path": "/images/brand/",
   "files": [
     "1200x270-2.webp",
     "1200x270.webp",
@@ -26,3 +26,4 @@
     "productbox.webp"
   ]
 }
+
