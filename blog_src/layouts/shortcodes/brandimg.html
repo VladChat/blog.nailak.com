@@ -1,0 +1,55 @@
+{{/* 
+  Shortcode: brandimg
+  Источник: data/brand_images.json  { "path": "/images/brand/", "files": [...] }
+  Параметры (необязательные):
+    - include: "webp,svg,jpg"  (что разрешать; по умолчанию: webp)
+    - match: "cover-16x9"      (подстрока для фильтрации имён файлов)
+    - alt: "Custom ALT text"   (ALT, по умолчанию — безопасный общий)
+    - class: "extra-classes"   (доп.классы для figure)
+*/}}
+
+{{ $data := site.Data.brand_images }}
+{{ if not $data }}
+  {{ errorf "brandimg: data/brand_images.json not found" }}
+{{ end }}
+
+{{ $path := cond (hasPrefix $data.path "/") $data.path (printf "/%s" $data.path) }}
+{{ $files := $data.files }}
+
+{{/* Разрешенные форматы */}}
+{{ $inc := .Get "include" | default "webp" }}
+{{ $allow := (split (lower $inc) ",") }}
+
+{{/* Фильтрация файлов по разрешениям */}}
+{{ $filtered := slice }}
+{{ range $files }}
+  {{ $name := . | lower }}
+  {{ $ext := (replaceRE ".*\\.(\\w+)$" "$1" $name) }}
+  {{ if in $allow $ext }}
+    {{ $filtered = $filtered | append . }}
+  {{ end }}
+{{ end }}
+
+{{/* Доп.фильтр по подстроке match (например, cover-16x9) */}}
+{{ $match := .Get "match" }}
+{{ if $match }}
+  {{ $m := lower $match }}
+  {{ $filtered = where $filtered "lower" "in" $m }}
+{{ end }}
+
+{{ if not (len $filtered) }}
+  {{ errorf "brandimg: no files matched filters. include=%q, match=%q" $inc $match }}
+{{ end }}
+
+{{ $choice := index (shuffle $filtered) 0 }}
+
+{{ $alt := .Get "alt" | default "Nailak Cuticle & Nail Oil — natural care and hydration" }}
+{{ $classes := printf "brand-image %s" (.Get "class") }}
+
+<figure class="{{ $classes | safeHTMLAttr }}">
+  <img 
+    src="{{ (printf "%s%s" $path $choice) | absURL }}"
+    alt="{{ $alt }}"
+    loading="lazy"
+    decoding="async">
+</figure>
