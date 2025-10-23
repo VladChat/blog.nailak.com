@@ -62,6 +62,8 @@ Our mission is simple: to make professional-level nail care easy, inspiring, and
 
 ### 🌿 Connect With Us
 Follow our work and daily beauty inspiration:  
+- 🌐 [Website](https://nailak.com)  
 - 📸 [Instagram](https://www.instagram.com/nailak_care/)  
-- 🌐 [Official Website](https://nailak.com)  
-- 💌 Contact: [admin@nailak.com](mailto:admin@nailak.com)
+- 💚 [Facebook](https://www.facebook.com/CompleteCuticleCare/)
+- 💌 [admin@nailak.com](mailto:admin@nailak.com)
+- 
