@@ -93,7 +93,7 @@ menu:
       url: /
       weight: 1
 
-    - identifier: shop
-      name: Shop
+    - identifier: shop 
+      name: Nails Oil
       url: /cuticle-oil/
       weight: 2
