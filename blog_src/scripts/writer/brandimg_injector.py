@@ -2,9 +2,9 @@
 # ==========================================================
 # 🖼  Brand Image Injector (Version 3 — smart section placement)
 # ----------------------------------------------------------
-# Всегда вставляет брендовые картинки в Markdown:
-#   • первую — в конце первой секции (перед Quick Summary / цитатой / первым H2);
-#   • вторую — в конце третьей секции (перед четвёртым H2 или концом файла);
+# Теперь вставляет брендовые картинки в начале секций:
+#   • первую — в начале первой секции;
+#   • вторую — в начале третьей секции;
 # ALT создаётся из заголовка (# ...) или дефолтного шаблона.
 # ==========================================================
 
@@ -86,64 +86,42 @@ def _derive_alt(markdown_text: str) -> str:
 def inject_brand_images(markdown_text: str) -> str:
     """
     Вставляет <figure><img> блоки:
-      • первую — в конце первой секции (перед Quick Summary / blockquote / первым H2);
-      • вторую — в конце третьей секции (перед четвёртым H2 или концом текста).
+      • первую — в начале первой секции;
+      • вторую — в начале третьей секции.
     """
 
     if not markdown_text:
         return markdown_text
 
     alt_text = _derive_alt(markdown_text)
-    text_len = len(markdown_text)
 
     # --- вычисляем позиции H2, чтобы понимать границы секций ---
     h2_matches = list(re.finditer(r"(?m)^##\s", markdown_text))
     insert_positions: list[int] = []
 
-    # === 1️⃣ Первая вставка — конец первой секции ===
-    first_anchor = None
-
-    # ищем Quick Summary или blockquote (как основной ориентир)
-    qs_or_bq = re.search(
-        r"(?mi)"
-        r"^(?:>+\s*)?Quick\s+Summary\b.*$"
-        r"|<blockquote\b"
-        r"|^>\s",
-        markdown_text
-    )
-    if qs_or_bq:
-        first_anchor = qs_or_bq.start()
-    elif h2_matches:
-        # если нет цитат, но есть заголовки — ставим перед первым H2
-        first_anchor = h2_matches[0].start()
-    else:
-        # резерв — после первого пустого ряда
-        first_break = markdown_text.find("\n\n")
-        first_anchor = first_break if first_break != -1 else 0
-
+    # === 1️⃣ Первая вставка — начало первой секции ===
+    first_anchor = 0
     insert_positions.append(first_anchor)
 
-    # === 2️⃣ Вторая вставка — конец третьей секции ===
+    # === 2️⃣ Вторая вставка — начало третьей секции ===
     second_anchor = None
     if len(h2_matches) >= 3:
-        # если есть минимум три H2, вставляем перед четвёртым (началом 4-й секции)
-        next_index = 3 if len(h2_matches) > 3 else len(h2_matches) - 1
-        second_anchor = h2_matches[next_index].start()
+        # вставляем прямо в начало третьей секции (перед заголовком)
+        second_anchor = h2_matches[2].start()
     elif len(h2_matches) > 0:
-        # fallback: если меньше трёх секций — ближе к концу
-        second_anchor = len(markdown_text)
-    elif text_len > 1500:
-        # совсем fallback: середина длинного текста
+        # если меньше трёх секций — вставляем в начало последней
+        second_anchor = h2_matches[-1].start()
+    else:
+        # fallback — ближе к середине длинного текста
+        text_len = len(markdown_text)
         mid_pos = text_len // 2
         newline_mid = markdown_text.find("\n", mid_pos)
-        if newline_mid != -1:
-            second_anchor = newline_mid
+        second_anchor = newline_mid if newline_mid != -1 else mid_pos
 
-    if second_anchor is not None:
-        insert_positions.append(second_anchor)
+    insert_positions.append(second_anchor)
 
     # --- вставка блоков (с защитой от дублей рядом) ---
-    for pos in sorted(set(insert_positions), reverse=True):
+    for pos in sorted(set(filter(lambda x: x is not None, insert_positions)), reverse=True):
         chosen_file = _get_next_image()
         snippet = (
             f'\n\n<figure class="brand-image">'
