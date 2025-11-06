@@ -1,5 +1,5 @@
 {
-  "keyword_index": 49,
+  "keyword_index": 0,
   "seen": [
     "https://beautyblogwales.com/2025/07/15/perricone-md-triple-retinol-renewal-review/",
     "https://www.gemmaetc.com/2025/06/low-maintenance-medium-length-haicuts.html",
@@ -28,14 +28,13 @@
     "https://www.theannaedit.com/the-sezane-spring-edit/",
     "https://dlshealthandbeauty.com/bugs-you-take-home-with-you-that-carry-on-the-wind/?utm_source=rss&utm_medium=rss&utm_campaign=bugs-you-take-home-with-you-that-carry-on-the-wind",
     "https://charmadvisor.com/does-laser-hair-removal-affect-male-fertility/",
-    "https://homeremediesforbeauty.com/turmeric-for-hair-growth/"
+    "https://homeremediesforbeauty.com/turmeric-for-hair-growth/",
+    "https://fashioninout.com/how-to-protect-your-hair-loss-at-night/"
   ],
-  "last_rss": 59,
-  "last_keyword": 49,
-  "brandimg_index": 21,
+  "last_rss": 60,
+  "last_keyword": 0,
+  "brandimg_index": 0,
   "brandimg_used": [
-    "1200x270.webp",
-    "1900-500.webp",
     "2048x1152.webp",
     "2048x512.webp",
     "2208x368.webp",
@@ -53,6 +52,8 @@
     "nailak-circle.svg",
     "nailak-cover-16x9.webp",
     "nailak-cover-1x1.webp",
-    "nailak-cover-4x3.webp"
+    "nailak-cover-4x3.webp",
+    "nailak_bottle_spin.webp",
+    "productbox.webp"
   ]
 }
