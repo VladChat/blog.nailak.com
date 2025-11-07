@@ -46,7 +46,9 @@
 {{- else if .IsPage -}}
   {{- /* Посты/страницы: только заголовок без бренда */ -}}
   {{- $seoTitle = (cond (gt (len $titleCore) 0) $titleCore .Title) -}}
-  {{- $seoDesc  = cond .Description (.Description | plainify) "" -}}
+  {{- if .Description -}}
+    {{- $seoDesc  = (.Description | plainify) -}}
+  {{- end -}}
 {{- else if .IsSection -}}
   {{- $seoTitle = printf "%s — Nailak Blog" .Title -}}
   {{- $seoDesc  = printf "Explore %s articles from Nailak Blog — your trusted source for vegan, cruelty-free nail and cuticle care insights." .Title -}}
@@ -78,37 +80,6 @@
 
 <title>{{ $seoTitle }}</title>
 <meta name="description" content="{{ $seoDesc }}">
-
-{{- /* ================== KEYWORDS (типобезопасно: поддержка строки и слайса) ================== */ -}}
-{{- $kws := slice -}}
-{{- $kwAny := nil -}}
-{{- if .IsHome -}}
-  {{- $kwAny = site.Params.keywords -}}
-{{- else -}}
-  {{- if .Params.keywords -}}
-    {{- $kwAny = .Params.keywords -}}
-  {{- else if .Params.tags -}}
-    {{- $kwAny = .Params.tags -}}
-  {{- end -}}
-{{- end -}}
-{{- if $kwAny -}}
-  {{- $ktype := printf "%T" $kwAny -}}
-  {{- if in $ktype "[]" -}}
-    {{- range $kwAny -}}
-      {{- $v := trim (print .) " \t\r\n" -}}
-      {{- if $v -}}{{- $kws = $kws | append $v -}}{{- end -}}
-    {{- end -}}
-  {{- else -}}
-    {{- range (split (print $kwAny) ",") -}}
-      {{- $v := trim . " \t\r\n" -}}
-      {{- if $v -}}{{- $kws = $kws | append $v -}}{{- end -}}
-    {{- end -}}
-  {{- end -}}
-{{- end -}}
-{{- $kws = uniq $kws -}}
-{{- if gt (len $kws) 0 -}}
-  <meta name="keywords" content="{{ delimit $kws ", " | safeHTML }}">
-{{- end -}}
 
 <meta name="author" content="{{ (partial "author.html" . ) }}">
 <link rel="canonical" href="{{ if .Params.canonicalURL }}{{ trim .Params.canonicalURL " " }}{{ else }}{{ .Permalink }}{{ end }}">
@@ -145,7 +116,7 @@
   <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
 {{- end -}}
 
-{{- /* ================== SEARCH (как было, компактнее) ================== */ -}}
+{{- /* ================== SEARCH ================== */ -}}
 {{- if eq .Layout "search" -}}
   <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
   {{- $fast := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify -}}
