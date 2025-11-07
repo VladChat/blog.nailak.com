@@ -18,7 +18,6 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 
 {{/* =========================
      SEO: Title & Description
-     (унифицированная логика)
 ========================= */}}
 {{- $seoTitle := "" -}}
 {{- $seoDesc  := "" -}}
@@ -26,17 +25,21 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 {{- if .IsHome -}}
   {{- $seoTitle = "Nailak Blog — Nail & Cuticle Care Tips for Healthy, Natural Nails" -}}
   {{- $seoDesc  = "Discover expert tips on nail and cuticle care, natural oil routines, and daily wellness inspiration from Nailak — vegan, cruelty-free nail oil made in the USA." -}}
+
 {{- else if in .Permalink "cuticle-oil" -}}
   {{- $seoTitle = "Nailak Cuticle & Nail Oil — Natural Hydration for Strong, Healthy Nails" -}}
   {{- $seoDesc  = "Learn how Nailak Cuticle & Nail Oil restores strength and shine with natural vegan oils and vitamins for everyday nail care." -}}
+
 {{- else if in .Permalink "editorial" -}}
   {{- $seoTitle = "Nailak Editorial — Stories, Routines & Modern Self-Care Inspiration" -}}
   {{- $seoDesc  = "Explore beauty editorials, nail care rituals, and modern self-care inspiration from the Nailak editorial team." -}}
+
 {{- else if .IsSection -}}
   {{- $seoTitle = printf "%s — Nailak Blog" .Title -}}
   {{- $seoDesc  = printf "Explore %s articles from Nailak Blog — your trusted source for vegan, cruelty-free nail and cuticle care insights." .Title -}}
+
 {{- else if .IsPage -}}
-  {{- $seoTitle = .Title -}}           {{/* Без суффикса “— Nailak Blog” в постах/страницах */}}
+  {{- $seoTitle = .Title -}}  {{/* в постах убираем «— Nailak Blog» */}}
   {{- if .Description -}}
     {{- $seoDesc = .Description | plainify -}}
   {{- else -}}
@@ -44,9 +47,8 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
   {{- end -}}
 {{- end -}}
 
-{{- /* Fallback на случай отсутствия вычисленного тайтла/дескрипшна */ -}}
 {{- if not $seoTitle -}}
-  {{- $seoTitle = cond .IsHome (site.Title) (printf "%s — %s" (.Title | default site.Title) (site.Params.title | default site.Title)) -}}
+  {{- $seoTitle = cond .IsHome site.Title (printf "%s — %s" (.Title | default site.Title) (site.Params.title | default site.Title)) -}}
 {{- end -}}
 {{- if not $seoDesc -}}
   {{- $seoDesc = (printf "%s — %s" ($seoTitle | plainify) (site.Params.title | default site.Title)) | truncate 160 -}}
@@ -55,7 +57,7 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 <title>{{ $seoTitle }}</title>
 <meta name="description" content="{{ $seoDesc }}">
 
-{{/* OG/Twitter — без дублей, строим здесь из $seoTitle/$seoDesc */}}
+<!-- Open Graph / Twitter (без дублей) -->
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:site_name" content="{{ site.Params.title | default site.Title }}">
 <meta property="og:title" content="{{ $seoTitle }}">
@@ -64,13 +66,12 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 <meta property="og:image" content="{{ .Site.BaseURL }}images/og/default.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{{ $seoTitle }}">
 <meta name="twitter:description" content="{{ $seoDesc }}">
 <meta name="twitter:image" content="{{ .Site.BaseURL }}images/og/default.webp">
 
-{{/* Keywords: home → site.Params.keywords; пост/страница → .Params.keywords|tags */}}
+{{/* Keywords */}}
 {{- $kws := slice -}}
 {{- if .IsHome -}}
   {{- with site.Params.keywords -}}
@@ -101,9 +102,7 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 {{ with site.Params.analytics.bing.SiteVerificationTag }}<meta name="msvalidate.01" content="{{ . }}">{{ end }}
 {{ with site.Params.analytics.naver.SiteVerificationTag }}<meta name="naver-site-verification" content="{{ . }}">{{ end }}
 
-{{/* =========================================
-     CSS bundle — 1 Concat, 1 Minify, (опц.) Fingerprint
-========================================= */}}
+{{/* ========== CSS bundle: 1 Concat + Minify (+ optional Fingerprint) ========== */}}
 {{- $cssParts := slice
     (resources.Get "css/core/theme-vars.css")
     (resources.Get "css/core/reset.css")
@@ -124,7 +123,7 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 {{- end -}}
 <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" {{ if not site.Params.assets.disableFingerprinting }}integrity="{{ $stylesheet.Data.Integrity }}"{{ end }} rel="preload stylesheet" as="style">
 
-{{/* ===== Favicons ===== */}}
+<!-- Favicons -->
 <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
@@ -133,11 +132,12 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
 <meta name="theme-color" content="{{ site.Params.assets.theme_color | default "#2e2e33" }}">
 <meta name="msapplication-TileColor" content="{{ site.Params.assets.msapplication_TileColor | default "#2e2e33" }}">
 
-{{/* ===== RSS / JSON / sitemap formats ===== */}}
+<!-- RSS / JSON / sitemap -->
 {{- range .AlternativeOutputFormats -}}
 <link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
 {{- end -}}
 
+<!-- i18n -->
 {{- range .AllTranslations -}}
 <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
 {{- end -}}
@@ -155,12 +155,8 @@ Optimized edition: compact, no OG/Twitter duplicates, minimal Pipes
   {{- end }}
 </noscript>
 
-{{/* Доп. расширения из extend_head (твои локальные стили/скрипты и пр.) */}}
 {{- partial "extend_head.html" . -}}
 
-{{/* Прод-раздел: Analytics и Schema.org
-     ВНИМАНИЕ: убрали templates/opengraph.html и templates/twitter_cards.html, чтобы не было дублей.
-     JSON-LD (FAQ/BlogPosting/Breadcrumbs) оставляем как у тебя в templates/schema_json.html. */}}
 {{- if $isProd -}}
   {{- partial "google_analytics.html" . }}
   {{- if (and (not .Params.blogPosting) (not .Params.faq)) -}}
