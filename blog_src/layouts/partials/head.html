@@ -8,7 +8,9 @@
 {{ partial "gtm-head.html" . }}
 <!-- End Google Tag Manager -->
 
-{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) -}}
+{{- /* ================== ENV / ROBOTS ================== */ -}}
+{{- $isProd := or hugo.IsProduction (eq site.Params.env "production") -}}
+{{- if and $isProd (ne .Params.robotsNoIndex true) -}}
 <meta name="robots" content="index, follow">
 {{- else -}}
 <meta name="robots" content="noindex, nofollow">
@@ -17,20 +19,16 @@
 {{- /* ================== BRAND & BASE ================== */ -}}
 {{- $brandFull := site.Title -}}
 {{- $brand := site.Params.title | default site.Title -}}
-{{- $sep := " — " -}}
 
-{{- /* === Safe word-trim for core title part (без резки бренда) === */ -}}
+{{- /* === Safe word-trim for title core (не режем бренд) === */ -}}
 {{- $maxTotal := 58 -}}
-{{- $suffix := "" -}}
-{{- $maxCore := $maxTotal -}}
 {{- $tRaw := .Title | plainify -}}
-{{- $ts := newScratch -}}
-{{- $ts.Set "acc" "" -}}
+{{- $acc := "" -}}
 {{- range (split $tRaw " ") -}}
-  {{- $cand := cond (eq ($ts.Get "acc") "") . (printf "%s %s" ($ts.Get "acc") .) -}}
-  {{- if le (len $cand) $maxCore -}} {{- $ts.Set "acc" $cand -}} {{- end -}}
+  {{- $cand := cond (eq $acc "") . (printf "%s %s" $acc .) -}}
+  {{- if le (len $cand) $maxTotal -}}{{- $acc = $cand -}}{{- end -}}
 {{- end -}}
-{{- $titleCore := cond (gt (len $tRaw) 0) (($ts.Get "acc") | default $tRaw) "" -}}
+{{- $titleCore := cond (gt (len $tRaw) 0) (or $acc $tRaw) "" -}}
 
 {{- /* ================== SEO TITLE & DESCRIPTION ================== */ -}}
 {{- $seoTitle := "" -}}
@@ -39,161 +37,120 @@
 {{- if .IsHome -}}
   {{- $seoTitle = "Nailak Blog — Nail & Cuticle Care Tips for Healthy, Natural Nails" -}}
   {{- $seoDesc  = "Discover expert tips on nail and cuticle care, natural oil routines, and daily wellness inspiration from Nailak — vegan, cruelty-free nail oil made in the USA." -}}
-
 {{- else if (in .Permalink "cuticle-oil") -}}
   {{- $seoTitle = "Nailak Cuticle & Nail Oil — Natural Hydration for Strong, Healthy Nails" -}}
   {{- $seoDesc  = "Learn how Nailak Cuticle & Nail Oil restores strength and shine with natural vegan oils and vitamins for everyday nail care." -}}
-
 {{- else if (in .Permalink "editorial") -}}
   {{- $seoTitle = "Nailak Editorial — Stories, Routines & Modern Self-Care Inspiration" -}}
   {{- $seoDesc  = "Explore beauty editorials, nail care rituals, and modern self-care inspiration from the Nailak editorial team." -}}
-
 {{- else if .IsPage -}}
-  {{- /* Посты/страницы: только заголовок без бренда */ -}}
   {{- $seoTitle = (cond (gt (len $titleCore) 0) $titleCore .Title) -}}
-  {{- if .Description -}}
-    {{- $seoDesc = (.Description | plainify) -}}
-  {{- else -}}
-    {{- /* Ниже — безопасный word-trim без троеточий (≈125 символов) */ -}}
-    {{- $ds := newScratch -}}
-    {{- $ds.Set "base" (.Summary | plainify) -}}
-    {{- $ds.Set "acc" "" -}}
-    {{- $maxDesc := 125 -}}
-    {{- range (split ($ds.Get "base") " ") -}}
-      {{- $cand := cond (eq ($ds.Get "acc") "") . (printf "%s %s" ($ds.Get "acc") .) -}}
-      {{- if le (len $cand) $maxDesc -}} {{- $ds.Set "acc" $cand -}} {{- end -}}
-    {{- end -}}
-    {{- $seoDesc = ($ds.Get "acc") -}}
-  {{- end -}}
-
+  {{- $seoDesc  = cond .Description (.Description | plainify) "" -}}
 {{- else if .IsSection -}}
   {{- $seoTitle = printf "%s — Nailak Blog" .Title -}}
   {{- $seoDesc  = printf "Explore %s articles from Nailak Blog — your trusted source for vegan, cruelty-free nail and cuticle care insights." .Title -}}
-
 {{- else -}}
-  {{- /* Фолбэк на параметры сайта */ -}}
   {{- $seoTitle = $brandFull -}}
   {{- $seoDesc  = (site.Params.description | default "") -}}
 {{- end -}}
 
-<title>{{ $seoTitle }}</title>
+{{- /* Fallback description: безопасный word-trim ≈125, без троеточий */ -}}
+{{- if not $seoDesc -}}
+  {{- $base := "" -}}
+  {{- if .Description -}}
+    {{- $base = (.Description | plainify) -}}
+  {{- else if or .IsPage .IsSection -}}
+    {{- $base = (.Summary | plainify) -}}
+  {{- else if site.Params.description -}}
+    {{- $base = (site.Params.description | plainify) -}}
+  {{- else -}}
+    {{- $base = printf "%s - %s" $titleCore $brand -}}
+  {{- end -}}
+  {{- $maxDesc := 125 -}}
+  {{- $accD := "" -}}
+  {{- range (split $base " ") -}}
+    {{- $cand := cond (eq $accD "") . (printf "%s %s" $accD .) -}}
+    {{- if le (len $cand) $maxDesc -}}{{- $accD = $cand -}}{{- end -}}
+  {{- end -}}
+  {{- $seoDesc = $accD -}}
+{{- end -}}
 
-{{- /* ===== Meta: keywords (как в рабочем файле) ===== */ -}}
+<title>{{ $seoTitle }}</title>
+<meta name="description" content="{{ $seoDesc }}">
+
+{{- /* ================== KEYWORDS (унифицировано) ================== */ -}}
 {{- $kws := slice -}}
 {{- if .IsHome -}}
-  {{- if site.Params.keywords -}}
-    {{- if (reflect.IsSlice site.Params.keywords) -}}
-      {{- $kws = site.Params.keywords -}}
-    {{- else -}}
-      {{- $kws = (split site.Params.keywords ",") -}}
-    {{- end -}}
+  {{- with site.Params.keywords -}}
+    {{- $kws = cond (reflect.IsSlice .) . (split . ",") -}}
   {{- end -}}
 {{- else -}}
   {{- if .Params.keywords -}}
-    {{- if (reflect.IsSlice .Params.keywords) -}}
-      {{- $kws = .Params.keywords -}}
-    {{- else -}}
-      {{- $kws = (split .Params.keywords ",") -}}
-    {{- end -}}
+    {{- $kws = cond (reflect.IsSlice .Params.keywords) .Params.keywords (split .Params.keywords ",") -}}
   {{- else if .Params.tags -}}
     {{- $kws = .Params.tags -}}
   {{- end -}}
 {{- end -}}
-{{- $clean := slice -}}
-{{- range $kws -}}
-  {{- $v := trim . " \t\r\n" -}}
-  {{- if $v -}}{{- $clean = $clean | append $v -}}{{- end -}}
-{{- end -}}
-{{- $clean = uniq $clean -}}
-{{- if gt (len $clean) 0 -}}
-  <meta name="keywords" content="{{ delimit $clean ", " | safeHTML }}">
-{{- end -}}
-
-{{- /* ===== Meta: description (если пусто — подстраховка рабочей логикой) ===== */ -}}
-{{- if not $seoDesc -}}
-  {{- $ds2 := newScratch -}}
-  {{- if .Description -}}
-    {{- $ds2.Set "base" (.Description | plainify) -}}
-  {{- else if or .IsPage .IsSection -}}
-    {{- $ds2.Set "base" (.Summary | plainify) -}}
-  {{- else -}}
-    {{- with site.Params.description }}{{ $ds2.Set "base" (. | plainify) }}{{ end -}}
+{{- if gt (len $kws) 0 -}}
+  {{- $kwClean := slice -}}
+  {{- range $kws -}}
+    {{- $v := trim . " \t\r\n" -}}
+    {{- if $v -}}{{- $kwClean = $kwClean | append $v -}}{{- end -}}
   {{- end -}}
-  {{- if not ($ds2.Get "base") -}}
-    {{- $ds2.Set "base" (printf "%s - %s" $titleCore $brand) -}}
-  {{- end -}}
-  {{- $ds2.Set "acc" "" -}}
-  {{- $maxD := 125 -}}
-  {{- range (split ($ds2.Get "base") " ") -}}
-    {{- $cand := cond (eq ($ds2.Get "acc") "") . (printf "%s %s" ($ds2.Get "acc") .) -}}
-    {{- if le (len $cand) $maxD -}} {{- $ds2.Set "acc" $cand -}} {{- end -}}
-  {{- end -}}
-  <meta name="description" content="{{- $ds2.Get "acc" -}}">
-{{- else -}}
-  <meta name="description" content="{{ $seoDesc }}">
+  {{- $kwClean = uniq $kwClean -}}
+  {{- if gt (len $kwClean) 0 -}}<meta name="keywords" content="{{ delimit $kwClean ", " | safeHTML }}">{{- end -}}
 {{- end -}}
 
 <meta name="author" content="{{ (partial "author.html" . ) }}">
 <link rel="canonical" href="{{ if .Params.canonicalURL }}{{ trim .Params.canonicalURL " " }}{{ else }}{{ .Permalink }}{{ end }}">
 
-{{- if site.Params.analytics.google.SiteVerificationTag -}}
-<meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
-{{- end -}}
-{{- if site.Params.analytics.yandex.SiteVerificationTag -}}
-<meta name="yandex-verification" content="{{ site.Params.analytics.yandex.SiteVerificationTag }}">
-{{- end -}}
-{{- if site.Params.analytics.bing.SiteVerificationTag -}}
-<meta name="msvalidate.01" content="{{ site.Params.analytics.bing.SiteVerificationTag }}">
-{{- end -}}
-{{- if site.Params.analytics.naver.SiteVerificationTag -}}
-<meta name="naver-site-verification" content="{{ site.Params.analytics.naver.SiteVerificationTag }}">
-{{- end -}}
+{{ with site.Params.analytics.google.SiteVerificationTag }}<meta name="google-site-verification" content="{{ . }}">{{ end }}
+{{ with site.Params.analytics.yandex.SiteVerificationTag }}<meta name="yandex-verification" content="{{ . }}">{{ end }}
+{{ with site.Params.analytics.bing.SiteVerificationTag }}<meta name="msvalidate.01" content="{{ . }}">{{ end }}
+{{ with site.Params.analytics.naver.SiteVerificationTag }}<meta name="naver-site-verification" content="{{ . }}">{{ end }}
 
-{{- /* ================== Styles bundle (как в рабочем файле) ================== */ -}}
-{{- $includes := slice -}}
-{{- $includes = $includes | append (" " | resources.FromString "assets/css/includes-blank.css") -}}
+{{- /* ================== STYLES (сокращённые пайплайны, тот же порядок) ================== */ -}}
+{{- $includes := slice | append (" " | resources.FromString "assets/css/includes-blank.css") -}}
 {{- if not (eq site.Params.assets.disableScrollBarStyle true) -}}
-  {{- $ScrollStyle := (resources.Get "css/includes/scroll-bar.css") -}}
-  {{- $includes = (append $ScrollStyle $includes) -}}
+  {{- $includes = $includes | append (resources.Get "css/includes/scroll-bar.css") -}}
 {{- end -}}
-{{- $includes_all := $includes | resources.Concat "assets/css/includes.css" -}}
+{{- $includesAll := $includes | resources.Concat "assets/css/includes.css" -}}
 
-{{- $theme_vars := (resources.Get "css/core/theme-vars.css") -}}
-{{- $reset := (resources.Get "css/core/reset.css") -}}
-{{- $media := (resources.Get "css/core/zmedia.css") -}}
-{{- $license_css := (resources.Get "css/core/license.css") -}}
-{{- $common := (resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css" -}}
+{{- $core := (slice
+    (resources.Get "css/core/theme-vars.css")
+    (resources.Get "css/core/reset.css")
+    ((resources.Match "css/common/*.css") | resources.Concat "assets/css/common.css")
+    (resources.Get "css/includes/chroma-styles.css")
+    (resources.Get "css/includes/chroma-mod.css")
+    $includesAll
+    (resources.Get "css/core/zmedia.css")
+  ) | resources.Concat "assets/css/core.css" | resources.Minify -}}
 
-{{- $chroma_styles := (resources.Get "css/includes/chroma-styles.css") -}}
-{{- $chroma_mod := (resources.Get "css/includes/chroma-mod.css") -}}
-
-{{- $core := (slice $theme_vars $reset $common $chroma_styles $chroma_mod $includes_all $media) | resources.Concat "assets/css/core.css" | resources.Minify -}}
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify -}}
-{{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css" -}}
 
+{{- $stylesheet := (slice (resources.Get "css/core/license.css") $core $extended) | resources.Concat "assets/css/stylesheet.css" -}}
 {{- if not site.Params.assets.disableFingerprinting -}}
-  {{- $stylesheet := $stylesheet | resources.Fingerprint -}}
+  {{- $stylesheet = $stylesheet | resources.Fingerprint -}}
   <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
 {{- else -}}
   <link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
 {{- end -}}
 
-{{- /* ================== Search assets ================== */ -}}
-{{- if (eq .Layout `search`) -}}
+{{- /* ================== SEARCH (как было, компактнее) ================== */ -}}
+{{- if eq .Layout "search" -}}
   <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
-  {{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify -}}
-  {{- $fusejs := resources.Get "js/fuse.basic.min.js" -}}
-  {{- $license_js := resources.Get "js/license.js" -}}
-  {{- if not site.Params.assets.disableFingerprinting -}}
-    {{- $search := (slice $fusejs $license_js $fastsearch ) | resources.Concat "assets/js/search.js" | resources.Fingerprint -}}
-    <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
-  {{- else -}}
-    {{- $search := (slice $fusejs $fastsearch ) | resources.Concat "assets/js/search.js" -}}
+  {{- $fast := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify -}}
+  {{- $searchParts := slice (resources.Get "js/fuse.basic.min.js") (resources.Get "js/license.js") $fast -}}
+  {{- if site.Params.assets.disableFingerprinting -}}
+    {{- $search := $searchParts | resources.Concat "assets/js/search.js" -}}
     <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
+  {{- else -}}
+    {{- $search := ($searchParts | resources.Concat "assets/js/search.js" | resources.Fingerprint) -}}
+    <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
   {{- end -}}
 {{- end -}}
 
-{{- /* ================== Favicons ================== */ -}}
+{{- /* ================== Favicons & theme colors ================== */ -}}
 <link rel="icon" href="{{ site.Params.assets.favicon | default "favicon.ico" | absURL }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ site.Params.assets.favicon16x16 | default "favicon-16x16.png" | absURL }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ site.Params.assets.favicon32x32 | default "favicon-32x32.png" | absURL }}">
@@ -212,26 +169,18 @@
 <link rel="alternate" href="{{ .Permalink }}" hreflang="x-default">
 
 <noscript>
-  <style>
-    #theme-toggle, .top-link { display: none; }
-  </style>
-  {{- if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark")) }}
+  <style>#theme-toggle,.top-link{display:none}</style>
+  {{- if and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark") }}
   <style>
     @media (prefers-color-scheme: dark) {
-      :root {
-        --theme: rgb(29, 30, 32);
-        --entry: rgb(46, 46, 51);
-        --primary: rgb(218, 218, 219);
-        --secondary: rgb(155, 156, 157);
-        --tertiary: rgb(65, 66, 68);
-        --content: rgb(196, 196, 197);
-        --code-block-bg: rgb(46, 46, 51);
-        --code-bg: rgb(55, 56, 62);
-        --border: rgb(51, 51, 51);
+      :root{
+        --theme:rgb(29,30,32);--entry:rgb(46,46,51);--primary:rgb(218,218,219);
+        --secondary:rgb(155,156,157);--tertiary:rgb(65,66,68);--content:rgb(196,196,197);
+        --code-block-bg:rgb(46,46,51);--code-bg:rgb(55,56,62);--border:rgb(51,51,51)
       }
-      .list { background: var(--theme); }
-      .list:not(.dark)::-webkit-scrollbar-track { background: 0 0; }
-      .list:not(.dark)::-webkit-scrollbar-thumb { border-color: var(--theme); }
+      .list{background:var(--theme)}
+      .list:not(.dark)::-webkit-scrollbar-track{background:0 0}
+      .list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}
     }
   </style>
   {{- end }}
@@ -239,12 +188,12 @@
 
 {{- partial "extend_head.html" . -}}
 
-{{- /* ================== Misc (как в рабочем файле) ================== */ -}}
-{{- if hugo.IsProduction | or (eq site.Params.env "production") -}}
+{{- /* ================== Misc (production-only partials) ================== */ -}}
+{{- if $isProd -}}
   {{- partial "google_analytics.html" . -}}
   {{- partial "templates/opengraph.html" . -}}
   {{- partial "templates/twitter_cards.html" . -}}
-  {{- if (and (not .Params.blogPosting) (not .Params.faq)) -}}
+  {{- if and (not .Params.blogPosting) (not .Params.faq) -}}
     {{- partial "templates/schema_json.html" . -}}
   {{- end -}}
 {{- end -}}
