@@ -20,7 +20,7 @@
 {{- $brandFull := site.Title -}}
 {{- $brand := site.Params.title | default site.Title -}}
 
-{{- /* === Safe word-trim for title core (не режем бренд) === */ -}}
+{{- /* === Safe word-trim для ядра title (не режем бренд) === */ -}}
 {{- $maxTotal := 58 -}}
 {{- $tRaw := .Title | plainify -}}
 {{- $acc := "" -}}
@@ -44,6 +44,7 @@
   {{- $seoTitle = "Nailak Editorial — Stories, Routines & Modern Self-Care Inspiration" -}}
   {{- $seoDesc  = "Explore beauty editorials, nail care rituals, and modern self-care inspiration from the Nailak editorial team." -}}
 {{- else if .IsPage -}}
+  {{- /* Посты/страницы: только заголовок без бренда */ -}}
   {{- $seoTitle = (cond (gt (len $titleCore) 0) $titleCore .Title) -}}
   {{- $seoDesc  = cond .Description (.Description | plainify) "" -}}
 {{- else if .IsSection -}}
@@ -78,27 +79,35 @@
 <title>{{ $seoTitle }}</title>
 <meta name="description" content="{{ $seoDesc }}">
 
-{{- /* ================== KEYWORDS (унифицировано) ================== */ -}}
+{{- /* ================== KEYWORDS (типобезопасно: поддержка строки и слайса) ================== */ -}}
 {{- $kws := slice -}}
+{{- $kwAny := nil -}}
 {{- if .IsHome -}}
-  {{- with site.Params.keywords -}}
-    {{- $kws = cond (reflect.IsSlice .) . (split . ",") -}}
-  {{- end -}}
+  {{- $kwAny = site.Params.keywords -}}
 {{- else -}}
   {{- if .Params.keywords -}}
-    {{- $kws = cond (reflect.IsSlice .Params.keywords) .Params.keywords (split .Params.keywords ",") -}}
+    {{- $kwAny = .Params.keywords -}}
   {{- else if .Params.tags -}}
-    {{- $kws = .Params.tags -}}
+    {{- $kwAny = .Params.tags -}}
   {{- end -}}
 {{- end -}}
-{{- if gt (len $kws) 0 -}}
-  {{- $kwClean := slice -}}
-  {{- range $kws -}}
-    {{- $v := trim . " \t\r\n" -}}
-    {{- if $v -}}{{- $kwClean = $kwClean | append $v -}}{{- end -}}
+{{- if $kwAny -}}
+  {{- $ktype := printf "%T" $kwAny -}}
+  {{- if in $ktype "[]" -}}
+    {{- range $kwAny -}}
+      {{- $v := trim (print .) " \t\r\n" -}}
+      {{- if $v -}}{{- $kws = $kws | append $v -}}{{- end -}}
+    {{- end -}}
+  {{- else -}}
+    {{- range (split (print $kwAny) ",") -}}
+      {{- $v := trim . " \t\r\n" -}}
+      {{- if $v -}}{{- $kws = $kws | append $v -}}{{- end -}}
+    {{- end -}}
   {{- end -}}
-  {{- $kwClean = uniq $kwClean -}}
-  {{- if gt (len $kwClean) 0 -}}<meta name="keywords" content="{{ delimit $kwClean ", " | safeHTML }}">{{- end -}}
+{{- end -}}
+{{- $kws = uniq $kws -}}
+{{- if gt (len $kws) 0 -}}
+  <meta name="keywords" content="{{ delimit $kws ", " | safeHTML }}">
 {{- end -}}
 
 <meta name="author" content="{{ (partial "author.html" . ) }}">
@@ -109,7 +118,7 @@
 {{ with site.Params.analytics.bing.SiteVerificationTag }}<meta name="msvalidate.01" content="{{ . }}">{{ end }}
 {{ with site.Params.analytics.naver.SiteVerificationTag }}<meta name="naver-site-verification" content="{{ . }}">{{ end }}
 
-{{- /* ================== STYLES (сокращённые пайплайны, тот же порядок) ================== */ -}}
+{{- /* ================== STYLES (тот же порядок, компактно) ================== */ -}}
 {{- $includes := slice | append (" " | resources.FromString "assets/css/includes-blank.css") -}}
 {{- if not (eq site.Params.assets.disableScrollBarStyle true) -}}
   {{- $includes = $includes | append (resources.Get "css/includes/scroll-bar.css") -}}
@@ -140,12 +149,12 @@
 {{- if eq .Layout "search" -}}
   <link crossorigin="anonymous" rel="preload" as="fetch" href="../index.json">
   {{- $fast := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | resources.Minify -}}
-  {{- $searchParts := slice (resources.Get "js/fuse.basic.min.js") (resources.Get "js/license.js") $fast -}}
+  {{- $parts := slice (resources.Get "js/fuse.basic.min.js") (resources.Get "js/license.js") $fast -}}
   {{- if site.Params.assets.disableFingerprinting -}}
-    {{- $search := $searchParts | resources.Concat "assets/js/search.js" -}}
+    {{- $search := $parts | resources.Concat "assets/js/search.js" -}}
     <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
   {{- else -}}
-    {{- $search := ($searchParts | resources.Concat "assets/js/search.js" | resources.Fingerprint) -}}
+    {{- $search := ($parts | resources.Concat "assets/js/search.js" | resources.Fingerprint) -}}
     <script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
   {{- end -}}
 {{- end -}}
