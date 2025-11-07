@@ -1,109 +1,53 @@
-# ============================================================
-# File: .github/workflows/blog-writer.yml
-# Purpose: Run the blog writer 0–2 random times per day
-# ============================================================
-
 name: Blog Writer
 
 on:
-  workflow_dispatch:             # позволяет запускать вручную при необходимости
+  workflow_dispatch:
   schedule:
-    - cron: '0 13 * * *'         # каждый день в 13:00 UTC (~08:00 по CST)
-                                 # можно изменить при необходимости, но оставляем 1 запуск в день
+    - cron: '0 13 * * *'   # каждый день в 13:00 UTC
 
 permissions:
   contents: write
-
-concurrency:
-  group: blog-writer
-  cancel-in-progress: true
 
 jobs:
   writer:
     runs-on: ubuntu-latest
 
     steps:
-      # === 1. Проверяем и скачиваем репозиторий ===
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # === 2. Настраиваем Python ===
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
 
-      # === 3. Устанавливаем зависимости ===
-      - name: Install Python dependencies
-        env:
-          PIP_DISABLE_PIP_VERSION_CHECK: '1'
-          PIP_NO_INPUT: '1'
+      - name: Install Python deps
         run: |
           python -m pip install --upgrade pip
           pip install -r blog_src/scripts/requirements.txt
 
-      # === 4. Запускаем writer случайное количество раз с паузами (0–2 раза) ===
-      - name: Run writer randomly 0–2 times during the day
+      - name: Run generator (create Markdown posts)
         env:
-          TZ: America/Chicago   # чтобы вывод времени шел по Central Time
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          set -e
+          python -m blog_src.scripts.writer.main
 
-          # Переходим в корень репозитория на runner
-          cd "$GITHUB_WORKSPACE"
-          echo "📂 Workspace: $(pwd)"
-
-          # Выбираем доступный скрипт: main.py (CI) или, если его нет, main_local.py
-          SCRIPT=""
-          if [ -f "blog_src/scripts/main.py" ]; then
-            SCRIPT="blog_src/scripts/main.py"
-          elif [ -f "blog_src/scripts/main_local.py" ]; then
-            SCRIPT="blog_src/scripts/main_local.py"
-          else
-            echo "❌ Writer script not found: neither blog_src/scripts/main.py nor main_local.py"
-            # Не падаем жёстко, чтобы не ломать пайплайн; просто выходим из шага
-            exit 0
-          fi
-
-          echo "📝 Using writer script: $SCRIPT"
-
-          # ===========================================
-          # 🔹 Количество запусков в день (изменить по желанию)
-          # Здесь выбирается случайное число от 0 до 2
-          runs=$(( RANDOM % 3 ))
-          echo "📅 Will run the blog writer $runs times today."
-
-          # 🔹 Минимальная и максимальная задержка между запусками (в минутах)
-          min_delay=45
-          max_delay=360
-          # ===========================================
-
-          for ((i=1; i<=runs; i++)); do
-            if [ $i -gt 1 ]; then
-              # для второго и последующих запусков добавляем случайную задержку
-              delay=$(( min_delay + RANDOM % (max_delay - min_delay) ))
-              echo "⏳ Waiting $delay minutes before next run..."
-              sleep $(( delay * 60 ))
-            fi
-
-            echo "🕒 $(date '+%H:%M:%S') — starting blog writer run #$i..."
-            # Запускаем выбранный скрипт и не валим весь шаг при ошибке конкретного прогона
-            python3 "$SCRIPT" || echo "⚠️ Run #$i failed, continuing..."
-            echo "✅ Completed run #$i at $(date '+%H:%M:%S')."
-            echo "----------------------------------------"
-          done
-
-      # === 5. Проверяем синтаксис после выполнения ===
-      - name: Syntax check
+      - name: Commit & Push new posts
         run: |
-          python -m py_compile $(find blog_src/scripts -name '*.py')
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      # === 6. Коммитим новые посты, если они были созданы ===
-      - name: Commit and push new posts
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog_src/content/posts || true
-          git commit -m "🤖 Auto-generated new blog posts" || echo "No new posts to commit"
-          git push || echo "Nothing to push"
+          # Добавляем изменения, если они есть
+          git add blog_src/content/posts blog_src/data/state.json
+
+          # Если нет изменений — выходим
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+
+          # Коммитим новые посты
+          git commit -m "Add new blog post [skip ci]"
+
+          # Подтягиваем возможные новые коммиты с GitHub (например, из других workflow)
+          git pull --rebase || true
+
+          # Отправляем в репозиторий
+          git push
