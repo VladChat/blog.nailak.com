@@ -2,8 +2,8 @@ name: Blog Writer
 
 on:
   workflow_dispatch:
-  # schedule:                    # ⛔ отключено — расписание перенесено в отдельный blog-trigger.yml
-  #   - cron: '0 13,14,15,16 * * *'   # (удалено, чтобы не дублировался запуск)
+  schedule:
+    - cron: '0 13 * * *'   # каждый день в 13:00 UTC
 
 permissions:
   contents: write
@@ -36,18 +36,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # Добавляем изменения, если они есть
           git add blog_src/content/posts blog_src/data/state.json
-
-          # Если нет изменений — выходим
-          git diff --cached --quiet && echo "No changes to commit" && exit 0
-
-          # Коммитим новые посты
-          git commit -m "Add new blog post [skip ci]"
-
-          # Подтягиваем возможные новые коммиты с GitHub (например, из других workflow)
-          git pull --rebase || true
-
-          # Отправляем в репозиторий
+          git commit -m "Add new blog post [skip ci]" || echo "No changes"
           git push
