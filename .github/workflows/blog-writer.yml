@@ -36,6 +36,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog_src/content/posts blog_src/data/state.json
+          git add blog_src/content/posts \
+                 blog_src/data/state.json \
+                 blog_src/data/author_state.json
           git commit -m "Add new blog post [skip ci]" || echo "No changes"
           git push
