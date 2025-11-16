@@ -14,7 +14,58 @@ from .config_loader import load_writer_config
 DATA_DIR = Path("blog_src/data")
 KEYWORDS_FILE = DATA_DIR / "keywords.json"
 STATE_FILE = DATA_DIR / "state.json"
+AUTHOR_STATE_FILE = DATA_DIR / "author_state.json"   # NEW
 CONTENT_DIR = Path("blog_src/content/posts")
+
+# === 👩‍💼 Авторы и их стили (ротация) ===
+AUTHORS = [
+    {
+        "name": "Nina Nailak",
+        "style": "Write with a soft, artistic tone inspired by natural beauty rituals, mindful routines, and gentle sensory details."
+    },
+    {
+        "name": "Alex Fairstone",
+        "style": "Write with thoughtful, research-driven clarity blended with warm, reassuring guidance appropriate for wellness topics."
+    },
+    {
+        "name": "Jordan Reed",
+        "style": "Write with culturally aware warmth, emotional insight, and inclusive lifestyle storytelling."
+    },
+    {
+        "name": "Elena Moretti",
+        "style": "Write with ingredient-focused expertise, evidence-based explanations, and a calm, educational lifestyle tone."
+    }
+]
+
+def load_author_state() -> dict:
+    """Загружает author_state.json."""
+    try:
+        with open(AUTHOR_STATE_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {"index": 0}
+
+def save_author_state(state: dict) -> None:
+    """Сохраняет состояние ротации авторов."""
+    AUTHOR_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(AUTHOR_STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump(state, f, indent=2)
+
+def _pick_next_author() -> tuple[str, str]:
+    """
+    Возвращает (author_name, style_hint), продвигая индекс.
+    """
+    state = load_author_state()
+    idx = state.get("index", 0)
+
+    author = AUTHORS[idx % len(AUTHORS)]
+    name = author["name"]
+    style = author["style"]
+
+    state["index"] = (idx + 1) % len(AUTHORS)
+    save_author_state(state)
+
+    return name, style
 
 
 # === 📄 Загрузка шаблона промпта ===
@@ -49,15 +100,14 @@ def save_state(state: dict) -> None:
 
 
 # === 🧩 Формирование промпта ===
-def build_prompt(primary_keyword: str, rss_summary: str, original_url: str | None = None) -> str:
+def build_prompt(primary_keyword: str, rss_summary: str, original_url: str | None = None, style_hint: str = "") -> str:
     """
     Собирает текст промпта для модели.
 
     ВАЖНО:
     - Основная тема статьи задаётся ТОЛЬКО primary_keyword.
-    - RSS-источник используется только для одного референс-абзаца
-      в середине статьи (2–3 предложения) и не влияет на заголовок
-      или структуру.
+    - RSS-источник используется только для одного референс-абзаца.
+    - Добавлен style_hint (персона автора).
     """
     template = load_prompt_template()
 
@@ -65,12 +115,16 @@ def build_prompt(primary_keyword: str, rss_summary: str, original_url: str | Non
     pk = (primary_keyword or "").strip()
     blocks.append(f"Main keyword: {pk if pk else '(none)'}")
 
+    if style_hint:
+        blocks.append("")
+        blocks.append("Author style:")
+        blocks.append(style_hint)
+
     if original_url:
         blocks.append("")
         blocks.append(
             "External reference (for ONE short 2–3 sentence supporting paragraph "
-            "in the middle of the article; keep it loosely connected to the keyword "
-            "and end that paragraph with `(source: URL)`):"
+            "in the middle of the article; end that paragraph with `(source: URL)`):"
         )
         blocks.append(f"URL: {original_url}")
 
@@ -80,7 +134,7 @@ def build_prompt(primary_keyword: str, rss_summary: str, original_url: str | Non
         blocks.append(rss_summary)
 
     topic_block = "\n".join(blocks)
-    return template.format(topic=topic_block)
+    return template.format(topic=topic_block, style_hint=style_hint)
 
 
 # === 🏷 Нормализация тега ===
@@ -107,7 +161,7 @@ def _norm_tag(s: str) -> str:
 
 # === 🧠 Извлечение вторичного ключа из статьи ===
 def _extract_secondary_from_article(md_text: str, all_keywords: list) -> str:
-    """Пытается найти вторичный ключ в тексте статьи (по keywords.json)."""
+    """Пытается найти вторичный ключ в тексте статьи."""
     if not md_text or not all_keywords:
         return ""
     text_low = md_text.lower()
@@ -159,7 +213,11 @@ def main():
     print("───────────────────────────────")
     print("🚀 Starting Nailak writer")
 
-    # === 1️⃣ Загрузка ключевых слов ===
+    # 1️⃣ Ротация авторов
+    author_name, author_style = _pick_next_author()
+    print(f"🖋 Using author: {author_name}")
+
+    # === 2️⃣ Загрузка ключевых слов ===
     try:
         keywords = load_keywords()
         print(f"✅ Loaded {len(keywords)} keywords")
@@ -167,14 +225,13 @@ def main():
         print(f"⚠️ Could not load keywords.json: {e}")
         keywords = []
 
-    # === 2️⃣ Получение RSS-источника и keyword через rss_fetch ===
+    # === 3️⃣ Получение RSS-источника ===
     print("🧭 Fetching RSS feed...")
     topic_raw, summary, original_url = get_latest_topic()
     topic_raw = topic_raw or "Daily Nailak Update"
     summary = summary or ""
     original_url = original_url or None
 
-    # topic_raw ожидается в формате: "<rss_title> — <keyword>"
     primary_keyword = ""
     rss_title_for_log = topic_raw
     if "—" in topic_raw:
@@ -184,11 +241,9 @@ def main():
     else:
         primary_keyword = topic_raw.strip()
 
-    # Fallback, если по какой-то причине keyword не получился
     if not primary_keyword and keywords:
         primary_keyword = str(keywords[0]).strip()
 
-    # Пытаемся найти индекс этого keyword в списке для ротации base-тегов
     idx = 0
     if keywords and primary_keyword:
         try:
@@ -203,13 +258,19 @@ def main():
     print(f"Original URL: {original_url if original_url else '(none)'}")
     print("───────────────────────────────")
 
-    # === 3️⃣ Формируем промпт ===
-    prompt = build_prompt(primary_keyword, summary, original_url)
+    # === 4️⃣ Формируем промпт ===
+    prompt = build_prompt(
+        primary_keyword,
+        summary,
+        original_url,
+        style_hint=author_style  # NEW
+    )
+
     print("🧩 Final prompt context sent to GPT:")
     print(prompt[:600] + ("..." if len(prompt) > 600 else ""))
     print("───────────────────────────────")
 
-    # === 4️⃣ Генерация статьи ===
+    # === 5️⃣ Генерация статьи ===
     max_attempts = 3
     generated_title = ""
     md_raw = ""
@@ -220,17 +281,15 @@ def main():
         if qa_result["ok"]:
             print("✅ QA passed.")
             generated_title = _extract_h1_title(md_raw)
-            # ✅ Автовставка брендовых картинок в середину текста (после 1-й и 3-й секции)
-            md_raw = inject_brand_images(md_raw)
+            md_raw = inject_brand_images(md_raw)  # NEW
             break
         print(f"⚠️ QA failed: {qa_result['errors']}")
     else:
         print("❌ All attempts failed — saving draft.")
-        # Для черновика используем keyword как более устойчивую «тему»
         _save_draft(primary_keyword or topic_raw, cfg)
         return
 
-    # === 5️⃣ Формирование тегов ===
+    # === 6️⃣ Формируем теги ===
     secondary_tag = (
         _extract_secondary_from_article(md_raw, keywords)
         or _extract_secondary_from_topic(generated_title or primary_keyword, keywords)
@@ -253,7 +312,7 @@ def main():
 
     tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
 
-    # === 6️⃣ Формирование meta keywords ===
+    # === 7️⃣ Meta keywords ===
     primary_phrase = _clean_phrase_for_meta(primary_keyword)
     secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " ")) if secondary_tag else ""
     meta_keywords_parts = []
@@ -264,10 +323,8 @@ def main():
     keywords_yaml_items = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
     keywords_block = f"keywords:\n{keywords_yaml_items}" if meta_keywords_parts else "keywords: []\n"
 
-    # === 7️⃣ Сохраняем пост ===
+    # === 8️⃣ Сохраняем пост ===
     now = datetime.now(timezone.utc)
-
-    # slug формируем по сгенерированному заголовку; если его нет — по keyword
     slug_source = generated_title or primary_keyword or topic_raw
     slug = posts.make_slug(slug_source)
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
@@ -284,7 +341,7 @@ def main():
         f"categories: ['news']\n"
         f"tags: [{tags_yaml}]\n"
         f"{keywords_block}"
-        f'author: "Nailak Editorial"\n'
+        f'author: "{author_name}"\n'
         f"---\n\n"
     )
 
@@ -295,19 +352,20 @@ def main():
     print(fm)
     print(f"✓ New post saved: {out_path}")
     print("───────────────────────────────")
-    # NOTE: rss_fetch now advances and saves keyword index.
-    # (Manual bump in this file отсутствует, чтобы не было двойного сдвига и рассинхронизации)
 
 
-# === 📝 Сохранение черновика при сбое ===
+# === 📝 Сохранение черновика ===
 def _save_draft(topic: str, cfg: dict):
-    """Сохраняет черновик, если QA не прошёл или GPT не дал результата."""
+    """Сохраняет черновик, если QA не прошёл."""
     now = datetime.now(timezone.utc)
     fallback_slug = re.sub(r"[^a-zA-Z0-9-]+", "-", topic.lower()) + "-draft"
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{fallback_slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     title_escaped = topic.replace('"', '\\"')
+
+    # Автор черновика — текущий автор ротации
+    author_name, _ = _pick_next_author()
 
     fm = (
         f"---\n"
@@ -316,7 +374,7 @@ def _save_draft(topic: str, cfg: dict):
         f"draft: true\n"
         f"categories: ['news']\n"
         f"tags: ['draft']\n"
-        f'author: "Nailak Editorial"\n'
+        f'author: "{author_name}"\n'
         f"---\n\n"
         f"(Auto-saved draft after QA failures)\n\n"
     )
