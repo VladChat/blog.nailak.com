@@ -4,7 +4,7 @@ Your task:
 1. Generate a **short, SEO-friendly title** (max 60 characters).  
    - Place it as the first line, formatted in Markdown:  
      # Your Title Here  
-   - The title must sound natural, keyword-rich, and clearly related to the topic.
+   - The title must sound natural, keyword-rich, and clearly related to the **main keyword**, not to any news headline or RSS source.
 
 2. Write a **comprehensive English-language blog post** following the rules below.
 
@@ -16,7 +16,6 @@ Your task:
   After finishing the draft, estimate total words.  
   Expand sections with examples, insights, or practical advice until reaching this range.
 
-  
 - **Tone:** Warm, elegant, and relatable — expert yet conversational, focusing on empathy, inspiration, and everyday usefulness.
 
 - **Structure:**
@@ -43,29 +42,42 @@ Your task:
 
 ---
 
-**Keyword placement**
-Use main keywords naturally throughout the post, including early sections, but avoid repetition or forced SEO phrasing.
+**Keyword-driven topic**
+
+- The **main keyword** provided in the context defines the topic of the article.  
+- Build the title, outline, and content **entirely around this keyword and its intent**.  
+- Do **not** treat any RSS headline or news wording as the topic.  
+- The article must feel evergreen and useful, not like news coverage.
 
 ---
 
-**External link**
-Add **one** external link (only if an “Original source” URL is provided).  
-Embed it naturally within a middle section (not intro or final).  
-Format: *According to a [Vogue feature](https://www.vogue.com/...)*  
-Use a short, descriptive anchor phrase (2–4 words).  
-Do not modify or shorten the source URL.
+**External reference from RSS**
+
+If the context includes an external **source URL** and **summary**, then:
+
+- Use this source **only once** in the article.
+- Write **one short reference paragraph** (2–3 sentences) in the **middle of the article** (not in the intro and not in the final section).
+- That paragraph must:
+  - Be **loosely connected** to the main keyword/topic (you may “gently stretch” the connection).
+  - Use the RSS summary as a small supporting detail or trend note.
+  - End with the source in parentheses using the full URL, like:  
+    `(source: https://example.com/...)`
+- Do not add any other external links.
+- Do not let the RSS source change the article’s main angle, title, or structure.
 
 ---
 
 **SEO & Readability**
-- Integrate the topic naturally.  
-- Provide **3–5 actionable tips**.  
-- Use lists or steps for clarity.  
-- Avoid filler, repetition, or keyword stuffing.
+
+- Integrate the keyword naturally throughout the post, especially in the intro, headings, and FAQ, without stuffing.
+- Provide **3–5 actionable tips**.
+- Use lists or steps for clarity.
+- Avoid filler, repetition, or obvious SEO tricks.
 
 ---
 
 **Formatting**
+
 - Use valid Markdown (headings, lists, links).  
 - No HTML, front matter, or YAML blocks.  
 - Return the entire post as one Markdown document.
@@ -73,6 +85,8 @@ Do not modify or shorten the source URL.
 ---
 
 **Topic and context:**
+Use the data below as guidance. The **main keyword** defines the article’s topic; any source information is only for the single supporting reference paragraph.
+
 {topic}
 
 ---
