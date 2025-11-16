@@ -50,7 +50,7 @@ body.dark .list-page-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.25s ease;
+  transition: all 25ms ease;
   height: auto !important;
   min-height: auto !important;
   max-height: none !important;
@@ -161,7 +161,7 @@ nav.pagination a.disabled { opacity: 0.5; pointer-events: none; }
           <h2 class="post-card-title">{{ .Title }}</h2>
           {{ with .Summary }}<p class="post-card-summary">{{ . | plainify }}</p>{{ end }}
           <p class="post-card-meta">
-            {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min · {{ .WordCount }} words
+            {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min · {{ .WordCount }} words · {{ partial "author.html" . }}
           </p>
         </a>
       </article>
