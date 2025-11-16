@@ -24,10 +24,14 @@
     <div class="post-meta-with-icon">
       <div class="post-meta">
         {{- partial "post_meta.html" . -}}
+
+        {{ partial "author.html" . }}   <!-- ✅ ADDED: Author line -->
+
         {{- partial "translation_list.html" . -}}
         {{- partial "edit_post.html" . -}}
         {{- partial "post_canonical.html" . -}}
       </div>
+
 <!-- HERO bottle nailak -->
 <div class="hero-icon-corner" role="img" aria-label="Nailak blog decorative icon">
   <img src="/images/nailak-circle.svg"
@@ -42,13 +46,11 @@
     </div>
     {{- end }}
 
-
-
   </header>
 
   {{/* 🔸 Реклама только для постов */}}
   {{ if or (eq .Section "posts") (eq .Type "posts") }}
-    <!-- {{ partial "custom/mascot.html" . }} -->
+    {{ partial "custom/aff-rotator.html" . }}
   {{ end }}
 
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false -}}
@@ -64,7 +66,7 @@
       {{- partial "anchored_headings.html" .Content -}}
     {{- else -}}
       {{ .Content }}
-    {{- end -}}
+    {{- end }}
   </div>
   {{ partial "custom/accordion-faq.html" . }}
 
@@ -74,33 +76,12 @@
 
     <!-- 🔸 Рекламный блок (Affiliate) — только для постов -->
     {{ if or (eq .Section "posts") (eq .Type "posts") }}
-      <!-- {{ partial "custom/mascot.html" . }} -->
+      {{ partial "custom/aff-rotator.html" . }}
     {{ end }}
 
     {{/* ──────────────────────────────────────────────────────────────
        БЛОК ТЕГОВ И КАТЕГОРИЙ ОТКЛЮЧЁН (оставлен для истории)
-
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" -}}
-    {{- $categories := .Language.Params.Taxonomies.category | default "categories" -}}
-
-    {{- $termsTags := $.GetTerms $tags -}}
-    {{- if $termsTags -}}
-      <ul class="post-tags">
-        {{- range $termsTags -}}
-          <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
-        {{- end -}}
-      </ul>
-    {{- end -}}
-
-    {{- $termsCats := $.GetTerms $categories -}}
-    {{- if $termsCats -}}
-      <div class="post-categories">
-        {{- range $termsCats -}}
-          <a class="category-pill" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        {{- end -}}
-      </div>
-    {{- end -}}
-
+       (… unchanged …)
     ─────────────────────────────────────────────────────────────── */}}
 
     {{- if (.Param "ShowPostNavLinks") -}}
