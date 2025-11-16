@@ -7,7 +7,7 @@ from pathlib import Path
 
 from . import llm
 from . import posts
-from .rss_fetch import get_latest_topic  # ✅ теперь возвращает уже свежую, неиспользованную статью
+from .rss_fetch import get_latest_topic  # ✅ выбирает свежую статью и вращает keyword-индекс
 from .config_loader import load_writer_config
 
 # === 📂 Пути и файлы данных ===
@@ -31,7 +31,7 @@ def load_keywords() -> list:
         return json.load(f)
 
 
-# === 💾 Работа с состоянием ===
+# === 💾 Работа с состоянием (оставляем для совместимости, хотя state ведёт rss_fetch) ===
 def load_state() -> dict:
     """Загружает state.json, если нет — создаёт дефолтную структуру."""
     try:
@@ -49,19 +49,37 @@ def save_state(state: dict) -> None:
 
 
 # === 🧩 Формирование промпта ===
-def build_prompt(topic: str, summary: str, original_url: str | None = None) -> str:
+def build_prompt(primary_keyword: str, rss_summary: str, original_url: str | None = None) -> str:
     """
     Собирает текст промпта для модели.
-    Добавляет контекст и ссылку на оригинальный источник, если есть.
+
+    ВАЖНО:
+    - Основная тема статьи задаётся ТОЛЬКО primary_keyword.
+    - RSS-источник используется только для одного референс-абзаца
+      в середине статьи (2–3 предложения) и не влияет на заголовок
+      или структуру.
     """
     template = load_prompt_template()
-    topic_block = topic
+
+    blocks: list[str] = []
+    pk = (primary_keyword or "").strip()
+    blocks.append(f"Main keyword: {pk if pk else '(none)'}")
+
     if original_url:
-        topic_block += f"\n\nOriginal source: {original_url}"
-    if summary:
-        topic_block += f"\n\nContext: {summary}"
-    else:
-        topic_block += "\n\nContext: "
+        blocks.append("")
+        blocks.append(
+            "External reference (for ONE short 2–3 sentence supporting paragraph "
+            "in the middle of the article; keep it loosely connected to the keyword "
+            "and end that paragraph with `(source: URL)`):"
+        )
+        blocks.append(f"URL: {original_url}")
+
+    if rss_summary:
+        blocks.append("")
+        blocks.append("Source summary (optional):")
+        blocks.append(rss_summary)
+
+    topic_block = "\n".join(blocks)
     return template.format(topic=topic_block)
 
 
@@ -122,10 +140,21 @@ def _clean_phrase_for_meta(s: str) -> str:
     return s
 
 
+# === 🔍 Извлечение H1 заголовка из markdown ===
+def _extract_h1_title(md_text: str) -> str:
+    """Возвращает текст первого H1 (# ...) из markdown-статьи."""
+    if not md_text:
+        return ""
+    for line in md_text.splitlines():
+        line = line.strip()
+        if line.startswith("# "):
+            return line[2:].strip()
+    return ""
+
+
 # === 🚀 Главная функция ===
 def main():
     cfg = load_writer_config()
-    state = load_state()
 
     print("───────────────────────────────")
     print("🚀 Starting Nailak writer")
@@ -138,52 +167,74 @@ def main():
         print(f"⚠️ Could not load keywords.json: {e}")
         keywords = []
 
-    idx = max(0, int(state.get("keyword_index", 0)))
-    primary_keyword = keywords[idx] if keywords and idx < len(keywords) else ""
-    print(f"🎯 Current primary keyword: {primary_keyword}")
-    print("───────────────────────────────")
-
-    # === 2️⃣ Получение новой статьи через улучшенный rss_fetch ===
+    # === 2️⃣ Получение RSS-источника и keyword через rss_fetch ===
     print("🧭 Fetching RSS feed...")
-    topic, summary, original_url = get_latest_topic()
-    topic = topic or "Daily Nailak Update"
+    topic_raw, summary, original_url = get_latest_topic()
+    topic_raw = topic_raw or "Daily Nailak Update"
     summary = summary or ""
     original_url = original_url or None
 
-    # 🔹 Проверку дубликатов теперь делает rss_fetch.py — здесь не нужно
+    # topic_raw ожидается в формате: "<rss_title> — <keyword>"
+    primary_keyword = ""
+    rss_title_for_log = topic_raw
+    if "—" in topic_raw:
+        left, right = topic_raw.rsplit("—", 1)
+        rss_title_for_log = (left or "").strip() or "Untitled source"
+        primary_keyword = (right or "").strip()
+    else:
+        primary_keyword = topic_raw.strip()
 
-    # === 3️⃣ Логирование данных ===
-    print("📰 Topic received:")
-    print(f"Title: {topic}")
+    # Fallback, если по какой-то причине keyword не получился
+    if not primary_keyword and keywords:
+        primary_keyword = str(keywords[0]).strip()
+
+    # Пытаемся найти индекс этого keyword в списке для ротации base-тегов
+    idx = 0
+    if keywords and primary_keyword:
+        try:
+            idx = max(0, int(keywords.index(primary_keyword)))
+        except ValueError:
+            idx = 0
+
+    print(f"🎯 Primary keyword (from rotation): {primary_keyword}")
+    print("📰 RSS reference received:")
+    print(f"Source title: {rss_title_for_log}")
     print(f"Summary: {summary[:400]}{'...' if len(summary) > 400 else ''}")
     print(f"Original URL: {original_url if original_url else '(none)'}")
     print("───────────────────────────────")
 
-    # === 4️⃣ Формируем промпт ===
-    prompt = build_prompt(topic, summary, original_url)
-    print("🧩 Final topic-context sent to GPT:")
+    # === 3️⃣ Формируем промпт ===
+    prompt = build_prompt(primary_keyword, summary, original_url)
+    print("🧩 Final prompt context sent to GPT:")
     print(prompt[:600] + ("..." if len(prompt) > 600 else ""))
     print("───────────────────────────────")
 
-    # === 5️⃣ Генерация статьи ===
+    # === 4️⃣ Генерация статьи ===
     max_attempts = 3
+    generated_title = ""
+    md_raw = ""
     for attempt in range(max_attempts):
         print(f"🤖 Generating article (attempt {attempt + 1}/{max_attempts})...")
         md_raw = llm.call_llm(prompt)
         qa_result = posts.qa_check_proxy(md_raw)
         if qa_result["ok"]:
             print("✅ QA passed.")
+            generated_title = _extract_h1_title(md_raw)
             # ✅ Автовставка брендовых картинок в середину текста (после 1-й и 3-й секции)
             md_raw = inject_brand_images(md_raw)
             break
         print(f"⚠️ QA failed: {qa_result['errors']}")
     else:
         print("❌ All attempts failed — saving draft.")
-        _save_draft(topic, cfg)
+        # Для черновика используем keyword как более устойчивую «тему»
+        _save_draft(primary_keyword or topic_raw, cfg)
         return
 
-    # === 6️⃣ Формирование тегов ===
-    secondary_tag = _extract_secondary_from_article(md_raw, keywords) or _extract_secondary_from_topic(topic, keywords)
+    # === 5️⃣ Формирование тегов ===
+    secondary_tag = (
+        _extract_secondary_from_article(md_raw, keywords)
+        or _extract_secondary_from_topic(generated_title or primary_keyword, keywords)
+    )
     if not secondary_tag and keywords:
         secondary_tag = _norm_tag(keywords[(idx + 1) % len(keywords)])
 
@@ -202,9 +253,9 @@ def main():
 
     tags_yaml = ", ".join("'" + t.replace("'", "''") + "'" for t in tags_list)
 
-    # === 7️⃣ Формирование meta keywords ===
+    # === 6️⃣ Формирование meta keywords ===
     primary_phrase = _clean_phrase_for_meta(primary_keyword)
-    secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " "))
+    secondary_phrase = _clean_phrase_for_meta(secondary_tag.replace("-", " ")) if secondary_tag else ""
     meta_keywords_parts = []
     if primary_phrase:
         meta_keywords_parts.append(primary_phrase)
@@ -213,14 +264,17 @@ def main():
     keywords_yaml_items = "".join([f'  - "{k}"\n' for k in meta_keywords_parts])
     keywords_block = f"keywords:\n{keywords_yaml_items}" if meta_keywords_parts else "keywords: []\n"
 
-    # === 8️⃣ Сохраняем пост ===
+    # === 7️⃣ Сохраняем пост ===
     now = datetime.now(timezone.utc)
-    slug_source = f"{topic} {primary_keyword}".strip()
+
+    # slug формируем по сгенерированному заголовку; если его нет — по keyword
+    slug_source = generated_title or primary_keyword or topic_raw
     slug = posts.make_slug(slug_source)
     out_path = CONTENT_DIR / f"{now.year}/{now.month:02d}/{slug}.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    title_escaped = topic.replace('"', '\\"')
+    title_for_frontmatter = generated_title or primary_keyword or rss_title_for_log or "Daily Nailak Update"
+    title_escaped = title_for_frontmatter.replace('"', '\\"')
 
     fm = (
         f"---\n"
@@ -242,7 +296,7 @@ def main():
     print(f"✓ New post saved: {out_path}")
     print("───────────────────────────────")
     # NOTE: rss_fetch now advances and saves keyword index.
-    # (Manual bump removed to avoid double-advance and desync)
+    # (Manual bump in this file отсутствует, чтобы не было двойного сдвига и рассинхронизации)
 
 
 # === 📝 Сохранение черновика при сбое ===
