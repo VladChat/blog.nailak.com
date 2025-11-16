@@ -2,6 +2,7 @@
 title: "Editorial Team"
 layout: "page"
 description: "Meet the Nailak Editorial Team — beauty writers and creators sharing expert tips, nail care guides, and wellness insights."
+hideMeta: true
 ---
 
 ### Nailak Editorial Team
@@ -66,5 +67,6 @@ Follow our work and daily beauty inspiration:
 - 📸 [Instagram](https://www.instagram.com/nailak_care/)  
 - 💚 [Facebook](https://www.facebook.com/CompleteCuticleCare/)
 - 💌 [admin@nailak.com](mailto:admin@nailak.com)
+
 
 
