@@ -39,7 +39,7 @@
         {{ end }}
         <div class="card-footer">
           <span>{{ .Date.Format "January 2, 2006" }}</span>
-          <span>• {{ .ReadingTime }} min • {{ .WordCount }} words</span>
+          <span>• {{ .ReadingTime }} min • {{ .WordCount }} words • {{ partial "author.html" . }}</span>   <!-- ✅ ADDED -->
         </div>
       </a>
     </article>
