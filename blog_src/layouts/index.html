@@ -161,7 +161,7 @@ nav.pagination a.disabled { opacity: 0.5; pointer-events: none; }
           <h2 class="post-card-title">{{ .Title }}</h2>
           {{ with .Summary }}<p class="post-card-summary">{{ . | plainify }}</p>{{ end }}
           <p class="post-card-meta">
-            {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min · {{ .WordCount }} words · {{ partial "author.html" . }}
+            {{ .Date.Format "January 2, 2006" }} · {{ .ReadingTime }} min read · by {{ .Params.author }}
           </p>
         </a>
       </article>
