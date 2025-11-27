@@ -105,35 +105,28 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           CLEAN DESCRIPTION WITHOUT TITLE
+           DESCRIPTION: ИСПОЛЬЗУЕМ FRONT MATTER, ЕСЛИ ЕСТЬ
            =========================== -->
       <description>
-        {{- /* 1. выбрать источник текста */ -}}
         {{- $text := "" }}
-        {{- if .Description }}
-          {{- $text = .Description }}
-        {{- else if .Summary }}
-          {{- $text = .Summary }}
+
+        {{- /* 1. приоритет — params.description из front matter */ -}}
+        {{- with .Params.description }}
+          {{- $text = . }}
         {{- else }}
-          {{- $text = .Content }}
+          {{- /* 2. затем .Description, потом Summary, потом Content */ -}}
+          {{- if .Description }}
+            {{- $text = .Description }}
+          {{- else if .Summary }}
+            {{- $text = .Summary }}
+          {{- else }}
+            {{- $text = .Content }}
+          {{- end }}
         {{- end }}
 
-        {{- /* 2. plain text без HTML */ -}}
+        {{- /* 3. plain text, обрезка, без вырезания title */ -}}
         {{- $plain := $text | plainify }}
-
-        {{- /* 3. удалить точный текст заголовка отовсюду */ -}}
-        {{- $titlePlain := .Title | plainify }}
-        {{- if $titlePlain }}
-          {{- $plain = replace $plain $titlePlain "" }}
-        {{- end }}
-
-        {{- /* 4. собрать пробелы */ -}}
-        {{- $plain = replaceRE "[ ]{2,}" " " $plain }}
-
-        {{- /* 5. обрезать лидирующие/хвостовые пробелы */ -}}
-        {{- $plain = trim $plain " " }}
-
-        {{- /* 6. финальный вывод */ -}}
+        {{- $plain = trim $plain " \n\r\t" }}
         {{- $plain | truncate 220 | html }}
       </description>
 
@@ -181,7 +174,6 @@
       </media:group>
 
       {{- end }}
-
 
       {{- if and site.Params.ShowFullTextinRSS .Content }}
       <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
