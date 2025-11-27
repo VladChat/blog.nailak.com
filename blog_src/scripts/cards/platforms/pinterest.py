@@ -1,5 +1,5 @@
 # ============================================
-# File: scripts/cards/platforms/pinterest.py
+# File: blog_src/scripts/cards/platforms/pinterest.py
 # Pinterest card configuration + generator
 # ============================================
 
@@ -14,15 +14,14 @@ from ..core.pinterest_renderer import render_pinterest_title
 PINTEREST_CONFIG = PlatformConfig(
     name="pinterest",
     output_dir="content/posts/*/cards/pinterest",
-    template_dir="static/social/templates/pn",
+    template_dir="blog_src/static/social/templates/pn",
 
     image_width=1000,
     image_height=1500,
 
-    # UPDATED title_zone — wider & higher
     title_zone=(30, 20, 940, 420),
 
-    font_path="static/social/fonts/BungeeSpice-Regular.ttf",
+    font_path="blog_src/static/social/fonts/BungeeSpice-Regular.ttf",
     font_size=72,
     line_spacing=1.2,
 )

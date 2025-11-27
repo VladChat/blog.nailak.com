@@ -1,5 +1,5 @@
 # ============================================
-# File: scripts/cards/platforms/instagram.py
+# File: blog_src/scripts/cards/platforms/instagram.py
 # Instagram card configuration and generator
 # ============================================
 
@@ -17,7 +17,7 @@ from ..core.models import PlatformConfig, Platform, Post
 INSTAGRAM_CONFIG = PlatformConfig(
     name="instagram",
     output_dir="content/posts/*/cards/instagram",
-    template_dir="static/social/templates/ig",
+    template_dir="blog_src/static/social/templates/ig",
     image_width=1080,
     image_height=1350,
 
@@ -25,7 +25,7 @@ INSTAGRAM_CONFIG = PlatformConfig(
     # (x, y, w, h) — внутри верхней белой полосы
     title_zone=(60, 40, 960, 240),
 
-    font_path="static/social/fonts/BungeeSpice-Regular.ttf",
+    font_path="blog_src/static/social/fonts/BungeeSpice-Regular.ttf",
     font_size=72,
     line_spacing=1.2,
 )
@@ -130,14 +130,13 @@ def instagram_generator(post: Post, template_path: str, output_path: str, config
     line_heights = [_ig_text_size(draw, line, font)[1] for line in lines]
     total_h = sum(line_heights) * config.line_spacing
 
-    # ----- Белая шапка (на случай будущих шаблонов) -----
-    # Сейчас шапка совпадает с существующей белой зоной, так что её не видно.
+    # ----- белая шапка -----
     draw.rectangle(
         [header_left, header_top, header_right, header_bottom],
         fill=(255, 255, 255)
     )
 
-    # ----- Рисуем текст внутри шапки с паддингами -----
+    # ----- текст -----
     text_x = inner_left
     text_y = inner_top + (inner_height - total_h) / 2  # вертикальное центрирование
 

@@ -1,5 +1,5 @@
 # ============================================
-# File: scripts/cards/platforms/facebook.py
+# File: blog_src/scripts/cards/platforms/facebook.py
 # Facebook card configuration and generator
 # ============================================
 
@@ -15,16 +15,14 @@ FACEBOOK_CONFIG = PlatformConfig(
     name="facebook",
 
     output_dir="content/posts/*/cards/facebook",
-    template_dir="static/social/templates/fb",
+    template_dir="blog_src/static/social/templates/fb",
 
     image_width=1500,
     image_height=1500,
 
-    # Эта зона используется ТОЛЬКО для подбора текста.
-    # Плашка генерируется динамически.
     title_zone=(120, 410, 1260, 360),
 
-    font_path="static/social/fonts/BungeeSpice-Regular.ttf",
+    font_path="blog_src/static/social/fonts/BungeeSpice-Regular.ttf",
     font_size=64,
     line_spacing=1.2,
 )
