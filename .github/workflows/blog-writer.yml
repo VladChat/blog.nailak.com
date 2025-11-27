@@ -32,6 +32,14 @@ jobs:
         run: |
           python -m blog_src.scripts.writer.main
 
+      - name: Generate social cards for latest post
+        run: |
+          python -m blog_src.scripts.cards.build_cards
+
+      - name: Update front matter for latest post
+        run: |
+          python -m blog_src.scripts.cards.update_front_matter
+
       - name: Commit & Push new posts
         run: |
           git config user.name "github-actions[bot]"
