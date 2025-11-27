@@ -5,24 +5,19 @@
 {{- $title := .Title | plainify -}}
 {{- $desc := cond (ne .Description "") (.Description | plainify) (.Summary | plainify) -}}
 
-{{/* Default Twitter image */}}
 {{- $defaultTW := printf "%simages/og/default.webp" .Site.BaseURL -}}
 
-{{/* Базовое изображение из front matter */}}
 {{- $img := "" -}}
-{{- if .Params.images }}
-  {{- $img = index .Params.images 0 -}}
-{{- end -}}
 
-{{/* Social-card только для обычных страниц/постов */}}
+/* Сначала пробуем social-card для страниц/постов */
 {{- if and .IsPage .File -}}
   {{- $base := .File.BaseFileName -}}
-  {{- $rel := replace (replace .Permalink .Site.BaseURL "") "//" "/" -}}
-  {{- $cardRel := printf "%s/cards/facebook/%s.jpg" $rel $base -}}
-  {{- $cardStatic := printf "static/%s" (trimPrefix "/" $cardRel) -}}
-  {{- if (fileExists $cardStatic) -}}
-    {{- $img = $cardRel -}}
-  {{- end -}}
+  {{- $img = printf "%scards/facebook/%s.jpg" .Permalink $base -}}
+{{- end -}}
+
+/* Если не получилось — берём из front matter images */
+{{- if and (eq $img "") .Params.images -}}
+  {{- $img = index .Params.images 0 -}}
 {{- end -}}
 
 {{- $finalImage := cond (ne $img "") $img $defaultTW -}}

@@ -5,27 +5,21 @@
 {{- $title := .Title | plainify -}}
 {{- $desc := cond (ne .Description "") (.Description | plainify) (.Summary | plainify) -}}
 
-{{/* Default OG image (fallback) */}}
 {{- $defaultOG := printf "%simages/og/default.webp" .Site.BaseURL -}}
 
-{{/* Базовое изображение из front matter, если есть */}}
 {{- $img := "" -}}
-{{- if .Params.images }}
+
+/* Попробуем сначала social-card, только для обычных страниц/постов */
+{{- if and .IsPage .File -}}
+  {{- $base := .File.BaseFileName -}}
+  {{- $img = printf "%scards/facebook/%s.jpg" .Permalink $base -}}
+{{- end -}}
+
+/* Если вдруг не задали img через карточку — смотрим front matter images */
+{{- if and (eq $img "") .Params.images -}}
   {{- $img = index .Params.images 0 -}}
 {{- end -}}
 
-{{/* Попробовать использовать social-card ТОЛЬКО для обычных страниц/постов */}}
-{{- if and .IsPage .File -}}
-  {{- $base := .File.BaseFileName -}}
-  {{- $rel := replace (replace .Permalink .Site.BaseURL "") "//" "/" -}}
-  {{- $cardRel := printf "%s/cards/facebook/%s.jpg" $rel $base -}}
-  {{- $cardStatic := printf "static/%s" (trimPrefix "/" $cardRel) -}}
-  {{- if (fileExists $cardStatic) -}}
-    {{- $img = $cardRel -}}
-  {{- end -}}
-{{- end -}}
-
-{{/* Итоговое изображение */}}
 {{- $finalImage := cond (ne $img "") $img $defaultOG -}}
 
 <meta property="og:title" content="{{ $title }}">
