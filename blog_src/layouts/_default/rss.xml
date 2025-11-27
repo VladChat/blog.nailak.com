@@ -105,16 +105,15 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           DESCRIPTION: ИСПОЛЬЗУЕМ FRONT MATTER, ЕСЛИ ЕСТЬ
+           DESCRIPTION
            =========================== -->
       <description>
         {{- $text := "" }}
 
-        {{- /* 1. приоритет — params.description из front matter */ -}}
+        {{- /* priority — front matter description */ -}}
         {{- with .Params.description }}
           {{- $text = . }}
         {{- else }}
-          {{- /* 2. затем .Description, потом Summary, потом Content */ -}}
           {{- if .Description }}
             {{- $text = .Description }}
           {{- else if .Summary }}
@@ -124,7 +123,6 @@
           {{- end }}
         {{- end }}
 
-        {{- /* 3. plain text, обрезка: убираем заголовок h1/# Title из начала */ -}}
         {{- $clean := replaceRE "^# .*?\n" "" $text }}
         {{- $clean = replaceRE "^<h1[^>]*>.*?</h1>" "" $clean }}
 
@@ -132,16 +130,15 @@
         {{- $plain = trim $plain " \n\r\t" }}
 
         {{/* ===========================
-             REMOVE TITLE FROM BEGINNING
+             HARD REMOVE TITLE IF IT IS AT BEGINNING
            =========================== */}}
         {{- $plainTitle := trim (.Title | plainify) " \n\r\t" }}
-        {{- $lines := split $plain "\n" }}
-        {{- if gt (len $lines) 0 }}
-          {{- $firstLine := trim (index $lines 0) " \n\r\t" }}
-          {{- if eq $firstLine $plainTitle }}
-            {{- $plain = delimit (after 1 $lines) "\n" }}
-          {{- end }}
+        {{- $titleWithSpace := printf "%s " $plainTitle }}
+
+        {{- if hasPrefix $plain $titleWithSpace }}
+          {{- $plain = substr $plain (len $titleWithSpace) }}
         {{- end }}
+
         {{- $plain = trim $plain " \n\r\t" }}
 
         {{- $plain | truncate 220 | html }}
@@ -168,7 +165,7 @@
             url="{{ "/images/brand/26.webp" | absURL }}" />
 
         {{/* ===========================
-             CARD URLS FROM FRONT MATTER
+             CARD URLS
              =========================== */}}
         {{- $fb := "" }}
         {{- $ig := "" }}
@@ -180,17 +177,14 @@
           {{- with .pinterest }} {{ $pin = . }} {{ end }}
         {{- end }}
 
-        <!-- FACEBOOK -->
         <media:content url="{{ $fb }}" medium="image" />
         <media:thumbnail url="{{ $fb }}" />
         <enclosure url="{{ $fb }}" type="image/jpeg" />
 
-        <!-- INSTAGRAM -->
         <media:content url="{{ $ig }}" medium="image" />
         <media:thumbnail url="{{ $ig }}" />
         <enclosure url="{{ $ig }}" type="image/jpeg" />
 
-        <!-- PINTEREST -->
         <media:content url="{{ $pin }}" medium="image" />
         <media:thumbnail url="{{ $pin }}" />
         <enclosure url="{{ $pin }}" type="image/jpeg" />
