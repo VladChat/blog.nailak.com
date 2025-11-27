@@ -1,12 +1,22 @@
 ---
-title: "Best Cuticle Oil Brands for Healthy, Glossy Nails"
-date: 2025-11-16T20:42:10.402426+00:00
+author: Alex Fairstone
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/best-cuticle-oil-brands-for-healthy-glossy-nails.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/best-cuticle-oil-brands-for-healthy-glossy-nails.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/best-cuticle-oil-brands-for-healthy-glossy-nails.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/best-cuticle-oil-brands-for-healthy-glossy-nails.jpg
+categories:
+- news
+date: 2025-11-16 20:42:10.402426+00:00
 draft: false
-categories: ['news']
-tags: ['best-cuticle-oil-brands', 'diy-nail-oil-blend', 'what-causes-brittle-nails', 'nail-strengthening-treatments']
 keywords:
-  - "Best cuticle oil brands"
-author: "Alex Fairstone"
+- Best cuticle oil brands
+tags:
+- best-cuticle-oil-brands
+- diy-nail-oil-blend
+- what-causes-brittle-nails
+- nail-strengthening-treatments
+title: Best Cuticle Oil Brands for Healthy, Glossy Nails
 ---
 
 # Best Cuticle Oil Brands for Healthy, Glossy Nails

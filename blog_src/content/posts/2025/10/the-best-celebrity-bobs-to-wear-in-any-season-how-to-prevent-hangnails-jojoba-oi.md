@@ -1,10 +1,17 @@
 ---
-title: "The Best Celebrity Bobs to Wear in Any Season — How to prevent hangnails"
-date: 2025-10-19T04:07:32.373560+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/the-best-celebrity-bobs-to-wear-in-any-season-how-to-prevent-hangnails-jojoba-oi.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/the-best-celebrity-bobs-to-wear-in-any-season-how-to-prevent-hangnails-jojoba-oi.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/the-best-celebrity-bobs-to-wear-in-any-season-how-to-prevent-hangnails-jojoba-oi.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/the-best-celebrity-bobs-to-wear-in-any-season-how-to-prevent-hangnails-jojoba-oi.jpg
+categories:
+- news
+date: 2025-10-19 04:07:32.373560+00:00
 draft: false
-categories: ['news']
-tags: ['Jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- Jojoba oil for cuticles
+title: The Best Celebrity Bobs to Wear in Any Season — How to prevent hangnails
 ---
 
 # Celebrity Bobs & Hangnail Solutions

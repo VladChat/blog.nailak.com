@@ -1,13 +1,25 @@
 ---
-title: "Is Turmeric Good for Hair Growth? Real Benefits & How to Use It — Nail oil benefits vs polish"
-date: 2025-11-05T13:29:26.557504+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/is-turmeric-good-for-hair-growth-real-benefits-how-to-use-it-nail-oil-benefits-v.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/is-turmeric-good-for-hair-growth-real-benefits-how-to-use-it-nail-oil-benefits-v.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/is-turmeric-good-for-hair-growth-real-benefits-how-to-use-it-nail-oil-benefits-v.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/is-turmeric-good-for-hair-growth-real-benefits-how-to-use-it-nail-oil-benefits-v.jpg
+categories:
+- news
+date: 2025-11-05 13:29:26.557504+00:00
 draft: false
-categories: ['news']
-tags: ['nap-whilst-nails-healthy-oils', 'nail-oil-benefits-vs-polish', 'cuticle-oil-benefits', 'natural-nail-care-routine', 'how-to-strengthen-brittle-nails']
 keywords:
-  - "Nap whilst nails healthy oils"
-  - "nail oil benefits vs polish"
-author: "Nailak Editorial"
+- Nap whilst nails healthy oils
+- nail oil benefits vs polish
+tags:
+- nap-whilst-nails-healthy-oils
+- nail-oil-benefits-vs-polish
+- cuticle-oil-benefits
+- natural-nail-care-routine
+- how-to-strengthen-brittle-nails
+title: Is Turmeric Good for Hair Growth? Real Benefits & How to Use It — Nail oil
+  benefits vs polish
 ---
 
 # Turmeric for Hair Growth & Nail Oil vs Polish

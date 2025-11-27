@@ -1,13 +1,25 @@
 ---
-title: "Why the Washington Commanders Are Dominating the Internet in July 2025 — How to get rid of nail fungus fast"
-date: 2025-10-22T05:36:36.480921+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/why-the-washington-commanders-are-dominating-the-internet-in-july-2025-how-to-ge.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/why-the-washington-commanders-are-dominating-the-internet-in-july-2025-how-to-ge.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/why-the-washington-commanders-are-dominating-the-internet-in-july-2025-how-to-ge.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/why-the-washington-commanders-are-dominating-the-internet-in-july-2025-how-to-ge.jpg
+categories:
+- news
+date: 2025-10-22 05:36:36.480921+00:00
 draft: false
-categories: ['news']
-tags: ['tea-tree-oil-for-nail-fungus', 'how-to-get-rid-of-nail-fungus-fast', 'essential-oils-for-nail-fungus', 'best-nail-fungus-home-treatment', 'coconut-oil-for-nail-fungus']
 keywords:
-  - "Tea tree oil for nail fungus"
-  - "how to get rid of nail fungus fast"
-author: "Nailak Editorial"
+- Tea tree oil for nail fungus
+- how to get rid of nail fungus fast
+tags:
+- tea-tree-oil-for-nail-fungus
+- how-to-get-rid-of-nail-fungus-fast
+- essential-oils-for-nail-fungus
+- best-nail-fungus-home-treatment
+- coconut-oil-for-nail-fungus
+title: Why the Washington Commanders Are Dominating the Internet in July 2025 — How
+  to get rid of nail fungus fast
 ---
 
 # Why the Commanders Trend—and Beat Nail Fungus Fast

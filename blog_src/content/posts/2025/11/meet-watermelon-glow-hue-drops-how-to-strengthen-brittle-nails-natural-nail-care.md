@@ -1,13 +1,24 @@
 ---
-title: "Meet Watermelon Glow Hue Drops — How to strengthen brittle nails"
-date: 2025-11-07T23:33:38.709994+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/meet-watermelon-glow-hue-drops-how-to-strengthen-brittle-nails-natural-nail-care.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/meet-watermelon-glow-hue-drops-how-to-strengthen-brittle-nails-natural-nail-care.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/meet-watermelon-glow-hue-drops-how-to-strengthen-brittle-nails-natural-nail-care.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/meet-watermelon-glow-hue-drops-how-to-strengthen-brittle-nails-natural-nail-care.jpg
+categories:
+- news
+date: 2025-11-07 23:33:38.709994+00:00
 draft: false
-categories: ['news']
-tags: ['natural-nail-care-routine', 'how-to-strengthen-brittle-nails', 'vitamin-e-oil-for-nails', 'jojoba-oil-for-cuticles', 'best-oils-for-nail-growth']
 keywords:
-  - "Natural nail care routine"
-  - "how to strengthen brittle nails"
-author: "Nailak Editorial"
+- Natural nail care routine
+- how to strengthen brittle nails
+tags:
+- natural-nail-care-routine
+- how-to-strengthen-brittle-nails
+- vitamin-e-oil-for-nails
+- jojoba-oil-for-cuticles
+- best-oils-for-nail-growth
+title: Meet Watermelon Glow Hue Drops — How to strengthen brittle nails
 ---
 
 # Watermelon Glow Hue Drops & Stronger Nails

@@ -1,10 +1,18 @@
 ---
-title: "ICYMI: Maria Grazia Chiuri Returns to Fendi, Boy Smells Opens First Flagship Pop-Up & What Brands Get Out of Beauty New York — How to grow nails faster naturally"
-date: 2025-10-19T04:47:16.444034+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/icymi-maria-grazia-chiuri-returns-to-fendi-boy-smells-opens-first-flagship-pop-u.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/icymi-maria-grazia-chiuri-returns-to-fendi-boy-smells-opens-first-flagship-pop-u.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/icymi-maria-grazia-chiuri-returns-to-fendi-boy-smells-opens-first-flagship-pop-u.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/icymi-maria-grazia-chiuri-returns-to-fendi-boy-smells-opens-first-flagship-pop-u.jpg
+categories:
+- news
+date: 2025-10-19 04:47:16.444034+00:00
 draft: false
-categories: ['news']
-tags: ['Jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- Jojoba oil for cuticles
+title: 'ICYMI: Maria Grazia Chiuri Returns to Fendi, Boy Smells Opens First Flagship
+  Pop-Up & What Brands Get Out of Beauty New York — How to grow nails faster naturally'
 ---
 
 # Grow Nails Faster Naturally: Expert Tips

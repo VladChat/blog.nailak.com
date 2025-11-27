@@ -1,13 +1,24 @@
 ---
-title: "Rosacea Tips For Winter: My Ultimate Cheatsheet — Nail hydration tips"
-date: 2025-11-12T13:39:42.408595+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/rosacea-tips-for-winter-my-ultimate-cheatsheet-nail-hydration-tips-vegan-nail-ca.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/rosacea-tips-for-winter-my-ultimate-cheatsheet-nail-hydration-tips-vegan-nail-ca.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/rosacea-tips-for-winter-my-ultimate-cheatsheet-nail-hydration-tips-vegan-nail-ca.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/rosacea-tips-for-winter-my-ultimate-cheatsheet-nail-hydration-tips-vegan-nail-ca.jpg
+categories:
+- news
+date: 2025-11-12 13:39:42.408595+00:00
 draft: false
-categories: ['news']
-tags: ['vegan-nail-care-products', 'nail-hydration-tips', 'how-to-repair-damaged-nails', 'essential-oils-for-nail-health', 'daily-nail-care-routine']
 keywords:
-  - "Vegan nail care products"
-  - "nail hydration tips"
-author: "Nailak Editorial"
+- Vegan nail care products
+- nail hydration tips
+tags:
+- vegan-nail-care-products
+- nail-hydration-tips
+- how-to-repair-damaged-nails
+- essential-oils-for-nail-health
+- daily-nail-care-routine
+title: 'Rosacea Tips For Winter: My Ultimate Cheatsheet — Nail hydration tips'
 ---
 
 # Winter Rosacea Relief + Nail Hydration Cheatsheet

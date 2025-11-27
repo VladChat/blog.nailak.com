@@ -1,13 +1,24 @@
 ---
-title: "SWALEDALE CHATEAUBRIAND & A ROASTED ROOT SALAD. — Vegan nail care products"
-date: 2025-11-11T13:38:29.261702+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/swaledale-chateaubriand-a-roasted-root-salad-vegan-nail-care-products-dry-cuticl.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/swaledale-chateaubriand-a-roasted-root-salad-vegan-nail-care-products-dry-cuticl.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/swaledale-chateaubriand-a-roasted-root-salad-vegan-nail-care-products-dry-cuticl.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/swaledale-chateaubriand-a-roasted-root-salad-vegan-nail-care-products-dry-cuticl.jpg
+categories:
+- news
+date: 2025-11-11 13:38:29.261702+00:00
 draft: false
-categories: ['news']
-tags: ['dry-cuticle-treatment', 'vegan-nail-care-products', 'nail-hydration-tips', 'how-to-repair-damaged-nails', 'essential-oils-for-nail-health']
 keywords:
-  - "Dry cuticle treatment"
-  - "vegan nail care products"
-author: "Nailak Editorial"
+- Dry cuticle treatment
+- vegan nail care products
+tags:
+- dry-cuticle-treatment
+- vegan-nail-care-products
+- nail-hydration-tips
+- how-to-repair-damaged-nails
+- essential-oils-for-nail-health
+title: SWALEDALE CHATEAUBRIAND & A ROASTED ROOT SALAD. — Vegan nail care products
 ---
 
 # Vegan Nail Care Guide: Plant-Based Polish & Rituals

@@ -1,13 +1,24 @@
 ---
-title: "30 New Trendy Hairstyles to Inspire You — Coconut oil for nail fungus"
-date: 2025-10-24T13:26:56.926814+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/30-new-trendy-hairstyles-to-inspire-you-coconut-oil-for-nail-fungus-best-nail-fu.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/30-new-trendy-hairstyles-to-inspire-you-coconut-oil-for-nail-fungus-best-nail-fu.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/30-new-trendy-hairstyles-to-inspire-you-coconut-oil-for-nail-fungus-best-nail-fu.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/30-new-trendy-hairstyles-to-inspire-you-coconut-oil-for-nail-fungus-best-nail-fu.jpg
+categories:
+- news
+date: 2025-10-24 13:26:56.926814+00:00
 draft: false
-categories: ['news']
-tags: ['best-nail-fungus-home-treatment', 'coconut-oil-for-nail-fungus', 'how-to-treat-toenail-fungus-naturally', 'nail-fungus-prevention-tips', 'nail-fungus-and-brittle-nails']
 keywords:
-  - "Best nail fungus home treatment"
-  - "coconut oil for nail fungus"
-author: "Nailak Editorial"
+- Best nail fungus home treatment
+- coconut oil for nail fungus
+tags:
+- best-nail-fungus-home-treatment
+- coconut-oil-for-nail-fungus
+- how-to-treat-toenail-fungus-naturally
+- nail-fungus-prevention-tips
+- nail-fungus-and-brittle-nails
+title: 30 New Trendy Hairstyles to Inspire You — Coconut oil for nail fungus
 ---
 
 # Coconut Oil for Nail Fungus: Care, Tips & Confidence

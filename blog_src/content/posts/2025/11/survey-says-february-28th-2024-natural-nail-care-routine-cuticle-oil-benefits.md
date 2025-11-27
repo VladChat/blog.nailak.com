@@ -1,13 +1,24 @@
 ---
-title: "Survey Says... February 28th, 2024 — Natural nail care routine"
-date: 2025-11-07T13:25:43.207714+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/survey-says-february-28th-2024-natural-nail-care-routine-cuticle-oil-benefits.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/survey-says-february-28th-2024-natural-nail-care-routine-cuticle-oil-benefits.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/survey-says-february-28th-2024-natural-nail-care-routine-cuticle-oil-benefits.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/survey-says-february-28th-2024-natural-nail-care-routine-cuticle-oil-benefits.jpg
+categories:
+- news
+date: 2025-11-07 13:25:43.207714+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle-oil-benefits', 'natural-nail-care-routine', 'how-to-strengthen-brittle-nails', 'vitamin-e-oil-for-nails', 'jojoba-oil-for-cuticles']
 keywords:
-  - "Cuticle oil benefits"
-  - "natural nail care routine"
-author: "Nailak Editorial"
+- Cuticle oil benefits
+- natural nail care routine
+tags:
+- cuticle-oil-benefits
+- natural-nail-care-routine
+- how-to-strengthen-brittle-nails
+- vitamin-e-oil-for-nails
+- jojoba-oil-for-cuticles
+title: Survey Says... February 28th, 2024 — Natural nail care routine
 ---
 
 # Natural Nail Care: A Routine for Healthy Glow

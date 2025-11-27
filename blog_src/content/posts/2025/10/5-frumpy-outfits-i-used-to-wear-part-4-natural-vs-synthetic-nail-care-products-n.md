@@ -1,13 +1,25 @@
 ---
-title: "5 FRUMPY OUTFITS I USED TO WEAR! 😂 Part 4 — Natural vs synthetic nail care products"
-date: 2025-10-21T13:30:38.022275+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/5-frumpy-outfits-i-used-to-wear-part-4-natural-vs-synthetic-nail-care-products-n.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/5-frumpy-outfits-i-used-to-wear-part-4-natural-vs-synthetic-nail-care-products-n.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/5-frumpy-outfits-i-used-to-wear-part-4-natural-vs-synthetic-nail-care-products-n.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/5-frumpy-outfits-i-used-to-wear-part-4-natural-vs-synthetic-nail-care-products-n.jpg
+categories:
+- news
+date: 2025-10-21 13:30:38.022275+00:00
 draft: false
-categories: ['news']
-tags: ['non-toxic-nail-polish-alternatives', 'natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health']
 keywords:
-  - "Non toxic nail polish alternatives"
-  - "natural vs synthetic nail care products"
-author: "Nailak Editorial"
+- Non toxic nail polish alternatives
+- natural vs synthetic nail care products
+tags:
+- non-toxic-nail-polish-alternatives
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+title: "5 FRUMPY OUTFITS I USED TO WEAR! \U0001F602 Part 4 — Natural vs synthetic
+  nail care products"
 ---
 
 # Natural vs Synthetic Nail Care: What Works

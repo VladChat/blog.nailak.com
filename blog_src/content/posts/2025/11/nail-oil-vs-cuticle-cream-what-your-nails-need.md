@@ -1,12 +1,22 @@
 ---
-title: "Nail Oil vs Cuticle Cream: What Your Nails Need"
-date: 2025-11-16T19:49:10.905664+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-oil-vs-cuticle-cream-what-your-nails-need.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/nail-oil-vs-cuticle-cream-what-your-nails-need.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/nail-oil-vs-cuticle-cream-what-your-nails-need.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-oil-vs-cuticle-cream-what-your-nails-need.jpg
+categories:
+- news
+date: 2025-11-16 19:49:10.905664+00:00
 draft: false
-categories: ['news']
-tags: ['nail-oil-vs-cuticle-cream', 'how-to-grow-nails-faster-naturally', 'best-cuticle-oil-brands', 'how-to-use-cuticle-oil-properly']
 keywords:
-  - "Nail oil vs cuticle cream"
-author: "Nina Nailak"
+- Nail oil vs cuticle cream
+tags:
+- nail-oil-vs-cuticle-cream
+- how-to-grow-nails-faster-naturally
+- best-cuticle-oil-brands
+- how-to-use-cuticle-oil-properly
+title: 'Nail Oil vs Cuticle Cream: What Your Nails Need'
 ---
 
 # Nail Oil vs Cuticle Cream: What Your Nails Need

@@ -1,13 +1,24 @@
 ---
-title: "Jo Malone Wood Sage and Sea Salt Cologne Review — Hangnail prevention tips"
-date: 2025-10-22T02:07:07.845385+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/jo-malone-wood-sage-and-sea-salt-cologne-review-hangnail-prevention-tips-natural.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/jo-malone-wood-sage-and-sea-salt-cologne-review-hangnail-prevention-tips-natural.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/jo-malone-wood-sage-and-sea-salt-cologne-review-hangnail-prevention-tips-natural.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/jo-malone-wood-sage-and-sea-salt-cologne-review-hangnail-prevention-tips-natural.jpg
+categories:
+- news
+date: 2025-10-22 02:07:07.845385+00:00
 draft: false
-categories: ['news']
-tags: ['natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles']
 keywords:
-  - "Natural vs synthetic nail care products"
-  - "hangnail prevention tips"
-author: "Nailak Editorial"
+- Natural vs synthetic nail care products
+- hangnail prevention tips
+tags:
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+title: Jo Malone Wood Sage and Sea Salt Cologne Review — Hangnail prevention tips
 ---
 
 # Wood Sage & Sea Salt: Scent Review + Nail Care

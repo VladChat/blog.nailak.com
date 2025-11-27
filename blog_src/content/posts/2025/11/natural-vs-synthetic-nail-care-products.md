@@ -1,12 +1,22 @@
 ---
-title: "Natural vs Synthetic Nail Care Products"
-date: 2025-11-23T13:29:41.134939+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/natural-vs-synthetic-nail-care-products.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/natural-vs-synthetic-nail-care-products.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/natural-vs-synthetic-nail-care-products.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/natural-vs-synthetic-nail-care-products.jpg
+categories:
+- news
+date: 2025-11-23 13:29:41.134939+00:00
 draft: false
-categories: ['news']
-tags: ['natural-vs-synthetic-nail-care-products', 'how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles']
 keywords:
-  - "Natural vs synthetic nail care products"
-author: "Nina Nailak"
+- Natural vs synthetic nail care products
+tags:
+- natural-vs-synthetic-nail-care-products
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+title: Natural vs Synthetic Nail Care Products
 ---
 
 # Natural vs Synthetic Nail Care Products

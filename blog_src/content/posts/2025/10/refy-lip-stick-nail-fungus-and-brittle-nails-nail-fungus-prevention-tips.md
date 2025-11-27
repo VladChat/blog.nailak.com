@@ -1,13 +1,24 @@
 ---
-title: "Refy Lip Stick — Nail fungus and brittle nails"
-date: 2025-10-26T13:19:56.736469+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/refy-lip-stick-nail-fungus-and-brittle-nails-nail-fungus-prevention-tips.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/refy-lip-stick-nail-fungus-and-brittle-nails-nail-fungus-prevention-tips.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/refy-lip-stick-nail-fungus-and-brittle-nails-nail-fungus-prevention-tips.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/refy-lip-stick-nail-fungus-and-brittle-nails-nail-fungus-prevention-tips.jpg
+categories:
+- news
+date: 2025-10-26 13:19:56.736469+00:00
 draft: false
-categories: ['news']
-tags: ['nail-fungus-prevention-tips', 'nail-fungus-and-brittle-nails', 'how-to-repair-nails-after-fungus', 'vegan-antifungal-nail-care', 'diy-antifungal-nail-oil']
 keywords:
-  - "Nail fungus prevention tips"
-  - "nail fungus and brittle nails"
-author: "Nailak Editorial"
+- Nail fungus prevention tips
+- nail fungus and brittle nails
+tags:
+- nail-fungus-prevention-tips
+- nail-fungus-and-brittle-nails
+- how-to-repair-nails-after-fungus
+- vegan-antifungal-nail-care
+- diy-antifungal-nail-oil
+title: Refy Lip Stick — Nail fungus and brittle nails
 ---
 
 # Refy Lip Stick Mood, Fix Nail Fungus and Brittleness

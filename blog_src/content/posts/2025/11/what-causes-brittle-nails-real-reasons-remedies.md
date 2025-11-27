@@ -1,12 +1,22 @@
 ---
-title: "What Causes Brittle Nails? Real Reasons + Remedies"
-date: 2025-11-19T13:38:40.699686+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/what-causes-brittle-nails-real-reasons-remedies.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/what-causes-brittle-nails-real-reasons-remedies.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/what-causes-brittle-nails-real-reasons-remedies.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/what-causes-brittle-nails-real-reasons-remedies.jpg
+categories:
+- news
+date: 2025-11-19 13:38:40.699686+00:00
 draft: false
-categories: ['news']
-tags: ['what-causes-brittle-nails', 'how-to-moisturize-nails-and-cuticles', 'non-toxic-nail-polish-alternatives', 'natural-vs-synthetic-nail-care-products']
 keywords:
-  - "What causes brittle nails"
-author: "Nina Nailak"
+- What causes brittle nails
+tags:
+- what-causes-brittle-nails
+- how-to-moisturize-nails-and-cuticles
+- non-toxic-nail-polish-alternatives
+- natural-vs-synthetic-nail-care-products
+title: What Causes Brittle Nails? Real Reasons + Remedies
 ---
 
 # What Causes Brittle Nails? Real Reasons + Remedies

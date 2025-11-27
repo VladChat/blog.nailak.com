@@ -1,13 +1,24 @@
 ---
-title: "Sulwhasoo Skin Reinforcing Emulsion Review — Dry cuticle treatment"
-date: 2025-11-10T13:37:36.896528+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/sulwhasoo-skin-reinforcing-emulsion-review-dry-cuticle-treatment-best-oils-for-n.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/sulwhasoo-skin-reinforcing-emulsion-review-dry-cuticle-treatment-best-oils-for-n.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/sulwhasoo-skin-reinforcing-emulsion-review-dry-cuticle-treatment-best-oils-for-n.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/sulwhasoo-skin-reinforcing-emulsion-review-dry-cuticle-treatment-best-oils-for-n.jpg
+categories:
+- news
+date: 2025-11-10 13:37:36.896528+00:00
 draft: false
-categories: ['news']
-tags: ['best-oils-for-nail-growth', 'dry-cuticle-treatment', 'vegan-nail-care-products', 'nail-hydration-tips', 'how-to-repair-damaged-nails']
 keywords:
-  - "Best oils for nail growth"
-  - "dry cuticle treatment"
-author: "Nailak Editorial"
+- Best oils for nail growth
+- dry cuticle treatment
+tags:
+- best-oils-for-nail-growth
+- dry-cuticle-treatment
+- vegan-nail-care-products
+- nail-hydration-tips
+- how-to-repair-damaged-nails
+title: Sulwhasoo Skin Reinforcing Emulsion Review — Dry cuticle treatment
 ---
 
 # Sulwhasoo Emulsion for Dry Cuticles: Review

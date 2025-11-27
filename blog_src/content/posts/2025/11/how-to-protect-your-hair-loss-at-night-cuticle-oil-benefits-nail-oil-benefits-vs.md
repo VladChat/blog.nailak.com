@@ -1,13 +1,24 @@
 ---
-title: "How To Protect Your Hair Loss At Night — Cuticle oil benefits"
-date: 2025-11-06T13:28:59.327899+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-protect-your-hair-loss-at-night-cuticle-oil-benefits-nail-oil-benefits-vs.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-protect-your-hair-loss-at-night-cuticle-oil-benefits-nail-oil-benefits-vs.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-protect-your-hair-loss-at-night-cuticle-oil-benefits-nail-oil-benefits-vs.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-protect-your-hair-loss-at-night-cuticle-oil-benefits-nail-oil-benefits-vs.jpg
+categories:
+- news
+date: 2025-11-06 13:28:59.327899+00:00
 draft: false
-categories: ['news']
-tags: ['nail-oil-benefits-vs-polish', 'cuticle-oil-benefits', 'natural-nail-care-routine', 'how-to-strengthen-brittle-nails', 'vitamin-e-oil-for-nails']
 keywords:
-  - "Nail oil benefits vs polish"
-  - "cuticle oil benefits"
-author: "Nailak Editorial"
+- Nail oil benefits vs polish
+- cuticle oil benefits
+tags:
+- nail-oil-benefits-vs-polish
+- cuticle-oil-benefits
+- natural-nail-care-routine
+- how-to-strengthen-brittle-nails
+- vitamin-e-oil-for-nails
+title: How To Protect Your Hair Loss At Night — Cuticle oil benefits
 ---
 
 # Protect Hair at Night & Cuticle Oil Benefits

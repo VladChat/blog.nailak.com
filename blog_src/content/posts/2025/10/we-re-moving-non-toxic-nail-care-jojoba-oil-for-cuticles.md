@@ -1,10 +1,17 @@
 ---
-title: "We're Moving! — non-toxic nail care"
-date: 2025-10-19T04:01:38.035028+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/we-re-moving-non-toxic-nail-care-jojoba-oil-for-cuticles.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/we-re-moving-non-toxic-nail-care-jojoba-oil-for-cuticles.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/we-re-moving-non-toxic-nail-care-jojoba-oil-for-cuticles.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/we-re-moving-non-toxic-nail-care-jojoba-oil-for-cuticles.jpg
+categories:
+- news
+date: 2025-10-19 04:01:38.035028+00:00
 draft: false
-categories: ['news']
-tags: ['jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- jojoba oil for cuticles
+title: We're Moving! — non-toxic nail care
 ---
 
 # Non-Toxic Nail Care: The Future of Beauty

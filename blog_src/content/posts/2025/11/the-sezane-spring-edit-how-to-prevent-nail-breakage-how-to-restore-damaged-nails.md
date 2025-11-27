@@ -1,13 +1,24 @@
 ---
-title: "The Sézane Spring Edit — How to prevent nail breakage"
-date: 2025-11-02T13:20:29.884382+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/the-sezane-spring-edit-how-to-prevent-nail-breakage-how-to-restore-damaged-nails.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/the-sezane-spring-edit-how-to-prevent-nail-breakage-how-to-restore-damaged-nails.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/the-sezane-spring-edit-how-to-prevent-nail-breakage-how-to-restore-damaged-nails.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/the-sezane-spring-edit-how-to-prevent-nail-breakage-how-to-restore-damaged-nails.jpg
+categories:
+- news
+date: 2025-11-02 13:20:29.884382+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-restore-damaged-nails-naturally', 'how-to-prevent-nail-breakage', 'how-to-prevent-nail-splitting', 'nap-whilst-nails-healthy-oils', 'nail-oil-benefits-vs-polish']
 keywords:
-  - "How to restore damaged nails naturally"
-  - "how to prevent nail breakage"
-author: "Nailak Editorial"
+- How to restore damaged nails naturally
+- how to prevent nail breakage
+tags:
+- how-to-restore-damaged-nails-naturally
+- how-to-prevent-nail-breakage
+- how-to-prevent-nail-splitting
+- nap-whilst-nails-healthy-oils
+- nail-oil-benefits-vs-polish
+title: The Sézane Spring Edit — How to prevent nail breakage
 ---
 
 # The Sézane Spring Edit: Prevent Nail Breakage

@@ -1,13 +1,25 @@
 ---
-title: "What Shoes to Wear With Wide Leg Jeans: How to Choose Shoes + Outfit Examples — How to repair nails after fungus"
-date: 2025-10-27T13:28:49.967754+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/what-shoes-to-wear-with-wide-leg-jeans-how-to-choose-shoes-outfit-examples-how-t.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/what-shoes-to-wear-with-wide-leg-jeans-how-to-choose-shoes-outfit-examples-how-t.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/what-shoes-to-wear-with-wide-leg-jeans-how-to-choose-shoes-outfit-examples-how-t.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/what-shoes-to-wear-with-wide-leg-jeans-how-to-choose-shoes-outfit-examples-how-t.jpg
+categories:
+- news
+date: 2025-10-27 13:28:49.967754+00:00
 draft: false
-categories: ['news']
-tags: ['nail-fungus-and-brittle-nails', 'how-to-repair-nails-after-fungus', 'vegan-antifungal-nail-care', 'diy-antifungal-nail-oil', 'best-oils-for-nail-and-cuticle-health']
 keywords:
-  - "Nail fungus and brittle nails"
-  - "how to repair nails after fungus"
-author: "Nailak Editorial"
+- Nail fungus and brittle nails
+- how to repair nails after fungus
+tags:
+- nail-fungus-and-brittle-nails
+- how-to-repair-nails-after-fungus
+- vegan-antifungal-nail-care
+- diy-antifungal-nail-oil
+- best-oils-for-nail-and-cuticle-health
+title: 'What Shoes to Wear With Wide Leg Jeans: How to Choose Shoes + Outfit Examples
+  — How to repair nails after fungus'
 ---
 
 # Shoes for Wide-Leg Jeans + Nail Repair After Fungus

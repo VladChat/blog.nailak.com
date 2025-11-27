@@ -1,10 +1,21 @@
 ---
-title: "Avora Immersive Experience — How to moisturize nails and cuticles"
-date: 2025-10-20T13:57:16.429417+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/avora-immersive-experience-how-to-moisturize-nails-and-cuticles-nail-hydration-t.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/avora-immersive-experience-how-to-moisturize-nails-and-cuticles-nail-hydration-t.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/avora-immersive-experience-how-to-moisturize-nails-and-cuticles-nail-hydration-t.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/avora-immersive-experience-how-to-moisturize-nails-and-cuticles-nail-hydration-t.jpg
+categories:
+- news
+date: 2025-10-20 13:57:16.429417+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'nail hydration tips']
-author: "Nailak Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- nail hydration tips
+title: Avora Immersive Experience — How to moisturize nails and cuticles
 ---
 
 # Avora London Guide + How to Moisturize Nails & Cuticles

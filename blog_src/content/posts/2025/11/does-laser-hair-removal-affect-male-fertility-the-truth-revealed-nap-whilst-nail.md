@@ -1,13 +1,25 @@
 ---
-title: "Does Laser Hair Removal Affect Male Fertility? The Truth Revealed — Nap whilst nails healthy oils"
-date: 2025-11-04T13:30:53.211429+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/does-laser-hair-removal-affect-male-fertility-the-truth-revealed-nap-whilst-nail.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/does-laser-hair-removal-affect-male-fertility-the-truth-revealed-nap-whilst-nail.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/does-laser-hair-removal-affect-male-fertility-the-truth-revealed-nap-whilst-nail.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/does-laser-hair-removal-affect-male-fertility-the-truth-revealed-nap-whilst-nail.jpg
+categories:
+- news
+date: 2025-11-04 13:30:53.211429+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-prevent-nail-splitting', 'nap-whilst-nails-healthy-oils', 'nail-oil-benefits-vs-polish', 'cuticle-oil-benefits', 'natural-nail-care-routine']
 keywords:
-  - "How to prevent nail splitting"
-  - "nap whilst nails healthy oils"
-author: "Nailak Editorial"
+- How to prevent nail splitting
+- nap whilst nails healthy oils
+tags:
+- how-to-prevent-nail-splitting
+- nap-whilst-nails-healthy-oils
+- nail-oil-benefits-vs-polish
+- cuticle-oil-benefits
+- natural-nail-care-routine
+title: Does Laser Hair Removal Affect Male Fertility? The Truth Revealed — Nap whilst
+  nails healthy oils
 ---
 
 # Laser Hair Removal and Male Fertility: The Facts

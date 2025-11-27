@@ -1,10 +1,18 @@
 ---
-title: "Ulta Beauty’s Marketplace Launch Sparks Customer Backlash — Nail oil vs cuticle cream"
-date: 2025-10-19T04:32:52.227777+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/ulta-beautys-marketplace-launch-sparks-customer-backlash-nail-oil-vs-cuticle-cre.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/ulta-beautys-marketplace-launch-sparks-customer-backlash-nail-oil-vs-cuticle-cre.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/ulta-beautys-marketplace-launch-sparks-customer-backlash-nail-oil-vs-cuticle-cre.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/ulta-beautys-marketplace-launch-sparks-customer-backlash-nail-oil-vs-cuticle-cre.jpg
+categories:
+- news
+date: 2025-10-19 04:32:52.227777+00:00
 draft: false
-categories: ['news']
-tags: ['Jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- Jojoba oil for cuticles
+title: Ulta Beauty’s Marketplace Launch Sparks Customer Backlash — Nail oil vs cuticle
+  cream
 ---
 
 # Ulta Beauty's New Marketplace: What You Need to Know

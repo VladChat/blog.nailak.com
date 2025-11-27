@@ -1,12 +1,22 @@
 ---
-title: "How to Moisturize Nails and Cuticles (The Gentle Way)"
-date: 2025-11-21T13:34:41.780572+00:00
+author: Jordan Reed
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-moisturize-nails-and-cuticles-the-gentle-way.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-moisturize-nails-and-cuticles-the-gentle-way.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-moisturize-nails-and-cuticles-the-gentle-way.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-moisturize-nails-and-cuticles-the-gentle-way.jpg
+categories:
+- news
+date: 2025-11-21 13:34:41.780572+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-moisturize-nails-and-cuticles', 'natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting']
 keywords:
-  - "How to moisturize nails and cuticles"
-author: "Jordan Reed"
+- How to moisturize nails and cuticles
+tags:
+- how-to-moisturize-nails-and-cuticles
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+title: How to Moisturize Nails and Cuticles (The Gentle Way)
 ---
 
 # How to Moisturize Nails and Cuticles (The Gentle Way)

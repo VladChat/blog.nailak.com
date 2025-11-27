@@ -1,10 +1,21 @@
 ---
-title: "Exercises That Help Combat Muscle Loss on GLP-1s — Non toxic nail polish alternatives"
-date: 2025-10-20T14:36:41.158506+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/exercises-that-help-combat-muscle-loss-on-glp-1s-non-toxic-nail-polish-alternati.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/exercises-that-help-combat-muscle-loss-on-glp-1s-non-toxic-nail-polish-alternati.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/exercises-that-help-combat-muscle-loss-on-glp-1s-non-toxic-nail-polish-alternati.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/exercises-that-help-combat-muscle-loss-on-glp-1s-non-toxic-nail-polish-alternati.jpg
+categories:
+- news
+date: 2025-10-20 14:36:41.158506+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'how to repair damaged nails']
-author: "Nailak Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- how to repair damaged nails
+title: Exercises That Help Combat Muscle Loss on GLP-1s — Non toxic nail polish alternatives
 ---
 
 # Exercises for GLP-1 Muscle Loss + Non-Toxic Nail Polish

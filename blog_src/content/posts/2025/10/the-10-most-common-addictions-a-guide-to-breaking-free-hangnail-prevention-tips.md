@@ -1,11 +1,22 @@
 ---
-title: "The 10 Most Common Addictions: A Guide To Breaking Free — Hangnail prevention tips"
-date: 2025-10-20T17:03:16.891824+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/the-10-most-common-addictions-a-guide-to-breaking-free-hangnail-prevention-tips.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/the-10-most-common-addictions-a-guide-to-breaking-free-hangnail-prevention-tips.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/the-10-most-common-addictions-a-guide-to-breaking-free-hangnail-prevention-tips.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/the-10-most-common-addictions-a-guide-to-breaking-free-hangnail-prevention-tips.jpg
+categories:
+- news
+date: 2025-10-20 17:03:16.891824+00:00
 draft: false
-categories: ['news']
-tags: ['daily-nail-care-routine', 'manicure', 'nail-care', 'beauty-wellness']
-keywords: "Daily nail care routine, manicure"
-author: "Nailak Editorial"
+keywords: Daily nail care routine, manicure
+tags:
+- daily-nail-care-routine
+- manicure
+- nail-care
+- beauty-wellness
+title: 'The 10 Most Common Addictions: A Guide To Breaking Free — Hangnail prevention
+  tips'
 ---
 
 # Hangnail Prevention: Break the Picking Habit

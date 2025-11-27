@@ -1,13 +1,25 @@
 ---
-title: "Sculptural Buccal Face Massage: Benefits and Before/After Results — Vegan antifungal nail care"
-date: 2025-10-28T13:28:05.985405+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/sculptural-buccal-face-massage-benefits-and-before-after-results-vegan-antifunga.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/sculptural-buccal-face-massage-benefits-and-before-after-results-vegan-antifunga.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/sculptural-buccal-face-massage-benefits-and-before-after-results-vegan-antifunga.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/sculptural-buccal-face-massage-benefits-and-before-after-results-vegan-antifunga.jpg
+categories:
+- news
+date: 2025-10-28 13:28:05.985405+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-repair-nails-after-fungus', 'vegan-antifungal-nail-care', 'diy-antifungal-nail-oil', 'best-oils-for-nail-and-cuticle-health', 'cuticle-oil-for-damaged-nails']
 keywords:
-  - "How to repair nails after fungus"
-  - "vegan antifungal nail care"
-author: "Nailak Editorial"
+- How to repair nails after fungus
+- vegan antifungal nail care
+tags:
+- how-to-repair-nails-after-fungus
+- vegan-antifungal-nail-care
+- diy-antifungal-nail-oil
+- best-oils-for-nail-and-cuticle-health
+- cuticle-oil-for-damaged-nails
+title: 'Sculptural Buccal Face Massage: Benefits and Before/After Results — Vegan
+  antifungal nail care'
 ---
 
 # Sculptural Buccal Massage & Vegan Antifungal Nails

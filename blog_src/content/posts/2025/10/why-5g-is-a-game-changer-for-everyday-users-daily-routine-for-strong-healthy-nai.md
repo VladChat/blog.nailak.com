@@ -1,13 +1,24 @@
 ---
-title: "Why 5G Is a Game Changer for Everyday Users — Daily routine for strong healthy nails"
-date: 2025-10-20T20:31:31.264047+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/why-5g-is-a-game-changer-for-everyday-users-daily-routine-for-strong-healthy-nai.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/why-5g-is-a-game-changer-for-everyday-users-daily-routine-for-strong-healthy-nai.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/why-5g-is-a-game-changer-for-everyday-users-daily-routine-for-strong-healthy-nai.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/why-5g-is-a-game-changer-for-everyday-users-daily-routine-for-strong-healthy-nai.jpg
+categories:
+- news
+date: 2025-10-20 20:31:31.264047+00:00
 draft: false
-categories: ['news']
-tags: ['nail-growth-tips-at-home', 'manicure', 'nail-care', 'beauty-wellness']
 keywords:
-  - "Nail growth tips at home"
-  - "manicure"
-author: "Nailak Editorial"
+- Nail growth tips at home
+- manicure
+tags:
+- nail-growth-tips-at-home
+- manicure
+- nail-care
+- beauty-wellness
+title: Why 5G Is a Game Changer for Everyday Users — Daily routine for strong healthy
+  nails
 ---
 
 # 5G Life: Faster Days & A Strong, Healthy Nail Routine

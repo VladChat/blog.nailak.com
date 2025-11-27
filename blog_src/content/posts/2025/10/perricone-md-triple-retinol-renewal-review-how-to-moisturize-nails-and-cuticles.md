@@ -1,13 +1,24 @@
 ---
-title: "Perricone MD Triple Retinol Renewal Review — How to moisturize nails and cuticles"
-date: 2025-10-21T03:36:46.586692+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/perricone-md-triple-retinol-renewal-review-how-to-moisturize-nails-and-cuticles.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/perricone-md-triple-retinol-renewal-review-how-to-moisturize-nails-and-cuticles.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/perricone-md-triple-retinol-renewal-review-how-to-moisturize-nails-and-cuticles.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/perricone-md-triple-retinol-renewal-review-how-to-moisturize-nails-and-cuticles.jpg
+categories:
+- news
+date: 2025-10-21 03:36:46.586692+00:00
 draft: false
-categories: ['news']
-tags: ['nail-strengthening-treatments', 'how-to-moisturize-nails-and-cuticles', 'non-toxic-nail-polish-alternatives', 'natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips']
 keywords:
-  - "Nail strengthening treatments"
-  - "how to moisturize nails and cuticles"
-author: "Nailak Editorial"
+- Nail strengthening treatments
+- how to moisturize nails and cuticles
+tags:
+- nail-strengthening-treatments
+- how-to-moisturize-nails-and-cuticles
+- non-toxic-nail-polish-alternatives
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+title: Perricone MD Triple Retinol Renewal Review — How to moisturize nails and cuticles
 ---
 
 # Perricone MD Triple Retinol Review & Cuticle Care

@@ -1,13 +1,24 @@
 ---
-title: "Updated! The Green Product Junkie’s Coupon Codes — Best oils for nail growth"
-date: 2025-11-09T13:30:01.736242+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/updated-the-green-product-junkies-coupon-codes-best-oils-for-nail-growth-jojoba.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/updated-the-green-product-junkies-coupon-codes-best-oils-for-nail-growth-jojoba.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/updated-the-green-product-junkies-coupon-codes-best-oils-for-nail-growth-jojoba.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/updated-the-green-product-junkies-coupon-codes-best-oils-for-nail-growth-jojoba.jpg
+categories:
+- news
+date: 2025-11-09 13:30:01.736242+00:00
 draft: false
-categories: ['news']
-tags: ['jojoba-oil-for-cuticles', 'best-oils-for-nail-growth', 'dry-cuticle-treatment', 'vegan-nail-care-products', 'nail-hydration-tips']
 keywords:
-  - "Jojoba oil for cuticles"
-  - "best oils for nail growth"
-author: "Nailak Editorial"
+- Jojoba oil for cuticles
+- best oils for nail growth
+tags:
+- jojoba-oil-for-cuticles
+- best-oils-for-nail-growth
+- dry-cuticle-treatment
+- vegan-nail-care-products
+- nail-hydration-tips
+title: Updated! The Green Product Junkie’s Coupon Codes — Best oils for nail growth
 ---
 
 # Best Oils for Nail Growth + Updated Coupon Codes

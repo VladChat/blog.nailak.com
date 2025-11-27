@@ -1,10 +1,18 @@
 ---
-title: "Kylie Jenner Reheated The 'King Kylie' Aesthetic With Her 10-Year Anniversary Collection — Best cuticle oil brands"
-date: 2025-10-19T04:52:49.786572+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/kylie-jenner-reheated-the-king-kylie-aesthetic-with-her-10-year-anniversary-coll.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/kylie-jenner-reheated-the-king-kylie-aesthetic-with-her-10-year-anniversary-coll.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/kylie-jenner-reheated-the-king-kylie-aesthetic-with-her-10-year-anniversary-coll.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/kylie-jenner-reheated-the-king-kylie-aesthetic-with-her-10-year-anniversary-coll.jpg
+categories:
+- news
+date: 2025-10-19 04:52:49.786572+00:00
 draft: false
-categories: ['news']
-tags: ['Jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- Jojoba oil for cuticles
+title: Kylie Jenner Reheated The 'King Kylie' Aesthetic With Her 10-Year Anniversary
+  Collection — Best cuticle oil brands
 ---
 
 # Best Cuticle Oils for Reviving Your Nails

@@ -1,12 +1,22 @@
 ---
-title: "How to Prevent Hangnails: Gentle, Expert Tips"
-date: 2025-11-16T18:51:20.049035+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-prevent-hangnails-gentle-expert-tips.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-prevent-hangnails-gentle-expert-tips.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-prevent-hangnails-gentle-expert-tips.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-prevent-hangnails-gentle-expert-tips.jpg
+categories:
+- news
+date: 2025-11-16 18:51:20.049035+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-prevent-hangnails', 'nail-growth-tips-at-home', 'how-to-grow-nails-faster-naturally', 'best-cuticle-oil-brands']
 keywords:
-  - "How to prevent hangnails"
-author: "Nailak Editorial"
+- How to prevent hangnails
+tags:
+- how-to-prevent-hangnails
+- nail-growth-tips-at-home
+- how-to-grow-nails-faster-naturally
+- best-cuticle-oil-brands
+title: 'How to Prevent Hangnails: Gentle, Expert Tips'
 ---
 
 # How to Prevent Hangnails: Gentle, Expert Tips

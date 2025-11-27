@@ -1,13 +1,24 @@
 ---
-title: "Liquid Blush vs Powder Blush: Which Formula Delivers the Best Results for Your Skin? — Vegan nail oil for cuticles"
-date: 2025-10-20T20:05:53.061323+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/liquid-blush-vs-powder-blush-which-formula-delivers-the-best-results-for-your-sk.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/liquid-blush-vs-powder-blush-which-formula-delivers-the-best-results-for-your-sk.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/liquid-blush-vs-powder-blush-which-formula-delivers-the-best-results-for-your-sk.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/liquid-blush-vs-powder-blush-which-formula-delivers-the-best-results-for-your-sk.jpg
+categories:
+- news
+date: 2025-10-20 20:05:53.061323+00:00
 draft: false
-categories: ['news']
-tags: ['nail-oil-vs-cuticle-cream', 'manicure', 'nail-care', 'beauty-wellness']
 keywords:
-  - "Nail oil vs cuticle cream"
-  - "manicure"
-author: "Nailak Editorial"
+- Nail oil vs cuticle cream
+- manicure
+tags:
+- nail-oil-vs-cuticle-cream
+- manicure
+- nail-care
+- beauty-wellness
+title: 'Liquid Blush vs Powder Blush: Which Formula Delivers the Best Results for
+  Your Skin? — Vegan nail oil for cuticles'
 ---
 
 # Liquid or Powder Blush? Plus Vegan Cuticle Care

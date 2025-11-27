@@ -1,13 +1,24 @@
 ---
-title: "Protected: Fluorescent bulbs and SPF — Jojoba oil for cuticles"
-date: 2025-11-08T17:04:54.142990+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/protected-fluorescent-bulbs-and-spf-jojoba-oil-for-cuticles-vitamin-e-oil-for-na.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/protected-fluorescent-bulbs-and-spf-jojoba-oil-for-cuticles-vitamin-e-oil-for-na.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/protected-fluorescent-bulbs-and-spf-jojoba-oil-for-cuticles-vitamin-e-oil-for-na.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/protected-fluorescent-bulbs-and-spf-jojoba-oil-for-cuticles-vitamin-e-oil-for-na.jpg
+categories:
+- news
+date: 2025-11-08 17:04:54.142990+00:00
 draft: false
-categories: ['news']
-tags: ['vitamin-e-oil-for-nails', 'jojoba-oil-for-cuticles', 'best-oils-for-nail-growth', 'dry-cuticle-treatment', 'vegan-nail-care-products']
 keywords:
-  - "Vitamin E oil for nails"
-  - "jojoba oil for cuticles"
-author: "Nailak Editorial"
+- Vitamin E oil for nails
+- jojoba oil for cuticles
+tags:
+- vitamin-e-oil-for-nails
+- jojoba-oil-for-cuticles
+- best-oils-for-nail-growth
+- dry-cuticle-treatment
+- vegan-nail-care-products
+title: 'Protected: Fluorescent bulbs and SPF — Jojoba oil for cuticles'
 ---
 
 # Fluorescent Bulbs, SPF & Jojoba Oil for Cuticles

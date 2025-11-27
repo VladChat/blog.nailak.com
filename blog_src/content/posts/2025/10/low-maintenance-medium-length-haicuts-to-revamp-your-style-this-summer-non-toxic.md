@@ -1,13 +1,25 @@
 ---
-title: "Low Maintenance Medium Length Haicuts To Revamp Your Style This Summer — Non toxic nail polish alternatives"
-date: 2025-10-21T03:47:01.889850+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/low-maintenance-medium-length-haicuts-to-revamp-your-style-this-summer-non-toxic.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/low-maintenance-medium-length-haicuts-to-revamp-your-style-this-summer-non-toxic.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/low-maintenance-medium-length-haicuts-to-revamp-your-style-this-summer-non-toxic.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/low-maintenance-medium-length-haicuts-to-revamp-your-style-this-summer-non-toxic.jpg
+categories:
+- news
+date: 2025-10-21 03:47:01.889850+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-moisturize-nails-and-cuticles', 'non-toxic-nail-polish-alternatives', 'natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting']
 keywords:
-  - "How to moisturize nails and cuticles"
-  - "non toxic nail polish alternatives"
-author: "Nailak Editorial"
+- How to moisturize nails and cuticles
+- non toxic nail polish alternatives
+tags:
+- how-to-moisturize-nails-and-cuticles
+- non-toxic-nail-polish-alternatives
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+title: Low Maintenance Medium Length Haicuts To Revamp Your Style This Summer — Non
+  toxic nail polish alternatives
 ---
 
 # Low-Maintenance Medium Cuts & Non-Toxic Nail Polish

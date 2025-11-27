@@ -1,12 +1,22 @@
 ---
-title: "How to Use Cuticle Oil Properly for Healthy Nails"
-date: 2025-11-17T13:38:37.948703+00:00
+author: Jordan Reed
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-use-cuticle-oil-properly-for-healthy-nails.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-use-cuticle-oil-properly-for-healthy-nails.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-use-cuticle-oil-properly-for-healthy-nails.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-use-cuticle-oil-properly-for-healthy-nails.jpg
+categories:
+- news
+date: 2025-11-17 13:38:37.948703+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-use-cuticle-oil-properly', 'what-causes-brittle-nails', 'nail-strengthening-treatments', 'how-to-moisturize-nails-and-cuticles']
 keywords:
-  - "How to use cuticle oil properly"
-author: "Jordan Reed"
+- How to use cuticle oil properly
+tags:
+- how-to-use-cuticle-oil-properly
+- what-causes-brittle-nails
+- nail-strengthening-treatments
+- how-to-moisturize-nails-and-cuticles
+title: How to Use Cuticle Oil Properly for Healthy Nails
 ---
 
 # How to Use Cuticle Oil Properly for Healthy Nails

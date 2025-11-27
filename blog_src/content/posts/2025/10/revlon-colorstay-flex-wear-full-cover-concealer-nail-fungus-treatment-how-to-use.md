@@ -1,13 +1,24 @@
 ---
-title: "REVLON ColorStay Flex Wear Full Cover Concealer — Nail fungus treatment"
-date: 2025-10-21T02:49:07.478004+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/revlon-colorstay-flex-wear-full-cover-concealer-nail-fungus-treatment-how-to-use.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/revlon-colorstay-flex-wear-full-cover-concealer-nail-fungus-treatment-how-to-use.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/revlon-colorstay-flex-wear-full-cover-concealer-nail-fungus-treatment-how-to-use.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/revlon-colorstay-flex-wear-full-cover-concealer-nail-fungus-treatment-how-to-use.jpg
+categories:
+- news
+date: 2025-10-21 02:49:07.478004+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-use-cuticle-oil-properly', 'nail-fungus-treatment', 'what-causes-brittle-nails', 'nail-strengthening-treatments', 'how-to-moisturize-nails-and-cuticles']
 keywords:
-  - "How to use cuticle oil properly"
-  - "nail fungus treatment"
-author: "Nailak Editorial"
+- How to use cuticle oil properly
+- nail fungus treatment
+tags:
+- how-to-use-cuticle-oil-properly
+- nail-fungus-treatment
+- what-causes-brittle-nails
+- nail-strengthening-treatments
+- how-to-moisturize-nails-and-cuticles
+title: REVLON ColorStay Flex Wear Full Cover Concealer — Nail fungus treatment
 ---
 
 # Nail Fungus Care + Revlon Flex Wear Concealer

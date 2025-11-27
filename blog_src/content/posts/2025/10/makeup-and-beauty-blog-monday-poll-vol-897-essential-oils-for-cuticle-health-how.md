@@ -1,11 +1,21 @@
 ---
-title: "Makeup and Beauty Blog Monday Poll, Vol. 897 — Essential oils for cuticle health"
-date: 2025-10-20T17:50:22.497858+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/makeup-and-beauty-blog-monday-poll-vol-897-essential-oils-for-cuticle-health-how.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/makeup-and-beauty-blog-monday-poll-vol-897-essential-oils-for-cuticle-health-how.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/makeup-and-beauty-blog-monday-poll-vol-897-essential-oils-for-cuticle-health-how.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/makeup-and-beauty-blog-monday-poll-vol-897-essential-oils-for-cuticle-health-how.jpg
+categories:
+- news
+date: 2025-10-20 17:50:22.497858+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-prevent-hangnails', 'manicure', 'nail-care', 'beauty-wellness']
-keywords: "How to prevent hangnails, manicure"
-author: "Nailak Editorial"
+keywords: How to prevent hangnails, manicure
+tags:
+- how-to-prevent-hangnails
+- manicure
+- nail-care
+- beauty-wellness
+title: Makeup and Beauty Blog Monday Poll, Vol. 897 — Essential oils for cuticle health
 ---
 
 # Essential Oils for Cuticle Health: A Modern Guide

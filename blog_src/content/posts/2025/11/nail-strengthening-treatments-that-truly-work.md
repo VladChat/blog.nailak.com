@@ -1,12 +1,22 @@
 ---
-title: "Nail Strengthening Treatments That Truly Work"
-date: 2025-11-20T13:37:09.628346+00:00
+author: Alex Fairstone
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-strengthening-treatments-that-truly-work.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/nail-strengthening-treatments-that-truly-work.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/nail-strengthening-treatments-that-truly-work.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-strengthening-treatments-that-truly-work.jpg
+categories:
+- news
+date: 2025-11-20 13:37:09.628346+00:00
 draft: false
-categories: ['news']
-tags: ['nail-strengthening-treatments', 'non-toxic-nail-polish-alternatives', 'natural-vs-synthetic-nail-care-products', 'hangnail-prevention-tips']
 keywords:
-  - "Nail strengthening treatments"
-author: "Alex Fairstone"
+- Nail strengthening treatments
+tags:
+- nail-strengthening-treatments
+- non-toxic-nail-polish-alternatives
+- natural-vs-synthetic-nail-care-products
+- hangnail-prevention-tips
+title: Nail Strengthening Treatments That Truly Work
 ---
 
 # Nail Strengthening Treatments That Truly Work

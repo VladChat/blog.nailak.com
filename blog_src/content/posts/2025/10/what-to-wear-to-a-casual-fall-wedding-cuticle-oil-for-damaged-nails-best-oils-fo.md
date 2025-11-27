@@ -1,13 +1,24 @@
 ---
-title: "What to Wear to a Casual Fall Wedding — Cuticle oil for damaged nails"
-date: 2025-10-31T13:27:40.725672+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/what-to-wear-to-a-casual-fall-wedding-cuticle-oil-for-damaged-nails-best-oils-fo.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/what-to-wear-to-a-casual-fall-wedding-cuticle-oil-for-damaged-nails-best-oils-fo.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/what-to-wear-to-a-casual-fall-wedding-cuticle-oil-for-damaged-nails-best-oils-fo.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/what-to-wear-to-a-casual-fall-wedding-cuticle-oil-for-damaged-nails-best-oils-fo.jpg
+categories:
+- news
+date: 2025-10-31 13:27:40.725672+00:00
 draft: false
-categories: ['news']
-tags: ['best-oils-for-nail-and-cuticle-health', 'cuticle-oil-for-damaged-nails', 'how-to-restore-damaged-nails-naturally', 'how-to-prevent-nail-breakage', 'how-to-prevent-nail-splitting']
 keywords:
-  - "Best oils for nail and cuticle health"
-  - "cuticle oil for damaged nails"
-author: "Nailak Editorial"
+- Best oils for nail and cuticle health
+- cuticle oil for damaged nails
+tags:
+- best-oils-for-nail-and-cuticle-health
+- cuticle-oil-for-damaged-nails
+- how-to-restore-damaged-nails-naturally
+- how-to-prevent-nail-breakage
+- how-to-prevent-nail-splitting
+title: What to Wear to a Casual Fall Wedding — Cuticle oil for damaged nails
 ---
 
 # Casual Fall Wedding Style & Cuticle Oil Tips

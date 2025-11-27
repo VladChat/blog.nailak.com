@@ -1,13 +1,24 @@
 ---
-title: "Pregnancy Safe Products from Made by Mitchell — Best nail fungus home treatment"
-date: 2025-10-23T13:28:23.826972+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/pregnancy-safe-products-from-made-by-mitchell-best-nail-fungus-home-treatment-es.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/pregnancy-safe-products-from-made-by-mitchell-best-nail-fungus-home-treatment-es.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/pregnancy-safe-products-from-made-by-mitchell-best-nail-fungus-home-treatment-es.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/pregnancy-safe-products-from-made-by-mitchell-best-nail-fungus-home-treatment-es.jpg
+categories:
+- news
+date: 2025-10-23 13:28:23.826972+00:00
 draft: false
-categories: ['news']
-tags: ['essential-oils-for-nail-fungus', 'tea-tree-oil-for-nail-fungus', 'coconut-oil-for-nail-fungus', 'how-to-treat-toenail-fungus-naturally', 'nail-fungus-prevention-tips']
 keywords:
-  - "Essential oils for nail fungus"
-  - "tea tree oil for nail fungus"
-author: "Nailak Editorial"
+- Essential oils for nail fungus
+- tea tree oil for nail fungus
+tags:
+- essential-oils-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+- coconut-oil-for-nail-fungus
+- how-to-treat-toenail-fungus-naturally
+- nail-fungus-prevention-tips
+title: Pregnancy Safe Products from Made by Mitchell — Best nail fungus home treatment
 ---
 
 # Made by Mitchell Pregnancy-Safe Picks & Fungus Fixes

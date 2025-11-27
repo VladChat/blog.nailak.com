@@ -1,13 +1,25 @@
 ---
-title: "Thanks to a New Collaboration With Aston Martin, Elemis Forges a Dewy New Path in Formula 1 — Essential oils for nail health"
-date: 2025-11-14T13:37:09.689768+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/thanks-to-a-new-collaboration-with-aston-martin-elemis-forges-a-dewy-new-path-in.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/thanks-to-a-new-collaboration-with-aston-martin-elemis-forges-a-dewy-new-path-in.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/thanks-to-a-new-collaboration-with-aston-martin-elemis-forges-a-dewy-new-path-in.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/thanks-to-a-new-collaboration-with-aston-martin-elemis-forges-a-dewy-new-path-in.jpg
+categories:
+- news
+date: 2025-11-14 13:37:09.689768+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-repair-damaged-nails', 'essential-oils-for-nail-health', 'daily-nail-care-routine', 'non-toxic-nail-care', 'how-to-prevent-hangnails']
 keywords:
-  - "How to repair damaged nails"
-  - "essential oils for nail health"
-author: "Nailak Editorial"
+- How to repair damaged nails
+- essential oils for nail health
+tags:
+- how-to-repair-damaged-nails
+- essential-oils-for-nail-health
+- daily-nail-care-routine
+- non-toxic-nail-care
+- how-to-prevent-hangnails
+title: Thanks to a New Collaboration With Aston Martin, Elemis Forges a Dewy New Path
+  in Formula 1 — Essential oils for nail health
 ---
 
 # F1 Glow: Essential Oils for Strong, Dewy Nails

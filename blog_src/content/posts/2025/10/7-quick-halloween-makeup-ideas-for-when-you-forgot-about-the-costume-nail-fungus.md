@@ -1,13 +1,25 @@
 ---
-title: "7 Quick Halloween Makeup Ideas for When You Forgot About the Costume — Nail fungus treatment"
-date: 2025-10-22T04:44:16.262109+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/7-quick-halloween-makeup-ideas-for-when-you-forgot-about-the-costume-nail-fungus.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/7-quick-halloween-makeup-ideas-for-when-you-forgot-about-the-costume-nail-fungus.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/7-quick-halloween-makeup-ideas-for-when-you-forgot-about-the-costume-nail-fungus.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/7-quick-halloween-makeup-ideas-for-when-you-forgot-about-the-costume-nail-fungus.jpg
+categories:
+- news
+date: 2025-10-22 04:44:16.262109+00:00
 draft: false
-categories: ['news']
-tags: ['daily-routine-for-strong-healthy-nails', 'nail-fungus-treatment', 'natural-remedies-for-nail-fungus', 'tea-tree-oil-for-nail-fungus', 'how-to-get-rid-of-nail-fungus-fast']
 keywords:
-  - "Daily routine for strong healthy nails"
-  - "nail fungus treatment"
-author: "Nailak Editorial"
+- Daily routine for strong healthy nails
+- nail fungus treatment
+tags:
+- daily-routine-for-strong-healthy-nails
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+- how-to-get-rid-of-nail-fungus-fast
+title: 7 Quick Halloween Makeup Ideas for When You Forgot About the Costume — Nail
+  fungus treatment
 ---
 
 # 7 Quick Halloween Makeup Ideas + Nail Fungus Treatment

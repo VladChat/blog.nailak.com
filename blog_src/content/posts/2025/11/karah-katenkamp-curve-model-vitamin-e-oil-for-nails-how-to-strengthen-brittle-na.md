@@ -1,13 +1,24 @@
 ---
-title: "Karah Katenkamp, Curve Model — Vitamin E oil for nails"
-date: 2025-11-08T13:28:37.443196+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/karah-katenkamp-curve-model-vitamin-e-oil-for-nails-how-to-strengthen-brittle-na.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/karah-katenkamp-curve-model-vitamin-e-oil-for-nails-how-to-strengthen-brittle-na.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/karah-katenkamp-curve-model-vitamin-e-oil-for-nails-how-to-strengthen-brittle-na.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/karah-katenkamp-curve-model-vitamin-e-oil-for-nails-how-to-strengthen-brittle-na.jpg
+categories:
+- news
+date: 2025-11-08 13:28:37.443196+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-strengthen-brittle-nails', 'vitamin-e-oil-for-nails', 'jojoba-oil-for-cuticles', 'best-oils-for-nail-growth', 'dry-cuticle-treatment']
 keywords:
-  - "How to strengthen brittle nails"
-  - "vitamin e oil for nails"
-author: "Nailak Editorial"
+- How to strengthen brittle nails
+- vitamin e oil for nails
+tags:
+- how-to-strengthen-brittle-nails
+- vitamin-e-oil-for-nails
+- jojoba-oil-for-cuticles
+- best-oils-for-nail-growth
+- dry-cuticle-treatment
+title: Karah Katenkamp, Curve Model — Vitamin E oil for nails
 ---
 
 # Karah Katenkamp’s Vitamin E Nail Ritual

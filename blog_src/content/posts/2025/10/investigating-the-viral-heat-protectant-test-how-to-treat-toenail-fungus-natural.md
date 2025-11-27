@@ -1,13 +1,25 @@
 ---
-title: "Investigating the viral heat protectant test — How to treat toenail fungus naturally"
-date: 2025-10-25T13:19:47.396213+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/investigating-the-viral-heat-protectant-test-how-to-treat-toenail-fungus-natural.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/investigating-the-viral-heat-protectant-test-how-to-treat-toenail-fungus-natural.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/investigating-the-viral-heat-protectant-test-how-to-treat-toenail-fungus-natural.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/investigating-the-viral-heat-protectant-test-how-to-treat-toenail-fungus-natural.jpg
+categories:
+- news
+date: 2025-10-25 13:19:47.396213+00:00
 draft: false
-categories: ['news']
-tags: ['coconut-oil-for-nail-fungus', 'how-to-treat-toenail-fungus-naturally', 'nail-fungus-prevention-tips', 'nail-fungus-and-brittle-nails', 'how-to-repair-nails-after-fungus']
 keywords:
-  - "Coconut oil for nail fungus"
-  - "how to treat toenail fungus naturally"
-author: "Nailak Editorial"
+- Coconut oil for nail fungus
+- how to treat toenail fungus naturally
+tags:
+- coconut-oil-for-nail-fungus
+- how-to-treat-toenail-fungus-naturally
+- nail-fungus-prevention-tips
+- nail-fungus-and-brittle-nails
+- how-to-repair-nails-after-fungus
+title: Investigating the viral heat protectant test — How to treat toenail fungus
+  naturally
 ---
 
 # Heat Protectant Test Truths & Natural Toenail Fungus Care

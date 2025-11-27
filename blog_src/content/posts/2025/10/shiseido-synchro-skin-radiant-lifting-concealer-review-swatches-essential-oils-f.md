@@ -1,13 +1,25 @@
 ---
-title: "Shiseido Synchro Skin Radiant Lifting Concealer Review & Swatches — Essential oils for nail fungus"
-date: 2025-10-22T13:30:49.787771+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/shiseido-synchro-skin-radiant-lifting-concealer-review-swatches-essential-oils-f.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/shiseido-synchro-skin-radiant-lifting-concealer-review-swatches-essential-oils-f.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/shiseido-synchro-skin-radiant-lifting-concealer-review-swatches-essential-oils-f.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/shiseido-synchro-skin-radiant-lifting-concealer-review-swatches-essential-oils-f.jpg
+categories:
+- news
+date: 2025-10-22 13:30:49.787771+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-get-rid-of-nail-fungus-fast', 'essential-oils-for-nail-fungus', 'best-nail-fungus-home-treatment', 'coconut-oil-for-nail-fungus', 'how-to-treat-toenail-fungus-naturally']
 keywords:
-  - "How to get rid of nail fungus fast"
-  - "essential oils for nail fungus"
-author: "Nailak Editorial"
+- How to get rid of nail fungus fast
+- essential oils for nail fungus
+tags:
+- how-to-get-rid-of-nail-fungus-fast
+- essential-oils-for-nail-fungus
+- best-nail-fungus-home-treatment
+- coconut-oil-for-nail-fungus
+- how-to-treat-toenail-fungus-naturally
+title: Shiseido Synchro Skin Radiant Lifting Concealer Review & Swatches — Essential
+  oils for nail fungus
 ---
 
 # Shiseido Synchro Skin: Review, Swatches & Nail Oils

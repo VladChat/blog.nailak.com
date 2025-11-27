@@ -1,10 +1,22 @@
 ---
-title: "12 Hidden Rosacea Triggers You Need to Know, According to Dermatologists — DIY nail oil blend"
-date: 2025-10-20T03:05:32.675456+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/12-hidden-rosacea-triggers-you-need-to-know-according-to-dermatologists-diy-nail.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/12-hidden-rosacea-triggers-you-need-to-know-according-to-dermatologists-diy-nail.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/12-hidden-rosacea-triggers-you-need-to-know-according-to-dermatologists-diy-nail.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/12-hidden-rosacea-triggers-you-need-to-know-according-to-dermatologists-diy-nail.jpg
+categories:
+- news
+date: 2025-10-20 03:05:32.675456+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'best oils for nail growth']
-author: "Nailak Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- best oils for nail growth
+title: 12 Hidden Rosacea Triggers You Need to Know, According to Dermatologists —
+  DIY nail oil blend
 ---
 
 # 12 Hidden Rosacea Triggers Dermatologists Warn About

@@ -1,12 +1,22 @@
 ---
-title: "Hangnail Prevention Tips for Healthy, Happy Nails"
-date: 2025-11-24T13:39:00.296978+00:00
+author: Alex Fairstone
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/hangnail-prevention-tips-for-healthy-happy-nails.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/hangnail-prevention-tips-for-healthy-happy-nails.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/hangnail-prevention-tips-for-healthy-happy-nails.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/hangnail-prevention-tips-for-healthy-happy-nails.jpg
+categories:
+- news
+date: 2025-11-24 13:39:00.296978+00:00
 draft: false
-categories: ['news']
-tags: ['hangnail-prevention-tips', 'essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles', 'daily-routine-for-strong-healthy-nails']
 keywords:
-  - "Hangnail prevention tips"
-author: "Alex Fairstone"
+- Hangnail prevention tips
+tags:
+- hangnail-prevention-tips
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+- daily-routine-for-strong-healthy-nails
+title: Hangnail Prevention Tips for Healthy, Happy Nails
 ---
 
 # Hangnail Prevention Tips for Healthy, Happy Nails

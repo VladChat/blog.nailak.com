@@ -1,13 +1,24 @@
 ---
-title: "SHIRLEYSFAVESANDFINDS #36 — Daily routine for strong healthy nails"
-date: 2025-10-22T04:06:27.756934+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/shirleysfavesandfinds-36-daily-routine-for-strong-healthy-nails-vegan-nail-oil-f.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/shirleysfavesandfinds-36-daily-routine-for-strong-healthy-nails-vegan-nail-oil-f.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/shirleysfavesandfinds-36-daily-routine-for-strong-healthy-nails-vegan-nail-oil-f.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/shirleysfavesandfinds-36-daily-routine-for-strong-healthy-nails-vegan-nail-oil-f.jpg
+categories:
+- news
+date: 2025-10-22 04:06:27.756934+00:00
 draft: false
-categories: ['news']
-tags: ['vegan-nail-oil-for-cuticles', 'daily-nail-care-routine', 'nail-fungus-treatment', 'natural-remedies-for-nail-fungus', 'tea-tree-oil-for-nail-fungus']
 keywords:
-  - "Vegan nail oil for cuticles"
-  - "daily nail care routine"
-author: "Nailak Editorial"
+- Vegan nail oil for cuticles
+- daily nail care routine
+tags:
+- vegan-nail-oil-for-cuticles
+- daily-nail-care-routine
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+title: 'SHIRLEYSFAVESANDFINDS #36 — Daily routine for strong healthy nails'
 ---
 
 # Daily Routine for Strong, Healthy Nails

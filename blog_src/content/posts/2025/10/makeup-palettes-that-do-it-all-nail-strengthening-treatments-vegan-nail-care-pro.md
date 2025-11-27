@@ -1,10 +1,21 @@
 ---
-title: "MAKEUP PALETTES That Do It All — Nail strengthening treatments"
-date: 2025-10-20T13:26:47.825802+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/makeup-palettes-that-do-it-all-nail-strengthening-treatments-vegan-nail-care-pro.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/makeup-palettes-that-do-it-all-nail-strengthening-treatments-vegan-nail-care-pro.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/makeup-palettes-that-do-it-all-nail-strengthening-treatments-vegan-nail-care-pro.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/makeup-palettes-that-do-it-all-nail-strengthening-treatments-vegan-nail-care-pro.jpg
+categories:
+- news
+date: 2025-10-20 13:26:47.825802+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'vegan nail care products']
-author: "Nailak Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- vegan nail care products
+title: MAKEUP PALETTES That Do It All — Nail strengthening treatments
 ---
 
 # Makeup Palettes That Do It All + Nail Strengtheners

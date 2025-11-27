@@ -1,13 +1,24 @@
 ---
-title: "How to Grow Nails Faster Naturally: A Gentle Guide"
-date: 2025-11-16T20:35:14.376659+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-grow-nails-faster-naturally-a-gentle-guide.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-grow-nails-faster-naturally-a-gentle-guide.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-grow-nails-faster-naturally-a-gentle-guide.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-grow-nails-faster-naturally-a-gentle-guide.jpg
+categories:
+- news
+date: 2025-11-16 20:35:14.376659+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-grow-nails-faster-naturally', 'best-oils-for-nail-growth', 'how-to-use-cuticle-oil-properly', 'diy-nail-oil-blend', 'what-causes-brittle-nails']
 keywords:
-  - "How to grow nails faster naturally"
-  - "best oils for nail growth"
-author: "Nina Nailak"
+- How to grow nails faster naturally
+- best oils for nail growth
+tags:
+- how-to-grow-nails-faster-naturally
+- best-oils-for-nail-growth
+- how-to-use-cuticle-oil-properly
+- diy-nail-oil-blend
+- what-causes-brittle-nails
+title: 'How to Grow Nails Faster Naturally: A Gentle Guide'
 ---
 
 # How to Grow Nails Faster Naturally: A Gentle Guide

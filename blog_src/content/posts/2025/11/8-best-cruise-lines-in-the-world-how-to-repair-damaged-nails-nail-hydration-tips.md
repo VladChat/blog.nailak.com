@@ -1,13 +1,24 @@
 ---
-title: "8 Best Cruise Lines in the World — How to repair damaged nails"
-date: 2025-11-13T13:39:09.385248+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/8-best-cruise-lines-in-the-world-how-to-repair-damaged-nails-nail-hydration-tips.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/8-best-cruise-lines-in-the-world-how-to-repair-damaged-nails-nail-hydration-tips.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/8-best-cruise-lines-in-the-world-how-to-repair-damaged-nails-nail-hydration-tips.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/8-best-cruise-lines-in-the-world-how-to-repair-damaged-nails-nail-hydration-tips.jpg
+categories:
+- news
+date: 2025-11-13 13:39:09.385248+00:00
 draft: false
-categories: ['news']
-tags: ['nail-hydration-tips', 'how-to-repair-damaged-nails', 'essential-oils-for-nail-health', 'daily-nail-care-routine', 'non-toxic-nail-care']
 keywords:
-  - "Nail hydration tips"
-  - "how to repair damaged nails"
-author: "Nailak Editorial"
+- Nail hydration tips
+- how to repair damaged nails
+tags:
+- nail-hydration-tips
+- how-to-repair-damaged-nails
+- essential-oils-for-nail-health
+- daily-nail-care-routine
+- non-toxic-nail-care
+title: 8 Best Cruise Lines in the World — How to repair damaged nails
 ---
 
 # 8 Best Cruise Lines & How to Repair Damaged Nails

@@ -1,12 +1,22 @@
 ---
-title: "DIY Nail Oil Blend for Strong, Glossy Nails"
-date: 2025-11-18T13:38:25.227136+00:00
+author: Elena Moretti
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/diy-nail-oil-blend-for-strong-glossy-nails.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/diy-nail-oil-blend-for-strong-glossy-nails.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/diy-nail-oil-blend-for-strong-glossy-nails.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/diy-nail-oil-blend-for-strong-glossy-nails.jpg
+categories:
+- news
+date: 2025-11-18 13:38:25.227136+00:00
 draft: false
-categories: ['news']
-tags: ['diy-nail-oil-blend', 'nail-strengthening-treatments', 'how-to-moisturize-nails-and-cuticles', 'non-toxic-nail-polish-alternatives']
 keywords:
-  - "DIY nail oil blend"
-author: "Elena Moretti"
+- DIY nail oil blend
+tags:
+- diy-nail-oil-blend
+- nail-strengthening-treatments
+- how-to-moisturize-nails-and-cuticles
+- non-toxic-nail-polish-alternatives
+title: DIY Nail Oil Blend for Strong, Glossy Nails
 ---
 
 # DIY Nail Oil Blend for Strong, Glossy Nails

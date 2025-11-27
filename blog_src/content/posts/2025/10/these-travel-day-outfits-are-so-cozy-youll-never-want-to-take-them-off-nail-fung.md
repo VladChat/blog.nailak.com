@@ -1,13 +1,25 @@
 ---
-title: "These Travel Day Outfits are SO Cozy, You’ll Never Want to Take Them Off! — Nail fungus prevention tips"
-date: 2025-10-25T16:29:04.634030+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/these-travel-day-outfits-are-so-cozy-youll-never-want-to-take-them-off-nail-fung.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/these-travel-day-outfits-are-so-cozy-youll-never-want-to-take-them-off-nail-fung.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/these-travel-day-outfits-are-so-cozy-youll-never-want-to-take-them-off-nail-fung.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/these-travel-day-outfits-are-so-cozy-youll-never-want-to-take-them-off-nail-fung.jpg
+categories:
+- news
+date: 2025-10-25 16:29:04.634030+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-treat-toenail-fungus-naturally', 'nail-fungus-prevention-tips', 'nail-fungus-and-brittle-nails', 'how-to-repair-nails-after-fungus', 'vegan-antifungal-nail-care']
 keywords:
-  - "How to treat toenail fungus naturally"
-  - "nail fungus prevention tips"
-author: "Nailak Editorial"
+- How to treat toenail fungus naturally
+- nail fungus prevention tips
+tags:
+- how-to-treat-toenail-fungus-naturally
+- nail-fungus-prevention-tips
+- nail-fungus-and-brittle-nails
+- how-to-repair-nails-after-fungus
+- vegan-antifungal-nail-care
+title: These Travel Day Outfits are SO Cozy, You’ll Never Want to Take Them Off! —
+  Nail fungus prevention tips
 ---
 
 # Cozy Travel Outfits + Nail Fungus Prevention Tips

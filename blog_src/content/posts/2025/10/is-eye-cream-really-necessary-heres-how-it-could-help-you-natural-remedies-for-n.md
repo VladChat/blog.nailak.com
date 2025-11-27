@@ -1,13 +1,25 @@
 ---
-title: "Is Eye Cream Really Necessary? Here’s How It Could Help You — Natural remedies for nail fungus"
-date: 2025-10-22T05:03:01.371912+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/is-eye-cream-really-necessary-heres-how-it-could-help-you-natural-remedies-for-n.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/is-eye-cream-really-necessary-heres-how-it-could-help-you-natural-remedies-for-n.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/is-eye-cream-really-necessary-heres-how-it-could-help-you-natural-remedies-for-n.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/is-eye-cream-really-necessary-heres-how-it-could-help-you-natural-remedies-for-n.jpg
+categories:
+- news
+date: 2025-10-22 05:03:01.371912+00:00
 draft: false
-categories: ['news']
-tags: ['nail-fungus-treatment', 'natural-remedies-for-nail-fungus', 'tea-tree-oil-for-nail-fungus', 'how-to-get-rid-of-nail-fungus-fast', 'essential-oils-for-nail-fungus']
 keywords:
-  - "Nail fungus treatment"
-  - "natural remedies for nail fungus"
-author: "Nailak Editorial"
+- Nail fungus treatment
+- natural remedies for nail fungus
+tags:
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+- how-to-get-rid-of-nail-fungus-fast
+- essential-oils-for-nail-fungus
+title: Is Eye Cream Really Necessary? Here’s How It Could Help You — Natural remedies
+  for nail fungus
 ---
 
 # Eye Cream: Do You Need It? Natural Nail Fungus Fixes

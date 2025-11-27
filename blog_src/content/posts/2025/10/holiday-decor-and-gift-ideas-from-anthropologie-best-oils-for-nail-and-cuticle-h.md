@@ -1,13 +1,25 @@
 ---
-title: "Holiday Decor and Gift Ideas from Anthropologie — Best oils for nail and cuticle health"
-date: 2025-10-30T13:30:59.297908+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/holiday-decor-and-gift-ideas-from-anthropologie-best-oils-for-nail-and-cuticle-h.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/holiday-decor-and-gift-ideas-from-anthropologie-best-oils-for-nail-and-cuticle-h.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/holiday-decor-and-gift-ideas-from-anthropologie-best-oils-for-nail-and-cuticle-h.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/holiday-decor-and-gift-ideas-from-anthropologie-best-oils-for-nail-and-cuticle-h.jpg
+categories:
+- news
+date: 2025-10-30 13:30:59.297908+00:00
 draft: false
-categories: ['news']
-tags: ['diy-antifungal-nail-oil', 'best-oils-for-nail-and-cuticle-health', 'cuticle-oil-for-damaged-nails', 'how-to-restore-damaged-nails-naturally', 'how-to-prevent-nail-breakage']
 keywords:
-  - "DIY antifungal nail oil"
-  - "best oils for nail and cuticle health"
-author: "Nailak Editorial"
+- DIY antifungal nail oil
+- best oils for nail and cuticle health
+tags:
+- diy-antifungal-nail-oil
+- best-oils-for-nail-and-cuticle-health
+- cuticle-oil-for-damaged-nails
+- how-to-restore-damaged-nails-naturally
+- how-to-prevent-nail-breakage
+title: Holiday Decor and Gift Ideas from Anthropologie — Best oils for nail and cuticle
+  health
 ---
 
 # Holiday Glow: Anthropologie Gifts + Nail & Cuticle Oils

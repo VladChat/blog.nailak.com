@@ -1,10 +1,22 @@
 ---
-title: "What Are Exosomes, The Lastest Skincare Ingredient Exciting Dermatologists? — What causes brittle nails"
-date: 2025-10-20T03:52:13.207732+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/what-are-exosomes-the-lastest-skincare-ingredient-exciting-dermatologists-what-c.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/what-are-exosomes-the-lastest-skincare-ingredient-exciting-dermatologists-what-c.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/what-are-exosomes-the-lastest-skincare-ingredient-exciting-dermatologists-what-c.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/what-are-exosomes-the-lastest-skincare-ingredient-exciting-dermatologists-what-c.jpg
+categories:
+- news
+date: 2025-10-20 03:52:13.207732+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'dry cuticle treatment']
-author: "Nailak Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- dry cuticle treatment
+title: What Are Exosomes, The Lastest Skincare Ingredient Exciting Dermatologists?
+  — What causes brittle nails
 ---
 
 # Exosomes in Skincare and Brittle Nails Explained

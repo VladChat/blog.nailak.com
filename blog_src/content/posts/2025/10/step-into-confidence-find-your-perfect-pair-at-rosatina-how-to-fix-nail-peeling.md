@@ -1,13 +1,25 @@
 ---
-title: "Step Into Confidence: Find Your Perfect Pair at ROSATINA — How to fix nail peeling and splitting"
-date: 2025-10-22T02:21:58.238996+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/step-into-confidence-find-your-perfect-pair-at-rosatina-how-to-fix-nail-peeling.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/step-into-confidence-find-your-perfect-pair-at-rosatina-how-to-fix-nail-peeling.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/step-into-confidence-find-your-perfect-pair-at-rosatina-how-to-fix-nail-peeling.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/step-into-confidence-find-your-perfect-pair-at-rosatina-how-to-fix-nail-peeling.jpg
+categories:
+- news
+date: 2025-10-22 02:21:58.238996+00:00
 draft: false
-categories: ['news']
-tags: ['hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles', 'daily-routine-for-strong-healthy-nails']
 keywords:
-  - "Hangnail prevention tips"
-  - "how to fix nail peeling and splitting"
-author: "Nailak Editorial"
+- Hangnail prevention tips
+- how to fix nail peeling and splitting
+tags:
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+- daily-routine-for-strong-healthy-nails
+title: 'Step Into Confidence: Find Your Perfect Pair at ROSATINA — How to fix nail
+  peeling and splitting'
 ---
 
 # Fix Nail Peeling: Step Into Confidence With ROSATINA

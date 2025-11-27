@@ -1,12 +1,22 @@
 ---
-title: "Non-Toxic Nail Polish Alternatives That Shine"
-date: 2025-11-22T13:29:38.301304+00:00
+author: Elena Moretti
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/non-toxic-nail-polish-alternatives-that-shine.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/non-toxic-nail-polish-alternatives-that-shine.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/non-toxic-nail-polish-alternatives-that-shine.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/non-toxic-nail-polish-alternatives-that-shine.jpg
+categories:
+- news
+date: 2025-11-22 13:29:38.301304+00:00
 draft: false
-categories: ['news']
-tags: ['non-toxic-nail-polish-alternatives', 'hangnail-prevention-tips', 'how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health']
 keywords:
-  - "Non toxic nail polish alternatives"
-author: "Elena Moretti"
+- Non toxic nail polish alternatives
+tags:
+- non-toxic-nail-polish-alternatives
+- hangnail-prevention-tips
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+title: Non-Toxic Nail Polish Alternatives That Shine
 ---
 
 # Non-Toxic Nail Polish Alternatives That Shine

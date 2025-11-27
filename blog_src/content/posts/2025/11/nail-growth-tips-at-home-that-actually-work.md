@@ -1,12 +1,22 @@
 ---
-title: "Nail Growth Tips at Home That Actually Work"
-date: 2025-11-16T20:15:27.547762+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-growth-tips-at-home-that-actually-work.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/nail-growth-tips-at-home-that-actually-work.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/nail-growth-tips-at-home-that-actually-work.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/nail-growth-tips-at-home-that-actually-work.jpg
+categories:
+- news
+date: 2025-11-16 20:15:27.547762+00:00
 draft: false
-categories: ['news']
-tags: ['nail-growth-tips-at-home', 'best-cuticle-oil-brands', 'how-to-use-cuticle-oil-properly', 'diy-nail-oil-blend']
 keywords:
-  - "Nail growth tips at home"
-author: "Nina Nailak"
+- Nail growth tips at home
+tags:
+- nail-growth-tips-at-home
+- best-cuticle-oil-brands
+- how-to-use-cuticle-oil-properly
+- diy-nail-oil-blend
+title: Nail Growth Tips at Home That Actually Work
 ---
 
 # Nail Growth Tips at Home That Actually Work

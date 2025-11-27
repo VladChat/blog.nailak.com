@@ -1,11 +1,22 @@
 ---
-title: "How to Do Spooky (But Cute!) Halloween Nails at Home — How to fix nail peeling and splitting"
-date: 2025-10-20T17:35:02.975403+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/how-to-do-spooky-but-cute-halloween-nails-at-home-how-to-fix-nail-peeling-and-sp.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/how-to-do-spooky-but-cute-halloween-nails-at-home-how-to-fix-nail-peeling-and-sp.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/how-to-do-spooky-but-cute-halloween-nails-at-home-how-to-fix-nail-peeling-and-sp.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/how-to-do-spooky-but-cute-halloween-nails-at-home-how-to-fix-nail-peeling-and-sp.jpg
+categories:
+- news
+date: 2025-10-20 17:35:02.975403+00:00
 draft: false
-categories: ['news']
-tags: ['non-toxic-nail-care', 'manicure', 'nail-care', 'beauty-wellness']
-keywords: "Non-toxic nail care, manicure"
-author: "Nailak Editorial"
+keywords: Non-toxic nail care, manicure
+tags:
+- non-toxic-nail-care
+- manicure
+- nail-care
+- beauty-wellness
+title: How to Do Spooky (But Cute!) Halloween Nails at Home — How to fix nail peeling
+  and splitting
 ---
 
 # Spooky-Cute Halloween Nails at Home (No Damage)

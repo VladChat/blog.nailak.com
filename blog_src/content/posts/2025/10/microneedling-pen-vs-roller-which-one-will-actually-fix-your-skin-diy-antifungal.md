@@ -1,13 +1,25 @@
 ---
-title: "Microneedling Pen VS Roller: Which One Will Actually Fix Your Skin? — DIY antifungal nail oil"
-date: 2025-10-29T13:29:50.660009+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/microneedling-pen-vs-roller-which-one-will-actually-fix-your-skin-diy-antifungal.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/microneedling-pen-vs-roller-which-one-will-actually-fix-your-skin-diy-antifungal.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/microneedling-pen-vs-roller-which-one-will-actually-fix-your-skin-diy-antifungal.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/microneedling-pen-vs-roller-which-one-will-actually-fix-your-skin-diy-antifungal.jpg
+categories:
+- news
+date: 2025-10-29 13:29:50.660009+00:00
 draft: false
-categories: ['news']
-tags: ['vegan-antifungal-nail-care', 'diy-antifungal-nail-oil', 'best-oils-for-nail-and-cuticle-health', 'cuticle-oil-for-damaged-nails', 'how-to-restore-damaged-nails-naturally']
 keywords:
-  - "Vegan antifungal nail care"
-  - "diy antifungal nail oil"
-author: "Nailak Editorial"
+- Vegan antifungal nail care
+- diy antifungal nail oil
+tags:
+- vegan-antifungal-nail-care
+- diy-antifungal-nail-oil
+- best-oils-for-nail-and-cuticle-health
+- cuticle-oil-for-damaged-nails
+- how-to-restore-damaged-nails-naturally
+title: 'Microneedling Pen VS Roller: Which One Will Actually Fix Your Skin? — DIY
+  antifungal nail oil'
 ---
 
 # Microneedling Pen vs Roller + DIY Antifungal Oil

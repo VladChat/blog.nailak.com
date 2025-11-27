@@ -1,10 +1,22 @@
 ---
-title: "This TikTok Viral Bodycare Brand Lives Up to the Hype — How to use cuticle oil properly"
-date: 2025-10-19T23:51:47.273863+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/this-tiktok-viral-bodycare-brand-lives-up-to-the-hype-how-to-use-cuticle-oil-pro.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/this-tiktok-viral-bodycare-brand-lives-up-to-the-hype-how-to-use-cuticle-oil-pro.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/this-tiktok-viral-bodycare-brand-lives-up-to-the-hype-how-to-use-cuticle-oil-pro.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/this-tiktok-viral-bodycare-brand-lives-up-to-the-hype-how-to-use-cuticle-oil-pro.jpg
+categories:
+- news
+date: 2025-10-19 23:51:47.273863+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle oil benefits', 'natural nail care routine', 'how to strengthen brittle nails', 'vitamin e oil for nails', 'jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- cuticle oil benefits
+- natural nail care routine
+- how to strengthen brittle nails
+- vitamin e oil for nails
+- jojoba oil for cuticles
+title: This TikTok Viral Bodycare Brand Lives Up to the Hype — How to use cuticle
+  oil properly
 ---
 
 # How to Use Cuticle Oil the Right Way, Anywhere

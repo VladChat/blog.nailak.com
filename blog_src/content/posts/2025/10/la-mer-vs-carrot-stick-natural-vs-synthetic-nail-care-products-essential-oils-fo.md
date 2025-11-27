@@ -1,11 +1,21 @@
 ---
-title: "La Mer vs Carrot & Stick — Natural vs synthetic nail care products"
-date: 2025-10-20T15:43:02.847858+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/la-mer-vs-carrot-stick-natural-vs-synthetic-nail-care-products-essential-oils-fo.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/la-mer-vs-carrot-stick-natural-vs-synthetic-nail-care-products-essential-oils-fo.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/la-mer-vs-carrot-stick-natural-vs-synthetic-nail-care-products-essential-oils-fo.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/la-mer-vs-carrot-stick-natural-vs-synthetic-nail-care-products-essential-oils-fo.jpg
+categories:
+- news
+date: 2025-10-20 15:43:02.847858+00:00
 draft: false
-categories: ['news']
-tags: ['essential-oils-for-nail-health', 'manicure', 'nail-care', 'beauty-wellness']
-keywords: "Essential oils for nail health, manicure"
-author: "Nailak Editorial"
+keywords: Essential oils for nail health, manicure
+tags:
+- essential-oils-for-nail-health
+- manicure
+- nail-care
+- beauty-wellness
+title: La Mer vs Carrot & Stick — Natural vs synthetic nail care products
 ---
 
 # La Mer vs Carrot & Stick: Natural vs Synthetic Nail Care

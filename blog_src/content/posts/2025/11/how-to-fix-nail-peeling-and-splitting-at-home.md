@@ -1,12 +1,22 @@
 ---
-title: "How to Fix Nail Peeling and Splitting at Home"
-date: 2025-11-25T13:39:52.793599+00:00
+author: Jordan Reed
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-fix-nail-peeling-and-splitting-at-home.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/how-to-fix-nail-peeling-and-splitting-at-home.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/how-to-fix-nail-peeling-and-splitting-at-home.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/how-to-fix-nail-peeling-and-splitting-at-home.jpg
+categories:
+- news
+date: 2025-11-25 13:39:52.793599+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-fix-nail-peeling-and-splitting', 'vegan-nail-oil-for-cuticles', 'daily-routine-for-strong-healthy-nails', 'nail-fungus-treatment']
 keywords:
-  - "How to fix nail peeling and splitting"
-author: "Jordan Reed"
+- How to fix nail peeling and splitting
+tags:
+- how-to-fix-nail-peeling-and-splitting
+- vegan-nail-oil-for-cuticles
+- daily-routine-for-strong-healthy-nails
+- nail-fungus-treatment
+title: How to Fix Nail Peeling and Splitting at Home
 ---
 
 # How to Fix Nail Peeling and Splitting at Home

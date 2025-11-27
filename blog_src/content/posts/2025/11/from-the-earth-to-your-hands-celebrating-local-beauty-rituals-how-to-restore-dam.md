@@ -1,13 +1,25 @@
 ---
-title: "From the Earth to Your Hands: Celebrating Local Beauty Rituals — How to restore damaged nails naturally"
-date: 2025-11-01T13:20:30.051739+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/from-the-earth-to-your-hands-celebrating-local-beauty-rituals-how-to-restore-dam.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/from-the-earth-to-your-hands-celebrating-local-beauty-rituals-how-to-restore-dam.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/from-the-earth-to-your-hands-celebrating-local-beauty-rituals-how-to-restore-dam.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/from-the-earth-to-your-hands-celebrating-local-beauty-rituals-how-to-restore-dam.jpg
+categories:
+- news
+date: 2025-11-01 13:20:30.051739+00:00
 draft: false
-categories: ['news']
-tags: ['cuticle-oil-for-damaged-nails', 'how-to-restore-damaged-nails-naturally', 'how-to-prevent-nail-breakage', 'how-to-prevent-nail-splitting', 'nap-whilst-nails-healthy-oils']
 keywords:
-  - "Cuticle oil for damaged nails"
-  - "how to restore damaged nails naturally"
-author: "Nailak Editorial"
+- Cuticle oil for damaged nails
+- how to restore damaged nails naturally
+tags:
+- cuticle-oil-for-damaged-nails
+- how-to-restore-damaged-nails-naturally
+- how-to-prevent-nail-breakage
+- how-to-prevent-nail-splitting
+- nap-whilst-nails-healthy-oils
+title: 'From the Earth to Your Hands: Celebrating Local Beauty Rituals — How to restore
+  damaged nails naturally'
 ---
 
 # Natural Nail Repair with Local Beauty Rituals

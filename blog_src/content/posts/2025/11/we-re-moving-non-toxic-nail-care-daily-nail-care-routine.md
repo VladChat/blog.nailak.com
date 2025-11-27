@@ -1,13 +1,24 @@
 ---
-title: "We're Moving! — Non-toxic nail care"
-date: 2025-11-16T13:30:29.169681+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/we-re-moving-non-toxic-nail-care-daily-nail-care-routine.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/we-re-moving-non-toxic-nail-care-daily-nail-care-routine.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/we-re-moving-non-toxic-nail-care-daily-nail-care-routine.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/we-re-moving-non-toxic-nail-care-daily-nail-care-routine.jpg
+categories:
+- news
+date: 2025-11-16 13:30:29.169681+00:00
 draft: false
-categories: ['news']
-tags: ['daily-nail-care-routine', 'non-toxic-nail-care', 'how-to-prevent-hangnails', 'nail-oil-vs-cuticle-cream', 'nail-growth-tips-at-home']
 keywords:
-  - "Daily nail care routine"
-  - "non toxic nail care"
-author: "Nailak Editorial"
+- Daily nail care routine
+- non toxic nail care
+tags:
+- daily-nail-care-routine
+- non-toxic-nail-care
+- how-to-prevent-hangnails
+- nail-oil-vs-cuticle-cream
+- nail-growth-tips-at-home
+title: We're Moving! — Non-toxic nail care
 ---
 
 # We’re Moving: Non-Toxic Nail Care Essentials

@@ -1,13 +1,24 @@
 ---
-title: "Active vs. Passive Investing: Know the Difference — Daily nail care routine"
-date: 2025-11-15T13:30:03.445002+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/active-vs-passive-investing-know-the-difference-daily-nail-care-routine-essentia.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/active-vs-passive-investing-know-the-difference-daily-nail-care-routine-essentia.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/active-vs-passive-investing-know-the-difference-daily-nail-care-routine-essentia.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/active-vs-passive-investing-know-the-difference-daily-nail-care-routine-essentia.jpg
+categories:
+- news
+date: 2025-11-15 13:30:03.445002+00:00
 draft: false
-categories: ['news']
-tags: ['essential-oils-for-nail-health', 'daily-nail-care-routine', 'non-toxic-nail-care', 'how-to-prevent-hangnails', 'nail-oil-vs-cuticle-cream']
 keywords:
-  - "Essential oils for nail health"
-  - "daily nail care routine"
-author: "Nailak Editorial"
+- Essential oils for nail health
+- daily nail care routine
+tags:
+- essential-oils-for-nail-health
+- daily-nail-care-routine
+- non-toxic-nail-care
+- how-to-prevent-hangnails
+- nail-oil-vs-cuticle-cream
+title: 'Active vs. Passive Investing: Know the Difference — Daily nail care routine'
 ---
 
 # Active vs Passive Investing: A Daily Nail Routine

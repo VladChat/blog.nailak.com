@@ -1,13 +1,25 @@
 ---
-title: "Celebrity style watch: Hollywood’s best jewelry, fashion, and statement looks — Tea tree oil for nail fungus"
-date: 2025-10-22T05:22:12.135473+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/celebrity-style-watch-hollywoods-best-jewelry-fashion-and-statement-looks-tea-tr.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/celebrity-style-watch-hollywoods-best-jewelry-fashion-and-statement-looks-tea-tr.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/celebrity-style-watch-hollywoods-best-jewelry-fashion-and-statement-looks-tea-tr.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/celebrity-style-watch-hollywoods-best-jewelry-fashion-and-statement-looks-tea-tr.jpg
+categories:
+- news
+date: 2025-10-22 05:22:12.135473+00:00
 draft: false
-categories: ['news']
-tags: ['natural-remedies-for-nail-fungus', 'tea-tree-oil-for-nail-fungus', 'how-to-get-rid-of-nail-fungus-fast', 'essential-oils-for-nail-fungus', 'best-nail-fungus-home-treatment']
 keywords:
-  - "Natural remedies for nail fungus"
-  - "tea tree oil for nail fungus"
-author: "Nailak Editorial"
+- Natural remedies for nail fungus
+- tea tree oil for nail fungus
+tags:
+- natural-remedies-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+- how-to-get-rid-of-nail-fungus-fast
+- essential-oils-for-nail-fungus
+- best-nail-fungus-home-treatment
+title: 'Celebrity style watch: Hollywood’s best jewelry, fashion, and statement looks
+  — Tea tree oil for nail fungus'
 ---
 
 # Celebrity Style Watch & Tea Tree Oil for Nail Health

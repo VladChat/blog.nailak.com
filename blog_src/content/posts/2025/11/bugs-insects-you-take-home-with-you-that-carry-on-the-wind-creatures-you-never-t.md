@@ -1,13 +1,25 @@
 ---
-title: "Bugs Insects You Take Home With You That Carry On The Wind – Creatures You Never Thought Could Fly That Bite — How to prevent nail splitting"
-date: 2025-11-03T13:27:41.878591+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/bugs-insects-you-take-home-with-you-that-carry-on-the-wind-creatures-you-never-t.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/bugs-insects-you-take-home-with-you-that-carry-on-the-wind-creatures-you-never-t.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/bugs-insects-you-take-home-with-you-that-carry-on-the-wind-creatures-you-never-t.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/bugs-insects-you-take-home-with-you-that-carry-on-the-wind-creatures-you-never-t.jpg
+categories:
+- news
+date: 2025-11-03 13:27:41.878591+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-prevent-nail-breakage', 'how-to-prevent-nail-splitting', 'nap-whilst-nails-healthy-oils', 'nail-oil-benefits-vs-polish', 'cuticle-oil-benefits']
 keywords:
-  - "How to prevent nail breakage"
-  - "how to prevent nail splitting"
-author: "Nailak Editorial"
+- How to prevent nail breakage
+- how to prevent nail splitting
+tags:
+- how-to-prevent-nail-breakage
+- how-to-prevent-nail-splitting
+- nap-whilst-nails-healthy-oils
+- nail-oil-benefits-vs-polish
+- cuticle-oil-benefits
+title: Bugs Insects You Take Home With You That Carry On The Wind – Creatures You
+  Never Thought Could Fly That Bite — How to prevent nail splitting
 ---
 
 # Prevent Nail Splitting: Wind, Bugs, Hand Care

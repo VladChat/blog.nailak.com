@@ -1,13 +1,25 @@
 ---
-title: "Stéphane Rolland to showcase at Barcelona Bridal Night as international guest label — Vegan nail oil for cuticles"
-date: 2025-10-22T03:56:33.907302+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/stephane-rolland-to-showcase-at-barcelona-bridal-night-as-international-guest-la.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/stephane-rolland-to-showcase-at-barcelona-bridal-night-as-international-guest-la.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/stephane-rolland-to-showcase-at-barcelona-bridal-night-as-international-guest-la.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/stephane-rolland-to-showcase-at-barcelona-bridal-night-as-international-guest-la.jpg
+categories:
+- news
+date: 2025-10-22 03:56:33.907302+00:00
 draft: false
-categories: ['news']
-tags: ['essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles', 'daily-routine-for-strong-healthy-nails', 'nail-fungus-treatment', 'natural-remedies-for-nail-fungus']
 keywords:
-  - "Essential oils for cuticle health"
-  - "vegan nail oil for cuticles"
-author: "Nailak Editorial"
+- Essential oils for cuticle health
+- vegan nail oil for cuticles
+tags:
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+- daily-routine-for-strong-healthy-nails
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+title: Stéphane Rolland to showcase at Barcelona Bridal Night as international guest
+  label — Vegan nail oil for cuticles
 ---
 
 # Bridal Nails: Vegan Cuticle Oil Meets Barcelona Couture

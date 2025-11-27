@@ -1,10 +1,18 @@
 ---
-title: "Glossy Pop Newsletter: Lancôme is making moves to become every bride’s go-to glam — Nail growth tips at home"
-date: 2025-10-19T04:44:22.423486+00:00
+author: uPatch Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/glossy-pop-newsletter-lancome-is-making-moves-to-become-every-brides-go-to-glam.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/glossy-pop-newsletter-lancome-is-making-moves-to-become-every-brides-go-to-glam.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/glossy-pop-newsletter-lancome-is-making-moves-to-become-every-brides-go-to-glam.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/glossy-pop-newsletter-lancome-is-making-moves-to-become-every-brides-go-to-glam.jpg
+categories:
+- news
+date: 2025-10-19 04:44:22.423486+00:00
 draft: false
-categories: ['news']
-tags: ['Jojoba oil for cuticles']
-author: "uPatch Editorial"
+tags:
+- Jojoba oil for cuticles
+title: 'Glossy Pop Newsletter: Lancôme is making moves to become every bride’s go-to
+  glam — Nail growth tips at home'
 ---
 
 # Lancôme's Bridal Glamour & Nail Growth Tips

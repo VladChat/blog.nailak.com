@@ -1,13 +1,25 @@
 ---
-title: "The Best Lip Balm to Protect Against Wind and Cold — Essential oils for cuticle health"
-date: 2025-10-22T03:30:35.279325+00:00
+author: Nailak Editorial
+cards:
+  facebook: https://blog.nailak.com/posts/2025/10/cards/facebook/the-best-lip-balm-to-protect-against-wind-and-cold-essential-oils-for-cuticle-he.jpg
+  instagram: https://blog.nailak.com/posts/2025/10/cards/instagram/the-best-lip-balm-to-protect-against-wind-and-cold-essential-oils-for-cuticle-he.jpg
+  pinterest: https://blog.nailak.com/posts/2025/10/cards/pinterest/the-best-lip-balm-to-protect-against-wind-and-cold-essential-oils-for-cuticle-he.jpg
+  twitter: https://blog.nailak.com/posts/2025/10/cards/facebook/the-best-lip-balm-to-protect-against-wind-and-cold-essential-oils-for-cuticle-he.jpg
+categories:
+- news
+date: 2025-10-22 03:30:35.279325+00:00
 draft: false
-categories: ['news']
-tags: ['how-to-fix-nail-peeling-and-splitting', 'essential-oils-for-cuticle-health', 'vegan-nail-oil-for-cuticles', 'daily-routine-for-strong-healthy-nails', 'nail-fungus-treatment']
 keywords:
-  - "How to fix nail peeling and splitting"
-  - "essential oils for cuticle health"
-author: "Nailak Editorial"
+- How to fix nail peeling and splitting
+- essential oils for cuticle health
+tags:
+- how-to-fix-nail-peeling-and-splitting
+- essential-oils-for-cuticle-health
+- vegan-nail-oil-for-cuticles
+- daily-routine-for-strong-healthy-nails
+- nail-fungus-treatment
+title: The Best Lip Balm to Protect Against Wind and Cold — Essential oils for cuticle
+  health
 ---
 
 # Best Lip Balm for Wind and Cold + Cuticle Oils
