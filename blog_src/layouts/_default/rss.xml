@@ -17,8 +17,6 @@
 {{- with site.Params.author }}
   {{- if reflect.IsMap . }}
     {{- with .name }}{{ $authorName = . }}{{ end }}
-  {{- else }}
-    {{- $authorName = . }}
   {{- end }}
 {{- else }}
   {{- with site.Author.name }}
@@ -108,16 +106,24 @@
            CLEAN PLAIN DESCRIPTION (NO TITLE)
            =========================== -->
       <description>
+        {{- /* choose base source */ -}}
+        {{- $text := "" }}
         {{- if .Description }}
-          {{ .Description | plainify | html }}
+          {{- $text = .Description }}
         {{- else if .Summary }}
-          {{ .Summary | plainify | html }}
+          {{- $text = .Summary }}
         {{- else }}
-          {{- /* Remove title by stripping first line with title */ -}}
-          {{- $clean := .Content | plainify }}
-          {{- $clean = replaceRE (printf "^%s" .Title) "" $clean }}
-          {{- $clean | truncate 220 | html }}
+          {{- $text = .Content }}
         {{- end }}
+
+        {{- /* convert to plain text */ -}}
+        {{- $plain := $text | plainify }}
+
+        {{- /* remove the first heading line (universal) */ -}}
+        {{- $plain = replaceRE "^[^\n]{3,200}\n" "" $plain }}
+
+        {{- /* output */ -}}
+        {{- $plain | truncate 220 | html }}
       </description>
 
 
