@@ -150,11 +150,18 @@
         <media:thumbnail
             url="{{ "/images/brand/26.webp" | absURL }}" />
 
-        {{- $root := printf "%s" .Permalink }}
+        {{/* ===========================
+             CARD URLS FROM FRONT MATTER
+             =========================== */}}
+        {{- $fb := "" }}
+        {{- $ig := "" }}
+        {{- $pin := "" }}
 
-        {{- $fb := printf "%scards/facebook/%s.jpg" $root $slug }}
-        {{- $ig := printf "%scards/instagram/%s.jpg" $root $slug }}
-        {{- $pin := printf "%scards/pinterest/%s.jpg" $root $slug }}
+        {{- with .Params.cards }}
+          {{- with .facebook }}  {{ $fb = . }} {{ end }}
+          {{- with .instagram }} {{ $ig = . }} {{ end }}
+          {{- with .pinterest }} {{ $pin = . }} {{ end }}
+        {{- end }}
 
         <!-- FACEBOOK -->
         <media:content url="{{ $fb }}" medium="image" />
