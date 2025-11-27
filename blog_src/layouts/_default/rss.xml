@@ -105,10 +105,10 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           UNIVERSAL CLEAN DESCRIPTION (NO TITLE EVER)
+           CLEAN DESCRIPTION WITHOUT TITLE
            =========================== -->
       <description>
-        {{- /* choose text source */ -}}
+        {{- /* 1. выбрать источник текста */ -}}
         {{- $text := "" }}
         {{- if .Description }}
           {{- $text = .Description }}
@@ -118,23 +118,22 @@
           {{- $text = .Content }}
         {{- end }}
 
-        {{- /* convert to plain text */ -}}
+        {{- /* 2. plain text без HTML */ -}}
         {{- $plain := $text | plainify }}
 
-        {{- /* remove EXACT title everywhere */ -}}
-        {{- $t := .Title | plainify | escapeRE }}
-        {{- $plain = replaceRE $t "" $plain }}
+        {{- /* 3. удалить точный текст заголовка отовсюду */ -}}
+        {{- $titlePlain := .Title | plainify }}
+        {{- if $titlePlain }}
+          {{- $plain = replace $plain $titlePlain "" }}
+        {{- end }}
 
-        {{- /* remove title followed by newline */ -}}
-        {{- $plain = replaceRE (printf "^%s[\\s]*" $t) "" $plain }}
-
-        {{- /* collapse multiple spaces */ -}}
+        {{- /* 4. собрать пробелы */ -}}
         {{- $plain = replaceRE "[ ]{2,}" " " $plain }}
 
-        {{- /* strip leading/trailing whitespace */ -}}
+        {{- /* 5. обрезать лидирующие/хвостовые пробелы */ -}}
         {{- $plain = trim $plain " " }}
 
-        {{- /* final output */ -}}
+        {{- /* 6. финальный вывод */ -}}
         {{- $plain | truncate 220 | html }}
       </description>
 
