@@ -8,57 +8,102 @@
      ========================= */}}
 {{ if .IsHome }}
   {{- $publisherType := ( .Site.Params.schema.publisherType | default "Organization") | title -}}
+  {{- $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL -}}
+  {{- $sameAs := .Site.Params.schema.sameAs | default (slice) -}}
 
   {{- $data := dict
-        "@context"    "https://schema.org"
-        "@type"       $publisherType
-        "name"        .Site.Title
-        "url"         .Site.Home.Permalink
-        "description" ( .Site.Params.description | plainify | truncate 180 )
+        "@context" "https://schema.org"
+        "@type"    $publisherType
+        "name"     .Site.Title
+        "url"      .Site.Home.Permalink
+        "logo"     (dict "@type" "ImageObject" "url" $logo)
     -}}
 
-  {{- $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL -}}
-  {{- if eq $publisherType "Person" -}}
-    {{- $data = merge $data (dict "image" $logo) -}}
-  {{- else -}}
-    {{- $data = merge $data (dict "logo"  $logo) -}}
+  {{- with .Site.Params.schema.contactEmail }}
+    {{- $data = merge $data (dict "email" .) -}}
   {{- end -}}
 
-  {{- with .Site.Params.schema.sameAs -}}
-    {{- $data = merge $data (dict "sameAs" .) -}}
+  {{- if gt (len $sameAs) 0 }}
+    {{- $data = merge $data (dict "sameAs" $sameAs) -}}
   {{- end -}}
 
   <script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}
 
 {{/* =========================
-     2) Страница поста (BlogPosting)
+     2) Отдельная запись (BlogPosting)
      ========================= */}}
 {{ if .IsPage }}
-  {{- $authorName := .Params.author | default ( .Site.Params.author | default "Nailak Editorial" ) -}}
-  {{- $img := "" -}}
-  {{- with .Params.featuredImage }}{{ $img = . }}{{ end -}}
-  {{- $images := cond (ne $img "") (slice ($img | absURL)) (slice
-        (printf "%simages/nailak-cover-1x1.webp" .Site.BaseURL)
-        (printf "%simages/nailak-cover-4x3.webp" .Site.BaseURL)
-        (printf "%simages/nailak-cover-16x9.webp" .Site.BaseURL)
-    ) -}}
+  {{- $title := .Title | plainify -}}
+  {{- $desc  := ( .Params.description | default .Summary ) | plainify -}}
 
-  {{- $published := ( .PublishDate | default .Date ) -}}
-  {{- $modified  := ( .Lastmod     | default .Date ) -}}
+  {{/* ---- 2.1 Картинки: сначала social-card как в RSS/OG/Twitter ---- */}}
+  {{- $images := slice -}}
 
+  {{- if .File }}
+    {{- $base  := .File.BaseFileName -}}
+    {{- $year  := .Date.Year -}}
+    {{- $month := printf "%02d" .Date.Month -}}
+    {{- $card  := printf "%sposts/%d/%s/cards/facebook/%s.jpg" .Site.BaseURL $year $month $base -}}
+    {{- $images = $images | append $card -}}
+  {{- end -}}
+
+  {{/* 2.2 Если в front matter есть images, добавляем их */}}
+  {{- with .Params.images }}
+    {{- range . }}
+      {{- $images = $images | append . -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{/* 2.3 Фоллбек: общие Nailak-обложки */}}
+  {{- if eq (len $images) 0 }}
+    {{- $baseURL := .Site.BaseURL -}}
+    {{- $images = slice
+          (printf "%simages/nailak-cover-1x1.webp"  $baseURL)
+          (printf "%simages/nailak-cover-4x3.webp"  $baseURL)
+          (printf "%simages/nailak-cover-16x9.webp" $baseURL)
+       -}}
+  {{- end -}}
+
+  {{/* ---- 2.4 Автор ---- */}}
+  {{- $authorName := "" -}}
+  {{- with .Params.author }}
+    {{- if reflect.IsMap . }}
+      {{- with .name }}{{ $authorName = . }}{{ end -}}
+    {{- else }}
+      {{- $authorName = . -}}
+    {{- end -}}
+  {{- else }}
+    {{- $authorName = .Site.Author.name | default "" -}}
+  {{- end -}}
+
+  {{/* ---- 2.5 Базовые поля BlogPosting ---- */}}
   {{- $data := dict
-        "@context"         "https://schema.org"
-        "@type"            "BlogPosting"
-        "headline"         .Title
+        "@context" "https://schema.org"
+        "@type"    "BlogPosting"
+        "headline" $title
+        "name"     $title
+        "description" $desc
         "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
-        "datePublished"    ( $published | time.Format "2006-01-02T15:04:05Z07:00" )
-        "dateModified"     ( $modified  | time.Format "2006-01-02T15:04:05Z07:00" )
-        "author"           (dict "@type" "Person" "name" $authorName "url" (print .Site.BaseURL "editorial/"))
-        "image"            $images
-        "description"      ( ( .Params.description | default .Summary ) | plainify )
+        "url"      .Permalink
+        "image"    $images
     -}}
 
+  {{- with .PublishDate }}
+    {{- $data = merge $data (dict "datePublished" .) -}}
+  {{- end -}}
+
+  {{- with .Lastmod }}
+    {{- $data = merge $data (dict "dateModified" .) -}}
+  {{- end -}}
+
+  {{/* ---- 2.6 Автор как Person, если есть имя ---- */}}
+  {{- if ne $authorName "" }}
+    {{- $author := dict "@type" "Person" "name" $authorName -}}
+    {{- $data = merge $data (dict "author" $author) -}}
+  {{- end -}}
+
+  {{/* ---- 2.7 Publisher (Organization/Person) с логотипом ---- */}}
   {{- $publisherType := ( .Site.Params.schema.publisherType | default "Organization") | title -}}
   {{- $logo := ( .Site.Params.assets.favicon | default "favicon.ico" ) | absURL -}}
   {{- $publisher := dict
@@ -67,6 +112,11 @@
         "logo"  (dict "@type" "ImageObject" "url" $logo)
     -}}
   {{- $data = merge $data (dict "publisher" $publisher) -}}
+
+  {{/* ---- 2.8 Ключевые слова из тэгов ---- */}}
+  {{- with .Params.tags }}
+    {{- $data = merge $data (dict "keywords" .) -}}
+  {{- end -}}
 
   <script type="application/ld+json">{{ $data | jsonify | safeJS }}</script>
 {{ end }}
