@@ -105,15 +105,15 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           ALWAYS FILLED DESCRIPTION
+           ALWAYS CLEAN PLAIN DESCRIPTION
            =========================== -->
       <description>
         {{- if .Description }}
-          {{ .Description | html }}
+          {{ .Description | plainify | html }}
         {{- else if .Summary }}
-          {{ .Summary | html }}
+          {{ .Summary | plainify | html }}
         {{- else }}
-          {{- .Content | plainify | truncate 220 | html }}
+          {{ .Content | plainify | truncate 220 | html }}
         {{- end }}
       </description>
 
