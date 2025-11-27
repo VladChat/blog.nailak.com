@@ -24,17 +24,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install Pillow
-          pip install feedparser
-          pip install python-frontmatter
+          pip install -r blog_src/scripts/requirements.txt
 
       - name: Generate ONE social card (latest post)
         run: |
-          python3 blog_src/scripts/cards/build_cards.py
+          python3 -m blog_src.scripts.cards.build_cards
 
-      - name: Update front matter for THAT post only
+      - name: Update front matter
         run: |
-          python3 blog_src/scripts/cards/update_front_matter.py --latest-only
+          python3 -m blog_src.scripts.cards.update_front_matter
 
       - name: Commit & push updated front matter + card
         run: |
