@@ -8,17 +8,21 @@
 {{/* Default Twitter image */}}
 {{- $defaultTW := printf "%simages/og/default.webp" .Site.BaseURL -}}
 
-{{/* Try to get front matter image */}}
+{{/* Базовое изображение из front matter */}}
 {{- $img := "" -}}
 {{- if .Params.images }}
   {{- $img = index .Params.images 0 -}}
 {{- end -}}
 
-{{/* Check social card */}}
-{{- $cardPath := printf "%scards/facebook/%s.jpg" .Permalink .File.BaseFileName -}}
-
-{{- if (fileExists (printf "static/%s" (replace (replace $cardPath .Site.BaseURL "") "//" "/"))) -}}
-  {{- $img = $cardPath -}}
+{{/* Social-card только для обычных страниц/постов */}}
+{{- if and .IsPage .File -}}
+  {{- $base := .File.BaseFileName -}}
+  {{- $rel := replace (replace .Permalink .Site.BaseURL "") "//" "/" -}}
+  {{- $cardRel := printf "%s/cards/facebook/%s.jpg" $rel $base -}}
+  {{- $cardStatic := printf "static/%s" (trimPrefix "/" $cardRel) -}}
+  {{- if (fileExists $cardStatic) -}}
+    {{- $img = $cardRel -}}
+  {{- end -}}
 {{- end -}}
 
 {{- $finalImage := cond (ne $img "") $img $defaultTW -}}
