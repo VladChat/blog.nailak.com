@@ -1,0 +1,30 @@
+{{/* ============================
+     Twitter Card — Nailak
+     ============================ */}}
+
+{{- $title := .Title | plainify -}}
+{{- $desc := cond (ne .Description "") (.Description | plainify) (.Summary | plainify) -}}
+
+{{/* Default Twitter image */}}
+{{- $defaultTW := printf "%simages/og/default.webp" .Site.BaseURL -}}
+
+{{/* Try to get front matter image */}}
+{{- $img := "" -}}
+{{- if .Params.images }}
+  {{- $img = index .Params.images 0 -}}
+{{- end -}}
+
+{{/* Check social card */}}
+{{- $cardPath := printf "%scards/facebook/%s.jpg" .Permalink .File.BaseFileName -}}
+
+{{- if (fileExists (printf "static/%s" (replace (replace $cardPath .Site.BaseURL "") "//" "/"))) -}}
+  {{- $img = $cardPath -}}
+{{- end -}}
+
+{{- $finalImage := cond (ne $img "") $img $defaultTW -}}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+<meta name="twitter:image" content="{{ $finalImage }}">
+<meta name="twitter:image:alt" content="{{ $title }} — Nailak Blog">
