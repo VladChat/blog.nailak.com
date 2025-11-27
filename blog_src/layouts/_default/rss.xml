@@ -104,17 +104,29 @@
 
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
-      <description>{{ .Description | html }}</description>
+      <!-- ===========================
+           ALWAYS FILLED DESCRIPTION
+           =========================== -->
+      <description>
+        {{- if .Description }}
+          {{ .Description | html }}
+        {{- else if .Summary }}
+          {{ .Summary | html }}
+        {{- else }}
+          {{- .Content | plainify | truncate 220 | html }}
+        {{- end }}
+      </description>
+
 
       {{/* ===========================
-           SAFE SLUG BUILDING
+           SAFE SLUG DETECTION
            =========================== */}}
       {{- $slug := "" }}
       {{- with .File }}
         {{- $slug = path.Base .BaseFileName }}
       {{- end }}
 
-      {{/* Skip media group if no slug (tags, categories, etc.) */}}
+      {{/* Skip media if slug missing (tags/categories pages) */}}
       {{- if ne $slug "" }}
 
       <media:group>
