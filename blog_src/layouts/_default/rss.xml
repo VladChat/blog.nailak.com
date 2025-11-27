@@ -17,6 +17,8 @@
 {{- with site.Params.author }}
   {{- if reflect.IsMap . }}
     {{- with .name }}{{ $authorName = . }}{{ end }}
+  {{- else }}
+    {{- $authorName = . }}
   {{- end }}
 {{- else }}
   {{- with site.Author.name }}
@@ -103,10 +105,10 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           CLEAN PLAIN DESCRIPTION (NO TITLE)
+           UNIVERSAL CLEAN DESCRIPTION (NO TITLE EVER)
            =========================== -->
       <description>
-        {{- /* choose base source */ -}}
+        {{- /* choose text source */ -}}
         {{- $text := "" }}
         {{- if .Description }}
           {{- $text = .Description }}
@@ -119,10 +121,20 @@
         {{- /* convert to plain text */ -}}
         {{- $plain := $text | plainify }}
 
-        {{- /* remove the first heading line (universal) */ -}}
-        {{- $plain = replaceRE "^[^\n]{3,200}\n" "" $plain }}
+        {{- /* remove EXACT title everywhere */ -}}
+        {{- $t := .Title | plainify | escapeRE }}
+        {{- $plain = replaceRE $t "" $plain }}
 
-        {{- /* output */ -}}
+        {{- /* remove title followed by newline */ -}}
+        {{- $plain = replaceRE (printf "^%s[\\s]*" $t) "" $plain }}
+
+        {{- /* collapse multiple spaces */ -}}
+        {{- $plain = replaceRE "[ ]{2,}" " " $plain }}
+
+        {{- /* strip leading/trailing whitespace */ -}}
+        {{- $plain = trim $plain " " }}
+
+        {{- /* final output */ -}}
         {{- $plain | truncate 220 | html }}
       </description>
 
