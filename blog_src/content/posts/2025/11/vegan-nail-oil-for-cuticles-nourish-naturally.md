@@ -1,12 +1,22 @@
 ---
-title: "Vegan Nail Oil for Cuticles: Nourish Naturally"
-date: 2025-11-27T13:38:51.979798+00:00
+author: Nina Nailak
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/vegan-nail-oil-for-cuticles-nourish-naturally.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/vegan-nail-oil-for-cuticles-nourish-naturally.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/vegan-nail-oil-for-cuticles-nourish-naturally.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/vegan-nail-oil-for-cuticles-nourish-naturally.jpg
+categories:
+- news
+date: 2025-11-27 13:38:51.979798+00:00
 draft: false
-categories: ['news']
-tags: ['vegan-nail-oil-for-cuticles', 'nail-fungus-treatment', 'natural-remedies-for-nail-fungus', 'tea-tree-oil-for-nail-fungus']
 keywords:
-  - "Vegan nail oil for cuticles"
-author: "Nina Nailak"
+- Vegan nail oil for cuticles
+tags:
+- vegan-nail-oil-for-cuticles
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+- tea-tree-oil-for-nail-fungus
+title: 'Vegan Nail Oil for Cuticles: Nourish Naturally'
 ---
 
 # Vegan Nail Oil for Cuticles: Nourish Naturally
