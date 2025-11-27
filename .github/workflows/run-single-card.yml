@@ -1,0 +1,48 @@
+name: Generate Single Card + Update Front Matter
+
+on:
+  workflow_dispatch: {}   # Только ручной запуск
+
+permissions:
+  contents: write
+
+jobs:
+  single-card:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install Pillow
+          pip install feedparser
+          pip install python-frontmatter
+
+      - name: Generate ONE social card (latest post)
+        run: |
+          python3 blog_src/scripts/cards/build_cards.py
+
+      - name: Update front matter for THAT post only
+        run: |
+          python3 blog_src/scripts/cards/update_front_matter.py --latest-only
+
+      - name: Commit & push updated front matter + card
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add .
+          git commit -m "Update single card + front matter [manual]" || echo "No changes to commit"
+
+          git pull --rebase
+          git push
