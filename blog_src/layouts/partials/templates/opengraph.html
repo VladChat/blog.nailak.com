@@ -9,13 +9,11 @@
 
 {{- $img := "" -}}
 
-/* Попробуем сначала social-card, только для обычных страниц/постов */
 {{- if and .IsPage .File -}}
   {{- $base := .File.BaseFileName -}}
   {{- $img = printf "%scards/facebook/%s.jpg" .Permalink $base -}}
 {{- end -}}
 
-/* Если вдруг не задали img через карточку — смотрим front matter images */
 {{- if and (eq $img "") .Params.images -}}
   {{- $img = index .Params.images 0 -}}
 {{- end -}}
