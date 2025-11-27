@@ -130,6 +130,20 @@
 
         {{- $plain := $clean | plainify }}
         {{- $plain = trim $plain " \n\r\t" }}
+
+        {{/* ===========================
+             REMOVE TITLE FROM BEGINNING
+           =========================== */}}
+        {{- $plainTitle := .Title | plainify | trim }}
+        {{- $lines := split $plain "\n" }}
+        {{- if gt (len $lines) 0 }}
+          {{- $firstLine := index $lines 0 | trim }}
+          {{- if eq $firstLine $plainTitle }}
+            {{- $plain = delimit (after 1 $lines) "\n" }}
+          {{- end }}
+        {{- end }}
+        {{- $plain = trim $plain " \n\r\t" }}
+
         {{- $plain | truncate 220 | html }}
       </description>
 
