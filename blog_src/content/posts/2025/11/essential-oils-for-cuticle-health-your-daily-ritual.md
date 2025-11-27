@@ -1,12 +1,22 @@
 ---
-title: "Essential Oils for Cuticle Health: Your Daily Ritual"
-date: 2025-11-26T13:40:58.734366+00:00
+author: Elena Moretti
+cards:
+  facebook: https://blog.nailak.com/posts/2025/11/cards/facebook/essential-oils-for-cuticle-health-your-daily-ritual.jpg
+  instagram: https://blog.nailak.com/posts/2025/11/cards/instagram/essential-oils-for-cuticle-health-your-daily-ritual.jpg
+  pinterest: https://blog.nailak.com/posts/2025/11/cards/pinterest/essential-oils-for-cuticle-health-your-daily-ritual.jpg
+  twitter: https://blog.nailak.com/posts/2025/11/cards/facebook/essential-oils-for-cuticle-health-your-daily-ritual.jpg
+categories:
+- news
+date: 2025-11-26 13:40:58.734366+00:00
 draft: false
-categories: ['news']
-tags: ['essential-oils-for-cuticle-health', 'daily-routine-for-strong-healthy-nails', 'nail-fungus-treatment', 'natural-remedies-for-nail-fungus']
 keywords:
-  - "Essential oils for cuticle health"
-author: "Elena Moretti"
+- Essential oils for cuticle health
+tags:
+- essential-oils-for-cuticle-health
+- daily-routine-for-strong-healthy-nails
+- nail-fungus-treatment
+- natural-remedies-for-nail-fungus
+title: 'Essential Oils for Cuticle Health: Your Daily Ritual'
 ---
 
 # Essential Oils for Cuticle Health: Your Daily Ritual
