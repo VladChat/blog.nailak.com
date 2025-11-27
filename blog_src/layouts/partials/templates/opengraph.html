@@ -11,7 +11,9 @@
 
 {{- if and .IsPage .File -}}
   {{- $base := .File.BaseFileName -}}
-  {{- $img = printf "%scards/facebook/%s.jpg" .Permalink $base -}}
+  {{- $year := .Date.Year -}}
+  {{- $month := printf "%02d" .Date.Month -}}
+  {{- $img = printf "%sposts/%d/%s/cards/facebook/%s.jpg" .Site.BaseURL $year $month $base -}}
 {{- end -}}
 
 {{- if and (eq $img "") .Params.images -}}
