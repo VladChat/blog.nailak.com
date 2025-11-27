@@ -1,6 +1,6 @@
 # ============================================
-# File: scripts/cards/core/post_loader.py
-# Load and sort blog posts from content/posts
+# File: blog_src/scripts/cards/core/post_loader.py
+# Load and sort blog posts from blog_src/content/posts
 # ============================================
 
 from __future__ import annotations
@@ -15,8 +15,7 @@ from .models import Post
 
 
 # Корень всех постов внутри blog_src/
-CONTENT_POSTS_ROOT = Path("content/posts")
-
+CONTENT_POSTS_ROOT = Path("blog_src/content/posts")
 
 def _iter_markdown_files(root: Path) -> Iterable[Path]:
     """Находит все .md файлы в content/posts/**/**."""
