@@ -8,8 +8,8 @@
   {{- end }}
 {{- else }}
   {{- with site.Author.email }}
-    {{- $authorEmail = . }}
     {{- warnf "Deprecated: use params.author.email." }}
+    {{- $authorEmail = . }}
   {{- end }}
 {{- end }}
 
@@ -22,8 +22,8 @@
   {{- end }}
 {{- else }}
   {{- with site.Author.name }}
-    {{- $authorName = . }}
     {{- warnf "Deprecated: use params.author.name." }}
+    {{- $authorName = . }}
   {{- end }}
 {{- end }}
 
@@ -134,10 +134,10 @@
         {{/* ===========================
              REMOVE TITLE FROM BEGINNING
            =========================== */}}
-        {{- $plainTitle := .Title | plainify | trim }}
+        {{- $plainTitle := trim (.Title | plainify) " \n\r\t" }}
         {{- $lines := split $plain "\n" }}
         {{- if gt (len $lines) 0 }}
-          {{- $firstLine := index $lines 0 | trim }}
+          {{- $firstLine := trim (index $lines 0) " \n\r\t" }}
           {{- if eq $firstLine $plainTitle }}
             {{- $plain = delimit (after 1 $lines) "\n" }}
           {{- end }}
