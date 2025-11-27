@@ -4,6 +4,16 @@
 #   - Update front matter for posts that already
 #     have generated social cards.
 #   - Works specifically for NAILAK blog structure.
+#
+# Структура NAILAK:
+#   Посты:
+#     blog_src/content/posts/YYYY/MM/<slug>.md
+#
+#   Карточки:
+#     blog_src/content/posts/YYYY/MM/cards/<platform>/<slug>.jpg
+#
+#   Публичные URL:
+#     https://blog.nailak.com/posts/YYYY/MM/cards/<platform>/<slug>.jpg
 # ============================================
 
 from __future__ import annotations
@@ -22,6 +32,9 @@ import frontmatter
 # Корень всех постов (Nailak)
 CONTENT_ROOT = Path("blog_src/content/posts")
 
+# Корень контента для построения относительных путей
+CONTENT_BASE = Path("blog_src/content")
+
 # Блог Nailak
 BASE_URL = "https://blog.nailak.com"
 
@@ -31,12 +44,13 @@ BASE_URL = "https://blog.nailak.com"
 # ============================================
 
 def find_all_posts() -> list[Path]:
-    """Находит все .md файлы, кроме index.md, в CONTENT_ROOT."""
-    if not CONTENT_ROOT.exists():
-        print(f"[loader][ERROR] CONTENT_ROOT не найден: {CONTENT_ROOT}")
-        return []
-
+    """Находит все .md файлы, кроме index.md, внутри CONTENT_ROOT."""
     posts: list[Path] = []
+
+    if not CONTENT_ROOT.exists():
+        print(f"[loader][WARN] CONTENT_ROOT не найден: {CONTENT_ROOT}")
+        return posts
+
     for md_path in CONTENT_ROOT.rglob("*.md"):
         if md_path.name.lower() == "index.md":
             continue
@@ -44,13 +58,12 @@ def find_all_posts() -> list[Path]:
 
     posts = sorted(posts)
     print(f"[loader] Найдено markdown-файлов: {len(posts)}")
+
     return posts
 
 
 def get_post_meta(md_path: Path) -> dict | None:
     """Читает front matter и возвращает slug/date/path/post."""
-
-    print(f"[frontmatter] Обработка файла: {md_path}")
 
     try:
         post = frontmatter.load(md_path)
@@ -59,7 +72,8 @@ def get_post_meta(md_path: Path) -> dict | None:
         return None
 
     # -----------------------------
-    # SLUG: если нет в FM — берём из имени файла
+    # SLUG: берём из front matter, если есть,
+    # иначе автоматически из имени файла (stem)
     # -----------------------------
     slug = post.get("slug")
     if not slug:
@@ -67,7 +81,7 @@ def get_post_meta(md_path: Path) -> dict | None:
         print(f"[frontmatter] slug отсутствует → используем имя файла: {slug}")
 
     # -----------------------------
-    # DATE
+    # DATE (обязательное поле)
     # -----------------------------
     raw_date = post.get("date")
     if not raw_date:
@@ -76,148 +90,96 @@ def get_post_meta(md_path: Path) -> dict | None:
 
     try:
         if isinstance(raw_date, datetime):
-            date_val = raw_date
+            date = raw_date
         else:
-            # Приводим к ISO, заменяем Z → +00:00
-            date_val = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
+            # Поддержка ISO-формата и вариантов с 'Z'
+            date = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
     except Exception as e:
         print(f"[frontmatter][ERROR] Bad date format in {md_path}: {e}")
         return None
 
-    print(
-        f"[frontmatter] title={post.get('title')!r}, "
-        f"slug={slug!r}, date={date_val.isoformat()}"
-    )
-
     return {
         "post": post,
-        "slug": slug,
-        "date": date_val,
+        "slug": str(slug),
+        "date": date,
         "path": md_path,
     }
 
 
-def load_all_meta() -> list[dict]:
-    """Загружает метаданные для всех постов."""
-    posts = find_all_posts()
-    metas: list[dict] = []
-
-    for md in posts:
-        meta = get_post_meta(md)
-        if meta:
-            metas.append(meta)
-
-    print(f"[system] Загружено метаданных: {len(metas)}")
-    return metas
-
-
 def find_cards(meta: dict) -> dict | None:
     """
-    Ищет карточки для поста, поддерживая две возможные схемы путей:
-
-    1) Текущая (упрощённая, как в логах генератора):
-       blog_src/content/posts/YYYY/MM/cards/<platform>/<slug>.jpg
-
-    2) Более вложенная (на будущее / совместимость):
-       blog_src/content/posts/YYYY/MM/DD/slug/cards/<platform>/<slug>.jpg
+    Проверяет существование карточек:
+      blog_src/content/posts/YYYY/MM/cards/<platform>/<slug>.jpg
     """
 
-    date_val: datetime = meta["date"]
-    slug: str = meta["slug"]
+    year = f"{meta['date'].year:04d}"
+    month = f"{meta['date'].month:02d}"
+    slug = meta["slug"]
 
-    year = f"{date_val.year:04d}"
-    month = f"{date_val.month:02d}"
-    day = f"{date_val.day:02d}"
+    base_dir = (
+        CONTENT_ROOT
+        / year
+        / month
+        / "cards"
+    )
 
-    # Порядок важен только для логики Twitter fallback (facebook → instagram → pinterest)
     platforms = ["facebook", "instagram", "pinterest"]
 
-    base_dirs = [
-        # Вариант 1 — как сейчас создаются карточки:
-        # blog_src/content/posts/YYYY/MM/cards/...
-        CONTENT_ROOT / year / month / "cards",
+    card_paths = {
+        p: base_dir / p / f"{slug}.jpg"
+        for p in platforms
+    }
 
-        # Вариант 2 — более вложенная структура:
-        # blog_src/content/posts/YYYY/MM/DD/slug/cards/...
-        CONTENT_ROOT / year / month / day / slug / "cards",
-    ]
+    # Если нет хотя бы одной карточки — пропускаем этот пост
+    for platform, path in card_paths.items():
+        if not path.exists():
+            print(f"[cards][WARN] No card for {platform}: {path}")
+            return None
 
-    card_paths: dict[str, Path] = {}
-
-    for platform in platforms:
-        found_path = None
-
-        for base_dir in base_dirs:
-            candidate = base_dir / platform / f"{slug}.jpg"
-            if candidate.exists():
-                found_path = candidate
-                break
-
-        if found_path:
-            card_paths[platform] = found_path
-            print(f"[cards] Найдена карточка для {platform}: {found_path}")
-        else:
-            # Логируем, но НЕ падаем — просто этой платформы нет
-            print(
-                f"[cards][WARN] Не найдена карточка для {platform}: "
-                f"пробовал {', '.join(str(b / platform / (slug + '.jpg')) for b in base_dirs)}"
-            )
-
-    if not card_paths:
-        print(f"[cards][WARN] Ни одной карточки не найдено для slug={slug}")
-        return None
-
-    print(f"[cards] Всего платформ с карточками для slug={slug}: {len(card_paths)}")
+    print(f"[cards] Все карточки найдены для slug={slug}")
     return card_paths
 
 
-def build_urls(card_paths: dict[str, Path]) -> dict[str, str]:
-    """Создаёт публичные URL на основе BASE_URL.
+def build_urls(card_paths: dict) -> dict:
+    """
+    Создаёт публичные URL на основе BASE_URL.
 
-    Файлы лежат под blog_src/content/...,
-    публичный путь = путь относительно 'blog_src/content':
-      blog_src/content/posts/... → /posts/...
+    Вход:
+      path: blog_src/content/posts/YYYY/MM/cards/<platform>/<slug>.jpg
+
+    Выход:
+      https://blog.nailak.com/posts/YYYY/MM/cards/<platform>/<slug>.jpg
     """
 
     urls: dict[str, str] = {}
 
     for platform, path in card_paths.items():
-        try:
-            rel = path.relative_to(Path("blog_src/content"))
-        except ValueError:
-            # fallback (не должно срабатывать в норме)
-            rel = path
-
+        # Преобразуем абсолютный путь → путь относительно blog_src/content
+        # blog_src/content/posts/...  →  posts/...
+        rel = path.relative_to(CONTENT_BASE)
         public_url = f"{BASE_URL}/{rel.as_posix()}"
         urls[platform] = public_url
-        print(f"[urls] {platform}: {public_url}")
 
-    # Twitter fallback: facebook → instagram → pinterest
-    twitter_url = (
-        urls.get("facebook")
-        or urls.get("instagram")
-        or urls.get("pinterest")
-    )
-
-    if twitter_url:
-        urls["twitter"] = twitter_url
-        print(f"[urls] twitter: {twitter_url} (fallback)")
+    # twitter = facebook
+    urls["twitter"] = urls["facebook"]
 
     return urls
 
 
-def update_frontmatter(meta: dict, card_urls: dict[str, str]) -> None:
-    """Обновляет front matter: добавляет/обновляет блок cards."""
+def update_frontmatter(meta: dict, card_urls: dict) -> None:
+    """Обновляет front matter: добавляет/перезаписывает блок 'cards'."""
 
     post = meta["post"]
-    md_path = meta["path"]
+    md_path: Path = meta["path"]
 
-    # Существующий блок cards (если был) не теряем — обновляем/дополняем
-    existing_cards = post.get("cards", {})
-    existing_cards.update(card_urls)
+    post["cards"] = {
+        "facebook": card_urls["facebook"],
+        "twitter": card_urls["twitter"],
+        "instagram": card_urls["instagram"],
+        "pinterest": card_urls["pinterest"],
+    }
 
-    post["cards"] = existing_cards
-
+    # Сохраняем обратно в тот же файл
     with md_path.open("wb") as f:
         frontmatter.dump(post, f)
 
@@ -229,30 +191,52 @@ def update_frontmatter(meta: dict, card_urls: dict[str, str]) -> None:
 # ============================================
 
 def process(latest_only: bool = False) -> None:
-    metas = load_all_meta()
+    posts = find_all_posts()
 
-    if not metas:
-        print("[system][WARN] No posts found (meta)")
+    if not posts:
+        print("[system][WARN] No posts found")
         return
 
+    # Режим обновления только самого "свежего" поста (по дате)
     if latest_only:
-        # Берём пост с самой поздней датой
-        metas.sort(key=lambda m: m["date"])
-        target = [metas[-1]]
-        print(f"[system] Обновляем только последний по дате пост: {target[0]['path']}")
-    else:
-        target = metas
-        print(f"[system] Обновляем ВСЕ посты: {len(target)} шт.")
+        print("[system] Обновляем только последний пост (по дате).")
 
-    for meta in target:
+        latest_meta: dict | None = None
+
+        for md in posts:
+            meta = get_post_meta(md)
+            if not meta:
+                continue
+
+            if (latest_meta is None) or (meta["date"] > latest_meta["date"]):
+                latest_meta = meta
+
+        if latest_meta is None:
+            print("[system][WARN] Не удалось определить последний пост (нет валидных дат).")
+            return
+
+        card_paths = find_cards(latest_meta)
+        if not card_paths:
+            print("[system][WARN] Для последнего поста карточки не найдены.")
+            return
+
+        card_urls = build_urls(card_paths)
+        update_frontmatter(latest_meta, card_urls)
+        return
+
+    # Обновляем ВСЕ посты
+    print("[system] Обновляем ВСЕ посты.")
+
+    for md in posts:
+        meta = get_post_meta(md)
+        if not meta:
+            continue
+
         card_paths = find_cards(meta)
         if not card_paths:
             continue
 
         card_urls = build_urls(card_paths)
-        if not card_urls:
-            continue
-
         update_frontmatter(meta, card_urls)
 
 
