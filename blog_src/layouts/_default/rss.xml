@@ -105,7 +105,7 @@
       <guid isPermaLink="true">{{ .Permalink }}</guid>
 
       <!-- ===========================
-           ALWAYS CLEAN PLAIN DESCRIPTION
+           CLEAN PLAIN DESCRIPTION (NO TITLE)
            =========================== -->
       <description>
         {{- if .Description }}
@@ -113,7 +113,10 @@
         {{- else if .Summary }}
           {{ .Summary | plainify | html }}
         {{- else }}
-          {{ .Content | plainify | truncate 220 | html }}
+          {{- /* Remove title by stripping first line with title */ -}}
+          {{- $clean := .Content | plainify }}
+          {{- $clean = replaceRE (printf "^%s" .Title) "" $clean }}
+          {{- $clean | truncate 220 | html }}
         {{- end }}
       </description>
 
@@ -126,7 +129,6 @@
         {{- $slug = path.Base .BaseFileName }}
       {{- end }}
 
-      {{/* Skip media if slug missing (tags/categories pages) */}}
       {{- if ne $slug "" }}
 
       <media:group>
@@ -161,12 +163,9 @@
 
       </media:group>
 
-      {{- end }} <!-- end slug check -->
+      {{- end }}
 
 
-      {{/* ===========================
-           FULL CONTENT IF ENABLED
-           =========================== */}}
       {{- if and site.Params.ShowFullTextinRSS .Content }}
       <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
       {{- end }}
