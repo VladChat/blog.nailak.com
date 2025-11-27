@@ -1,0 +1,165 @@
+{{- /* ===========================
+     Author Email / Name Handling
+     =========================== */ -}}
+{{- $authorEmail := "" }}
+{{- with site.Params.author }}
+  {{- if reflect.IsMap . }}
+    {{- with .email }}{{ $authorEmail = . }}{{ end }}
+  {{- end }}
+{{- else }}
+  {{- with site.Author.email }}
+    {{- $authorEmail = . }}
+    {{- warnf "The author key is deprecated. Use params.author.email." }}
+  {{- end }}
+{{- end }}
+
+{{- $authorName := "" }}
+{{- with site.Params.author }}
+  {{- if reflect.IsMap . }}
+    {{- with .name }}{{ $authorName = . }}{{ end }}
+  {{- else }}
+    {{- $authorName = . }}
+  {{- end }}
+{{- else }}
+  {{- with site.Author.name }}
+    {{- $authorName = . }}
+    {{- warnf "The author key is deprecated. Use params.author.name." }}
+  {{- end }}
+{{- end }}
+
+{{- /* ===========================
+     Context + Pages
+     =========================== */ -}}
+{{- $pctx := . }}
+{{- if .IsHome }}{{ $pctx = site }}{{ end }}
+
+{{- $pages := slice }}
+{{- if or $.IsHome $.IsSection }}
+  {{- $pages = $pctx.RegularPages }}
+{{- else }}
+  {{- $pages = $pctx.Pages }}
+{{- end }}
+
+{{- $limit := site.Config.Services.RSS.Limit }}
+{{- if ge $limit 1 }}
+  {{- $pages = $pages | first $limit }}
+{{- end }}
+
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:media="http://search.yahoo.com/mrss/">
+
+  <channel>
+    <title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ .Title }} on {{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>Recent content on {{ site.Title }}</description>
+
+    {{- with site.Params.images }}
+    <image>
+      <title>{{ site.Title }}</title>
+      <url>{{ index . 0 | absURL }}</url>
+      <link>{{ index . 0 | absURL }}</link>
+    </image>
+    {{- end }}
+
+    <generator>Hugo — {{ hugo.Version }}</generator>
+    <language>{{ site.Language.LanguageCode }}</language>
+
+    {{- with $authorEmail }}
+    <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>
+    <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>
+    {{- end }}
+
+    {{- with site.Copyright }}
+    <copyright>{{ . | markdownify | plainify | strings.TrimPrefix "© " }}</copyright>
+    {{- end }}
+
+    {{- if not .Date.IsZero }}
+    <lastBuildDate>{{ (index $pages.ByLastmod.Reverse 0).Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+
+    {{- with .OutputFormats.Get "RSS" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="{{ .MediaType }}" />
+    {{- end }}
+
+    {{- range $pages }}
+    {{- if and (ne .Layout "search") (ne .Layout "archives") }}
+
+    <!-- =========================================
+         ITEM START
+         ========================================= -->
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+
+      {{- with $authorEmail }}
+      <author>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</author>
+      {{- end }}
+
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+
+      <description>{{ .Description | html }}</description>
+
+      <!-- =========================================
+           SOCIAL CARD AUTO-DETECTION
+           ========================================= -->
+
+      {{/* Slug + directories */}}
+      {{- $slug := path.Base .File.BaseFileName }}
+      {{- $postDir := .File.Dir }}
+      {{- $root := printf "%s" .Permalink }}
+
+      <media:group>
+
+        <!-- BRAND IMAGE (always available) -->
+        <media:content
+            url="{{ "/images/brand/26.webp" | absURL }}"
+            medium="image" />
+        <media:thumbnail
+            url="{{ "/images/brand/26.webp" | absURL }}" />
+
+        {{/* Helper: build URL path */}}
+        {{- $fb := printf "%scards/facebook/%s.jpg" $root $slug }}
+        {{- $ig := printf "%scards/instagram/%s.jpg" $root $slug }}
+        {{- $pin := printf "%scards/pinterest/%s.jpg" $root $slug }}
+
+        {{/* Check existence: Hugo's .Resources can’t see generated images, so we assume they exist.
+             If you ever need strict detection, I can implement a fileExists function via hugo pipes. */}}
+
+        <!-- FACEBOOK -->
+        <media:content url="{{ $fb }}" medium="image" />
+        <media:thumbnail url="{{ $fb }}" />
+        <enclosure url="{{ $fb }}" type="image/jpeg" />
+
+        <!-- INSTAGRAM -->
+        <media:content url="{{ $ig }}" medium="image" />
+        <media:thumbnail url="{{ $ig }}" />
+        <enclosure url="{{ $ig }}" type="image/jpeg" />
+
+        <!-- PINTEREST -->
+        <media:content url="{{ $pin }}" medium="image" />
+        <media:thumbnail url="{{ $pin }}" />
+        <enclosure url="{{ $pin }}" type="image/jpeg" />
+
+      </media:group>
+
+      <!-- =========================================
+           FULL CONTENT (optional)
+           ========================================= -->
+      {{- if and site.Params.ShowFullTextinRSS .Content }}
+      <content:encoded><![CDATA[{{ .Content }}]]></content:encoded>
+      {{- end }}
+
+    </item>
+    <!-- =========================================
+         ITEM END
+         ========================================= -->
+
+    {{- end }}
+    {{- end }}
+
+  </channel>
+</rss>
