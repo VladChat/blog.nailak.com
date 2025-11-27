@@ -1,6 +1,5 @@
 # ============================================
 # File: blog_src/scripts/cards/update_front_matter.py
-# Path: blog_src/scripts/cards/update_front_matter.py
 # Purpose:
 #   - Update front matter for posts that already
 #     have generated social cards.
@@ -19,8 +18,8 @@ from datetime import datetime
 # CONFIG — NAILAK
 # ============================================
 
-# Корень всех постов в Nailak
-CONTENT_ROOT = Path("content/posts")
+# Корень всех постов (Nailak)
+CONTENT_ROOT = Path("blog_src/content/posts")
 
 # Блог Nailak
 BASE_URL = "https://blog.nailak.com"
@@ -39,27 +38,40 @@ def find_all_posts():
             continue
         posts.append(md_path)
 
-    return sorted(posts)
+    posts = sorted(posts)
+    print(f"[loader] Найдено markdown-файлов: {len(posts)}")
+
+    return posts
 
 
 def get_post_meta(md_path: Path):
-    """Читает slug и дату из front matter."""
+    """Читает front matter и slug/date."""
+
     try:
         post = frontmatter.load(md_path)
     except Exception as e:
         print(f"[frontmatter][ERROR] Cannot read {md_path}: {e}")
         return None
 
+    # -----------------------------
+    # SLUG: берем автоматически из имени файла
+    # -----------------------------
     slug = post.get("slug")
-    date = post.get("date")
+    if not slug:
+        slug = md_path.stem
+        print(f"[frontmatter] slug отсутствует → используем имя файла: {slug}")
 
-    if not slug or not date:
-        print(f"[frontmatter][WARN] Missing slug/date: {md_path}")
+    # -----------------------------
+    # DATE
+    # -----------------------------
+    raw_date = post.get("date")
+    if not raw_date:
+        print(f"[frontmatter][WARN] Missing date: {md_path}")
         return None
 
     try:
-        if not isinstance(date, datetime):
-            date = datetime.fromisoformat(str(date).replace("Z", "+00:00"))
+        if not isinstance(raw_date, datetime):
+            raw_date = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
     except Exception as e:
         print(f"[frontmatter][ERROR] Bad date format in {md_path}: {e}")
         return None
@@ -67,15 +79,15 @@ def get_post_meta(md_path: Path):
     return {
         "post": post,
         "slug": slug,
-        "date": date,
+        "date": raw_date,
         "path": md_path,
     }
 
 
-def find_cards(root: Path, meta: dict):
+def find_cards(meta: dict):
     """
-    Проверяет, существуют ли карточки:
-    content/posts/YYYY/MM/DD/slug/cards/<platform>/<slug>.jpg
+    Проверяет существование карточек:
+    blog_src/content/posts/YYYY/MM/DD/slug/cards/<platform>/<slug>.jpg
     """
 
     year = f"{meta['date'].year:04d}"
@@ -84,7 +96,7 @@ def find_cards(root: Path, meta: dict):
     slug = meta["slug"]
 
     base_dir = (
-        root
+        CONTENT_ROOT
         / year
         / month
         / day
@@ -99,26 +111,24 @@ def find_cards(root: Path, meta: dict):
         for p in platforms
     }
 
+    # Если нет хотя бы одной карточки — пропускаем
     for p, path in card_paths.items():
         if not path.exists():
             print(f"[cards][WARN] No card for {p}: {path}")
             return None
 
+    print(f"[cards] Все карточки найдены для slug={slug}")
     return card_paths
 
 
-def build_urls(card_paths: dict, meta: dict):
+def build_urls(card_paths: dict):
     """Создаёт публичные URL на основе BASE_URL."""
 
     urls = {}
 
-    # Получаем относительный путь от /content до /posts
-    # нужно удалить "content" в пути
     for platform, path in card_paths.items():
-
-        # path = content/posts/YYYY/MM/DD/slug/cards/...jpg
-        rel = path.relative_to(Path("content"))  # -> posts/...
-
+        # Преобразуем абсолютный путь → путь относительно blog_src/
+        rel = path.relative_to(Path("blog_src"))
         public_url = f"{BASE_URL}/{rel.as_posix()}"
         urls[platform] = public_url
 
@@ -134,7 +144,6 @@ def update_frontmatter(meta: dict, card_urls: dict):
     post = meta["post"]
     md_path = meta["path"]
 
-    # Добавляем блок cards
     post["cards"] = {
         "facebook": card_urls["facebook"],
         "twitter": card_urls["twitter"],
@@ -142,7 +151,6 @@ def update_frontmatter(meta: dict, card_urls: dict):
         "pinterest": card_urls["pinterest"],
     }
 
-    # Сохраняем
     with md_path.open("wb") as f:
         frontmatter.dump(post, f)
 
@@ -160,22 +168,23 @@ def process(latest_only: bool = False):
         print("[system][WARN] No posts found")
         return
 
-    # Если нужно обновить только последний пост
     if latest_only:
-        selected = [posts[-1]]
+        target = [posts[-1]]
+        print("[system] Обновляем только последний пост.")
     else:
-        selected = posts
+        target = posts
+        print("[system] Обновляем ВСЕ посты.")
 
-    for md in selected:
+    for md in target:
         meta = get_post_meta(md)
         if not meta:
             continue
 
-        card_paths = find_cards(CONTENT_ROOT, meta)
+        card_paths = find_cards(meta)
         if not card_paths:
             continue
 
-        card_urls = build_urls(card_paths, meta)
+        card_urls = build_urls(card_paths)
         update_frontmatter(meta, card_urls)
 
 
