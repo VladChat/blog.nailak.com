@@ -1,7 +1,14 @@
+# ============================================================
+# File: .github/workflows/run-single-card.yml
+# Description:
+#   Generate ONE social card for the latest post
+#   + update front matter for that post (manual only)
+# ============================================================
+
 name: Generate Single Card + Update Front Matter
 
 on:
-  workflow_dispatch: {}   # Только ручной запуск
+  workflow_dispatch: {}   # Only manual launch
 
 permissions:
   contents: write
@@ -30,7 +37,7 @@ jobs:
         run: |
           python3 -m blog_src.scripts.cards.build_cards
 
-      - name: Update front matter
+      - name: Update front matter (latest post or smart logic)
         run: |
           python3 -m blog_src.scripts.cards.update_front_matter
 
