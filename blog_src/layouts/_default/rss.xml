@@ -124,8 +124,11 @@
           {{- end }}
         {{- end }}
 
-        {{- /* 3. plain text, обрезка, без вырезания title */ -}}
-        {{- $plain := $text | plainify }}
+        {{- /* 3. plain text, обрезка: убираем заголовок h1/# Title из начала */ -}}
+        {{- $clean := replaceRE "^# .*?\n" "" $text }}
+        {{- $clean = replaceRE "^<h1[^>]*>.*?</h1>" "" $clean }}
+
+        {{- $plain := $clean | plainify }}
         {{- $plain = trim $plain " \n\r\t" }}
         {{- $plain | truncate 220 | html }}
       </description>
