@@ -3,7 +3,7 @@ name: Blog Writer
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 13 * * 2'   # каждый вторник в 13:00 UTC
+    - cron: '0 13 20 * *'   # 20-го числа каждого месяца в 13:00 UTC
 
 permissions:
   contents: write
@@ -11,13 +11,15 @@ permissions:
 jobs:
   writer:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.11'
 
